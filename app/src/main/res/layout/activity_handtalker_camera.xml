@@ -35,6 +35,45 @@
 
     </LinearLayout>
 
+    <!-- Elementos del centro -->
+    <FrameLayout
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:background="@drawable/edittext_border"
+        android:layout_height="427dp"
+        android:layout_below="@+id/topBar">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textTraduc"
+        android:layout_width="401dp"
+        android:layout_height="68dp"
+        android:layout_below="@+id/camera_preview"
+        android:layout_weight="0"
+        android:text="Traduccion:"
+        android:textAlignment="center"
+        android:textSize="21dp" />
+
+    <FrameLayout
+        android:id="@+id/resultadoCuadro"
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
+        android:layout_below="@id/textTraduc">
+
+        <TextView
+            android:id="@+id/textResul"
+            android:layout_below="@+id/camera_preview"
+            android:layout_width="400dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+            android:text="..."
+            android:textColor="@color/azulInicio"
+            android:textAlignment="center"
+            android:textSize="21dp"/>
+    </FrameLayout>
+
+
 
 
     <!-- Barra de navegación inferior -->

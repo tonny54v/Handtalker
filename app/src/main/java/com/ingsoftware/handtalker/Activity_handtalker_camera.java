@@ -14,6 +14,7 @@ public class Activity_handtalker_camera extends AppCompatActivity {
     private ImageView perfil1;
     private ImageView config;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
