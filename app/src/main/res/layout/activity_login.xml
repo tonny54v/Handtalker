@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="302dp"
+        android:layout_height="302dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/handtalker_logo" /> <!-- Asumiendo que tienes una imagen llamada handtalker_logo en tus recursos -->
+
+
+    <EditText
+        android:id="@+id/correoEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:hint="Correo"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/contrasenaEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/correoEditText"
+        android:hint="Contraseña"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/iniciarSesionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contrasenaEditText"
+        android:layout_marginTop="13dp"
+        android:backgroundTint="@color/bluestrong"
+        android:textSize="18dp"
+        android:text="Iniciar sesion" />
+
+    <TextView
+        android:id="@+id/olvidasteTextView"
+        android:layout_width="179dp"
+        android:layout_height="36dp"
+        android:layout_below="@id/iniciarSesionButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="   ¿Olvidaste tu contraseña?"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/registroTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_below="@id/olvidasteTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="164dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="    ¿No tienes cuenta? Regístrate"
+        android:textColor="@android:color/holo_blue_dark"/>
+</RelativeLayout>
