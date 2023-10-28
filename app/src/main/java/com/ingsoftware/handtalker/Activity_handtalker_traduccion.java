@@ -6,9 +6,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.ingsoftware.handtalker.R;
 
-public class HandTalkerMainActivity extends AppCompatActivity {
+public class Activity_handtalker_traduccion extends AppCompatActivity {
 
-    private ImageView imagenCentro1;
     private ImageView home1;
     private ImageView traduccion1;
     private ImageView camara1;
@@ -18,32 +17,20 @@ public class HandTalkerMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_handtalker_main);
+        setContentView(R.layout.activity_handtalker_traduccion);
 
-        imagenCentro1 = findViewById(R.id.imagen_centro1);
         home1 = findViewById(R.id.inicio);
         traduccion1 = findViewById(R.id.traduccion);
         camara1 = findViewById(R.id.camara);
         perfil1 = findViewById(R.id.perfil);
         config = findViewById(R.id.ajuste);
 
-        // Cambiar la imagen del centro basada en la hora
-        int hour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY);
-        if (hour > 0 && hour <= 11) {
-            imagenCentro1.setImageResource(R.drawable.goodmorning);
-        } else if(hour >= 12 && hour <= 19){
-            imagenCentro1.setImageResource(R.drawable.goodafternoon);
-        } else if(hour >= 20 && hour < 23 ){
-            imagenCentro1.setImageResource(R.drawable.goodnight);
-        }else if (hour == 0){
-            imagenCentro1.setImageResource(R.drawable.goodmorning);
-        }
 
         //Eventos de los botones
-        traduccion1.setOnClickListener(new View.OnClickListener() {
+        home1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirTraduccion();
+                abrirInicio();
             }
         });
 
@@ -70,23 +57,22 @@ public class HandTalkerMainActivity extends AppCompatActivity {
     }
 
     private void abrirVentanaBlanco() {
-        Intent intent = new Intent(HandTalkerMainActivity.this, VentanaBlancoActivity.class);
+        Intent intent = new Intent(Activity_handtalker_traduccion.this, VentanaBlancoActivity.class);
         startActivity(intent);
     }
 
     private void abrirPerfil() {
-        Intent intent = new Intent(HandTalkerMainActivity.this, Activity_handtalker_perfil.class);
+        Intent intent = new Intent(Activity_handtalker_traduccion.this, Activity_handtalker_perfil.class);
         startActivity(intent);
     }
 
-    private void abrirTraduccion() {
-        Intent intent = new Intent(HandTalkerMainActivity.this, Activity_handtalker_traduccion.class);
+    private void abrirInicio() {
+        Intent intent = new Intent(Activity_handtalker_traduccion.this, HandTalkerMainActivity.class);
         startActivity(intent);
     }
 
     private void abrircamara() {
-        Intent intent = new Intent(HandTalkerMainActivity.this, Activity_handtalker_camera.class);
+        Intent intent = new Intent(Activity_handtalker_traduccion.this, Activity_handtalker_camera.class);
         startActivity(intent);
     }
 }
-

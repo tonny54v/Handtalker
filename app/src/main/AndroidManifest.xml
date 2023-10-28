@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Handtalker"
         tools:targetApi="31">
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -21,9 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".VentanaBlancoActivity" />
         <activity android:name=".HandTalkerMainActivity" />
+        <activity android:name=".Activity_handtalker_traduccion" />
+        <activity android:name=".Activity_handtalker_camera" />
+        <activity android:name=".Activity_handtalker_perfil" />
+
     </application>
 
 </manifest>

@@ -35,20 +35,7 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imagen_centro1"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_below="@id/topBar"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/goodmorning" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="225dp"
-        android:layout_below="@id/imagen_centro1"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/abecedario" />
 
     <!-- Barra de navegación inferior -->
     <LinearLayout
@@ -89,4 +76,3 @@
             android:src="@drawable/perfilinfo" />
     </LinearLayout>
 </RelativeLayout>
-
