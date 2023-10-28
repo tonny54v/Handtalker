@@ -9,6 +9,7 @@ import com.ingsoftware.handtalker.R;
 public class Activity_handtalker_frases_predet extends AppCompatActivity {
 
     private ImageView home1;
+    private ImageView flechas;
     private ImageView traduccion1;
     private ImageView camara1;
     private ImageView perfil1;
@@ -19,6 +20,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handtalker_frases_predet);
 
+        flechas = findViewById(R.id.fechita1);
         home1 = findViewById(R.id.inicio);
         traduccion1 = findViewById(R.id.traduccion);
         camara1 = findViewById(R.id.camara);
@@ -31,6 +33,13 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abrirInicio();
+            }
+        });
+
+        flechas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirTraduccion();
             }
         });
 
@@ -73,6 +82,11 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
 
     private void abrircamara() {
         Intent intent = new Intent(Activity_handtalker_frases_predet.this, Activity_handtalker_camera.class);
+        startActivity(intent);
+    }
+
+    private void abrirTraduccion() {
+        Intent intent = new Intent(Activity_handtalker_frases_predet.this, Activity_handtalker_traduccion.class);
         startActivity(intent);
     }
 }
