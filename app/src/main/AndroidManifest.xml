@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Handtalker"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Activity_handtalker_frases_predet"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -27,7 +29,6 @@
         <activity android:name=".Activity_handtalker_traduccion" />
         <activity android:name=".Activity_handtalker_camera" />
         <activity android:name=".Activity_handtalker_perfil" />
-
     </application>
 
 </manifest>
