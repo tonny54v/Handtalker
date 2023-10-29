@@ -60,9 +60,14 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         config.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirVentanaBlanco();
+                abrirConfig();
             }
         });
+    }
+
+    private void abrirConfig() {
+        Intent intent = new Intent(Activity_handtalker_perfil.this, Activity_configuration.class);
+        startActivity(intent);
     }
 
     private void abrirVentanaBlanco() {
