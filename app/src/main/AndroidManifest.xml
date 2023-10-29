@@ -18,13 +18,7 @@
         android:theme="@style/Theme.Handtalker"
         tools:targetApi="31">
         <activity
-            android:name=".Activity_recupera_cuenta"
-            android:exported="false" />
-        <activity
-            android:name=".Activity_configuration"
-            android:exported="false" />
-        <activity
-            android:name=".Activity_handtalker_frases_predet"
+            android:name=".Activity_registrate"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
@@ -36,10 +30,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".VentanaBlancoActivity" />
+        <activity android:name=".Activity_recupera_cuenta" />
         <activity android:name=".HandTalkerMainActivity" />
         <activity android:name=".Activity_handtalker_traduccion" />
         <activity android:name=".Activity_handtalker_camera" />
         <activity android:name=".Activity_handtalker_perfil" />
+        <activity android:name=".Activity_configuration" />
+        <activity android:name=".Activity_handtalker_frases_predet" />
     </application>
 
 </manifest>

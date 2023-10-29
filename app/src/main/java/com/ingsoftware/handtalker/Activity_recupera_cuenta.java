@@ -17,7 +17,7 @@ public class Activity_recupera_cuenta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recupera_cuenta);
 
-        atrasB = findViewById(R.id.atras);
+        atrasB = findViewById(R.id.atrasButton);
         recupera = findViewById(R.id.recuperarCuenta);
 
         recupera.setOnClickListener(new View.OnClickListener() {

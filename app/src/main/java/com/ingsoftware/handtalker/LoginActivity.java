@@ -19,8 +19,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button iniciarSesionButton = findViewById(R.id.iniciarSesionButton);
-        olvidaste = findViewById(R.id.olvidasteText);
-        registro = findViewById(R.id.registroText);
+        olvidaste = findViewById(R.id.olvidasteCuenta);
+        registro = findViewById(R.id.registrate);
 
         iniciarSesionButton.setOnClickListener(new View.OnClickListener() {
             @Override

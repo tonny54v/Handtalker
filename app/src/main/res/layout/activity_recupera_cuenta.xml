@@ -13,6 +13,7 @@
         android:padding="8dp">
 
         <ImageView
+            android:id="@+id/atrasButton"
             android:layout_width="44dp"
             android:layout_height="45dp"
             android:src="@drawable/atrasazul" />
@@ -58,7 +59,7 @@
         android:textSize="18dp" />
 
     <TextView
-        android:id="@+id/olvidasteTextView"
+        android:id="@+id/textComprueba"
         android:layout_width="342dp"
         android:layout_height="40dp"
         android:layout_below="@id/recuperarCuenta"

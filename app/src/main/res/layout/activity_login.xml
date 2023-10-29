@@ -12,12 +12,22 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/handtalker_logo" /> <!-- Asumiendo que tienes una imagen llamada handtalker_logo en tus recursos -->
 
+    <TextView
+        android:id="@+id/textoBienvenida"
+        android:layout_width="358dp"
+        android:layout_height="38dp"
+        android:layout_below="@+id/logo"
+        android:text="  ¡Bienvenido de vuelta!"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/azulInicio"/>
 
     <EditText
         android:id="@+id/correoEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/logo"
+        android:layout_below="@id/textoBienvenida"
+
         android:hint="Correo"
         android:inputType="textEmailAddress" />
 
@@ -31,37 +41,35 @@
 
     <Button
         android:id="@+id/iniciarSesionButton"
-        android:layout_width="match_parent"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/contrasenaEditText"
+        android:layout_centerInParent="true"
         android:layout_marginTop="13dp"
         android:backgroundTint="@color/bluestrong"
-        android:textSize="18dp"
-        android:text="Iniciar sesion" />
+        android:text="Iniciar sesion"
+        android:textSize="18dp" />
 
     <Button
-        android:id="@+id/olvidasteText"
+        android:id="@+id/olvidasteCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iniciarSesionButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
+        android:layout_below="@+id/iniciarSesionButton"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="13dp"
+        android:text="¿Olvidaste tu cuenta?"
         android:backgroundTint="@color/white"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="   ¿Olvidaste tu contraseña?"
-        android:textColor="@android:color/black" />
+        android:textColor="@color/black" />
 
     <Button
-        android:id="@+id/registroText"
+        android:id="@+id/registrate"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_below="@id/olvidasteText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="147dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/olvidasteCuenta"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="13dp"
+        android:text="¿No tienes cuenta? Registrate"
         android:backgroundTint="@color/white"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="    ¿No tienes cuenta? Regístrate"
-        android:textColor="@android:color/holo_blue_dark" />
+        android:textColor="@color/azulInicio" />
+
 </RelativeLayout>

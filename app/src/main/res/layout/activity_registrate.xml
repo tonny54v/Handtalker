@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Barra superior azul -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="37dp"
+            android:layout_gravity="center"
+            android:src="@drawable/atras" />
+
+        <ImageView
+            android:layout_width="283dp"
+            android:layout_height="54dp"
+            android:layout_gravity="left"
+            android:layout_weight="0"
+            android:src="@drawable/logo_alargado" />
+    </LinearLayout>
+
+    <!-- Elementos de registro -->
+
+
+
+
+</RelativeLayout>
