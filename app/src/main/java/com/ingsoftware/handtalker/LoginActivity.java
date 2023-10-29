@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirVentanaBlanco();
+                abrirRegistrarse();
             }
         });
     }
@@ -47,6 +47,11 @@ public class LoginActivity extends AppCompatActivity {
     //Permite hacer pruebas con los botones
     private void abrirVentanaBlanco() {
         Intent intent = new Intent(LoginActivity.this, VentanaBlancoActivity.class);
+        startActivity(intent);
+    }
+
+    private void abrirRegistrarse() {
+        Intent intent = new Intent(LoginActivity.this, Activity_registrate.class);
         startActivity(intent);
     }
 

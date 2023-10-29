@@ -18,9 +18,6 @@
         android:theme="@style/Theme.Handtalker"
         tools:targetApi="31">
         <activity
-            android:name=".Activity_registrate"
-            android:exported="false" />
-        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -37,6 +34,7 @@
         <activity android:name=".Activity_handtalker_perfil" />
         <activity android:name=".Activity_configuration" />
         <activity android:name=".Activity_handtalker_frases_predet" />
+        <activity android:name=".Activity_registrate"/>
     </application>
 
 </manifest>

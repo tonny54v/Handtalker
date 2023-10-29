@@ -14,6 +14,7 @@
         android:padding="8dp">
 
         <ImageView
+            android:id="@+id/atrasx"
             android:layout_width="45dp"
             android:layout_height="37dp"
             android:layout_gravity="center"
@@ -28,8 +29,191 @@
     </LinearLayout>
 
     <!-- Elementos de registro -->
+    <LinearLayout
+        android:id="@+id/textoregi"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_below="@id/topBar"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Ingresa tus datos personales:"
+            android:textAlignment="center"
+            android:textSize="23dp"
+            android:textColor="@color/azulInicio"/>
 
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/infoName1"
+        android:layout_below="@id/textoregi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
 
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Nombre(s):"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/name1"
+        android:layout_below="@id/infoName1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:background="@drawable/edittext_border"
+            android:layout_weight="0"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/infoApellido1"
+        android:layout_below="@id/name1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Apellido(s):"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/apellido1"
+        android:layout_below="@id/infoApellido1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+            android:background="@drawable/edittext_border"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/infoTelefono1"
+        android:layout_below="@id/apellido1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Telefono:"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/telefono1"
+        android:layout_below="@id/infoTelefono1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+            android:background="@drawable/edittext_border"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/infoCorreo1"
+        android:layout_below="@id/telefono1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Correo:"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/correo1"
+        android:layout_below="@id/infoCorreo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+            android:background="@drawable/edittext_border"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/infoContra1"
+        android:layout_below="@id/correo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Contraseña:"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/contra1"
+        android:layout_below="@id/infoContra1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+            android:background="@drawable/edittext_border"
+            android:textSize="21dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/botonRegistra"
+        android:layout_width="246dp"
+        android:layout_height="65dp"
+        android:layout_below="@+id/contra1"
+        android:layout_centerInParent="true"
+        android:textSize="20dp"
+        android:text="Registrarse"
+        android:backgroundTint="@color/bluestrong"/>
 </RelativeLayout>
