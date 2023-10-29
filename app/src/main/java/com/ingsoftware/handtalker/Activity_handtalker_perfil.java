@@ -13,6 +13,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
     private ImageView camara1;
     private ImageView perfil1;
     private ImageView config;
+    private ImageView editarPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         traduccion1 = findViewById(R.id.traduccion);
         camara1 = findViewById(R.id.camara);
         perfil1 = findViewById(R.id.perfil);
+        editarPerfil = findViewById(R.id.editperfil);
         config = findViewById(R.id.ajuste);
 
 
@@ -45,6 +47,13 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abrirTraduccion();
+            }
+        });
+
+        editarPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirVentanaBlanco();
             }
         });
 
