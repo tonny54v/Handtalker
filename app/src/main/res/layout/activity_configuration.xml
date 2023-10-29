@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Barra superior azul -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/atras"
+            android:layout_width="59dp"
+            android:layout_height="49dp"
+            android:background="@color/azulInicio"
+            android:src="@drawable/atras" />
+
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:text="Configuracion"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tamanofuente"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_below="@id/topBar"
+        android:background="@drawable/edittext_border"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="43dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center"
+            android:src="@drawable/tamanotexto" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:text=" Tamaño de fuente"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tema"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_below="@id/tamanofuente"
+        android:background="@drawable/edittext_border"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="43dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center"
+            android:src="@drawable/temaimg" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=" Tema de aplicacion"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tamanografico"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_below="@id/tema"
+        android:background="@drawable/edittext_border"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="43dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center"
+            android:src="@drawable/tamanografo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=" Tamaño de grafico"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
+
+
+
+    <!-- Barra de navegación inferior -->
+
+</RelativeLayout>
