@@ -39,27 +39,29 @@
         android:textSize="18dp"
         android:text="Iniciar sesion" />
 
-    <TextView
-        android:id="@+id/olvidasteTextView"
-        android:layout_width="179dp"
-        android:layout_height="36dp"
+    <Button
+        android:id="@+id/olvidasteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/iniciarSesionButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
+        android:backgroundTint="@color/white"
         android:clickable="true"
         android:focusable="true"
         android:text="   ¿Olvidaste tu contraseña?"
         android:textColor="@android:color/black" />
 
-    <TextView
-        android:id="@+id/registroTextView"
+    <Button
+        android:id="@+id/registroText"
         android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_below="@id/olvidasteTextView"
+        android:layout_height="37dp"
+        android:layout_below="@id/olvidasteText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="147dp"
+        android:backgroundTint="@color/white"
         android:clickable="true"
         android:focusable="true"
         android:text="    ¿No tienes cuenta? Regístrate"
-        android:textColor="@android:color/holo_blue_dark"/>
+        android:textColor="@android:color/holo_blue_dark" />
 </RelativeLayout>

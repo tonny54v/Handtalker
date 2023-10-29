@@ -64,19 +64,21 @@
     <!-- Seccion de texto (ingreso texto)-->
     <RelativeLayout
         android:id="@+id/ingresatexto"
+        android:layout_width="399dp"
+        android:layout_height="206dp"
+        android:layout_centerInParent="true"
         android:layout_below="@id/textfecha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="8dp">
 
         <EditText
-            android:layout_width="387dp"
-            android:layout_height="200dp"
+            android:layout_width="376dp"
+            android:layout_height="189dp"
+
+
             android:layout_centerInParent="true"
             android:gravity="top"
-            android:background="@drawable/edittext_border"
-
             android:hint=" Ingrese el texto aquí"
             android:inputType="textMultiLine" />
 

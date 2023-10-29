@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Handtalker"
         tools:targetApi="31">
         <activity
+            android:name=".Activity_recupera_cuenta"
+            android:exported="false" />
+        <activity
             android:name=".Activity_configuration"
             android:exported="false" />
         <activity

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="383dp"
+        android:layout_height="88dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="45dp"
+            android:src="@drawable/atrasazul" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="266dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/handtalker_logo" /> <!-- Asumiendo que tienes una imagen llamada handtalker_logo en tus recursos -->
+
+    <TextView
+        android:id="@+id/textIngresa"
+        android:layout_width="392dp"
+        android:layout_height="38dp"
+        android:layout_below="@+id/logo"
+        android:text="Ingresa tu correo para continuar"
+        android:textAlignment="center"
+        android:textSize="17dp" />
+
+
+    <EditText
+        android:id="@+id/correoEditText"
+        android:layout_width="393dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/textIngresa"
+        android:background="@drawable/edittext_border"
+        android:hint=" Correo"
+        android:inputType="textEmailAddress" />
+
+
+    <Button
+        android:id="@+id/recuperarCuenta"
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/correoEditText"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="13dp"
+        android:backgroundTint="@color/bluestrong"
+        android:text="Recuperar cuenta"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/olvidasteTextView"
+        android:layout_width="342dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/recuperarCuenta"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="   Se te enviara un correo para comprobar identidad"
+        android:textColor="@android:color/black" />
+
+
+</RelativeLayout>
