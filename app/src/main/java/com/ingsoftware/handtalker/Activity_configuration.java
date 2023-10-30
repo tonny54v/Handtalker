@@ -25,6 +25,7 @@ public class Activity_configuration extends AppCompatActivity {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.azulInicio));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
         }
 
         atrasBoton = findViewById(R.id.atras);
