@@ -101,6 +101,29 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/cerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_below="@id/tamanografico"
+        android:background="@drawable/edittext_border"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="43dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center"
+            android:src="@drawable/cerrarses" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=" Cerrar sesion"
+            android:textSize="25dp" />
+
+    </LinearLayout>
+
 
 
 

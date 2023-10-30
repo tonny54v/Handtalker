@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -14,6 +16,7 @@ import com.ingsoftware.handtalker.R;
 public class Activity_configuration extends AppCompatActivity {
 
     private ImageView atrasBoton;
+    private LinearLayout cerrarSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +32,19 @@ public class Activity_configuration extends AppCompatActivity {
         }
 
         atrasBoton = findViewById(R.id.atras);
+        cerrarSesion = findViewById(R.id.cerrarSesion);
 
         atrasBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 regresarInicio();
+            }
+        });
+
+        cerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                regresarLogin();
             }
         });
     }
@@ -42,4 +53,11 @@ public class Activity_configuration extends AppCompatActivity {
         Intent intent = new Intent(Activity_configuration.this, HandTalkerMainActivity.class);
         startActivity(intent);
     }
+
+    private void regresarLogin() {
+        Intent intent = new Intent(Activity_configuration.this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+
 }
