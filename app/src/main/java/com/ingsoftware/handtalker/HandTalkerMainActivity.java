@@ -1,9 +1,14 @@
 package com.ingsoftware.handtalker;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.ingsoftware.handtalker.R;
 
 public class HandTalkerMainActivity extends AppCompatActivity {
@@ -19,6 +24,13 @@ public class HandTalkerMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handtalker_main);
+
+        // Cambiar el color de la barra de estado
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.azulInicio));
+        }
 
         imagenCentro1 = findViewById(R.id.imagen_centro1);
         home1 = findViewById(R.id.inicio);
