@@ -8,12 +8,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.ingsoftware.handtalker.R;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final int TIEMPO_ENTRE_PULSACIONES = 2000; // 2 segundos
+    private long tiempoUltimaPulsacion;
+    private Toast toast;
 
     private Button olvidaste;
     private Button registro;
@@ -76,6 +82,24 @@ public class LoginActivity extends AppCompatActivity {
     private void abrirRecupera() {
         Intent intent = new Intent(LoginActivity.this, Activity_recupera_cuenta.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (System.currentTimeMillis() - tiempoUltimaPulsacion < TIEMPO_ENTRE_PULSACIONES) {
+            if (toast != null) {
+                toast.cancel();
+            }
+            super.onBackPressed();
+            finishAffinity();  // Finaliza todas las actividades
+            System.exit(0);  // Termina el proceso de la aplicación
+            return;
+        }
+
+        tiempoUltimaPulsacion = System.currentTimeMillis();
+        toast = Toast.makeText(this, "Pulsa de nuevo para salir", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
 

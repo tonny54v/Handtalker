@@ -6,12 +6,18 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.ingsoftware.handtalker.R;
 
 public class Activity_handtalker_camera extends AppCompatActivity {
+
+    private static final int TIEMPO_ENTRE_PULSACIONES = 2000; // 2 segundos
+    private long tiempoUltimaPulsacion;
+    private Toast toast;
 
     private ImageView home1;
     private ImageView traduccion1;
@@ -93,5 +99,23 @@ public class Activity_handtalker_camera extends AppCompatActivity {
     private void abrirTraduccion() {
         Intent intent = new Intent(Activity_handtalker_camera.this, Activity_handtalker_traduccion.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (System.currentTimeMillis() - tiempoUltimaPulsacion < TIEMPO_ENTRE_PULSACIONES) {
+            if (toast != null) {
+                toast.cancel();
+            }
+            super.onBackPressed();
+            finishAffinity();  // Finaliza todas las actividades
+            System.exit(0);  // Termina el proceso de la aplicación
+            return;
+        }
+
+        tiempoUltimaPulsacion = System.currentTimeMillis();
+        toast = Toast.makeText(this, "Pulsa de nuevo para salir", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
