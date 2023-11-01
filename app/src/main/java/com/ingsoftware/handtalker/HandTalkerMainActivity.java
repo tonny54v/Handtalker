@@ -51,9 +51,9 @@ public class HandTalkerMainActivity extends AppCompatActivity {
         int hour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY);
         if (hour > 0 && hour <= 11) {
             imagenCentro1.setImageResource(R.drawable.goodmorning);
-        } else if(hour >= 12 && hour <= 19){
+        } else if(hour >= 12 && hour <= 18){
             imagenCentro1.setImageResource(R.drawable.goodafternoon);
-        } else if(hour >= 20 && hour < 23 ){
+        } else if(hour >= 19 && hour < 23 ){
             imagenCentro1.setImageResource(R.drawable.goodnight);
         }else if (hour == 0){
             imagenCentro1.setImageResource(R.drawable.goodmorning);
