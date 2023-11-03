@@ -39,4 +39,6 @@
         <activity android:name=".Activity_registrate"/>
     </application>
 
+
+
 </manifest>

@@ -136,16 +136,18 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String correoQ,contrasenaQ,nombreQ;
+                        String correoQ,contrasenaQ,nombreQ,idQ;
                         try {
                             correoQ = response.getString("correo");
                             contrasenaQ = response.getString("contrasena");
                             nombreQ = response.getString("nombre");
+                            idQ = response.getString("idusuario");
 
 
                             if (correoT.equals(correoQ) && contrasenaT.equals(contrasenaQ)){
                                 Toast.makeText(LoginActivity.this,"¡Bienvenido "+nombreQ+"!", Toast.LENGTH_SHORT).show();
-
+                                String currentValue = globalVariable.getInstance().getGlobalString();
+                                globalVariable.getInstance().setGlobalString(idQ);
                                 abrirVentanaInicio();
 
                             }else{
@@ -154,10 +156,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (correoT.equals(correoQ) && !contrasenaT.equals(contrasenaQ)){
                                 Toast.makeText(LoginActivity.this,"Contraseña incorrecta ", Toast.LENGTH_SHORT).show();
-                            }
-
-                            if (correoT.equals(correoQ)){
-                                Toast.makeText(LoginActivity.this,"Ingrese la contraseña", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {

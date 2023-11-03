@@ -42,7 +42,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
     private TextView etTelefono;
     private TextView etCorreos;
 
-    String id="5";
+    String id;
 
     RequestQueue requestQueue;
 
@@ -53,10 +53,14 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
+        String currentValue = globalVariable.getInstance().getGlobalString();
+        id=currentValue;
+
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             id = extras.getString(id);
         }
+
 
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -79,8 +83,6 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         etCorreos = findViewById(R.id.correos);
 
         readUser();
-
-
 
         //Eventos de los botones
         home1.setOnClickListener(new View.OnClickListener() {
