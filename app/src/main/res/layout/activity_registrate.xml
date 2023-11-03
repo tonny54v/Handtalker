@@ -62,18 +62,21 @@
             android:textSize="21dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/name1"
         android:layout_below="@id/infoName1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="401dp"
+        android:layout_height="54dp"
+        android:background="@drawable/edittext_border"
+        android:layout_centerInParent="true"
         android:orientation="horizontal"
         android:padding="8dp">
 
         <EditText
+            android:id="@+id/nombre1"
             android:layout_width="394dp"
             android:layout_height="43dp"
-            android:background="@drawable/edittext_border"
             android:layout_weight="0"
             android:textSize="21dp" />
 
@@ -95,24 +98,26 @@
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/apellido1"
+        android:id="@+id/apellido11"
         android:layout_below="@id/infoApellido1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_border"
+        android:layout_width="401dp"
+        android:layout_height="54dp"
+        android:layout_centerInParent="true"
         android:orientation="horizontal"
         android:padding="8dp">
 
         <EditText
+            android:id="@+id/apellido1"
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
-            android:background="@drawable/edittext_border"
             android:textSize="21dp" />
 
     </LinearLayout>
     <LinearLayout
         android:id="@+id/infoTelefono1"
-        android:layout_below="@id/apellido1"
+        android:layout_below="@id/apellido11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -127,24 +132,26 @@
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/telefono1"
+        android:id="@+id/telefono11"
         android:layout_below="@id/infoTelefono1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="401dp"
+        android:layout_height="54dp"
+        android:background="@drawable/edittext_border"
+        android:layout_centerInParent="true"
         android:orientation="horizontal"
         android:padding="8dp">
 
         <EditText
+            android:id="@+id/telefono1"
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
-            android:background="@drawable/edittext_border"
             android:textSize="21dp" />
 
     </LinearLayout>
     <LinearLayout
         android:id="@+id/infoCorreo1"
-        android:layout_below="@id/telefono1"
+        android:layout_below="@id/telefono11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -159,25 +166,27 @@
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/correo1"
+        android:id="@+id/correo11"
         android:layout_below="@id/infoCorreo1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="401dp"
+        android:layout_height="54dp"
+        android:background="@drawable/edittext_border"
+        android:layout_centerInParent="true"
         android:orientation="horizontal"
         android:padding="8dp">
 
         <EditText
+            android:id="@+id/correo1"
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
-            android:background="@drawable/edittext_border"
             android:textSize="21dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/infoContra1"
-        android:layout_below="@id/correo1"
+        android:layout_below="@id/correo11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -194,16 +203,18 @@
     <LinearLayout
         android:id="@+id/contra1"
         android:layout_below="@id/infoContra1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="401dp"
+        android:layout_height="54dp"
+        android:background="@drawable/edittext_border"
+        android:layout_centerInParent="true"
         android:orientation="horizontal"
         android:padding="8dp">
 
         <EditText
+            android:id="@+id/contrasena1"
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
-            android:background="@drawable/edittext_border"
             android:textSize="21dp" />
     </LinearLayout>
 
@@ -213,7 +224,7 @@
         android:layout_height="65dp"
         android:layout_below="@+id/contra1"
         android:layout_centerInParent="true"
-        android:textSize="20dp"
+        android:backgroundTint="@color/bluestrong"
         android:text="Registrarse"
-        android:backgroundTint="@color/bluestrong"/>
+        android:textSize="20dp" />
 </RelativeLayout>
