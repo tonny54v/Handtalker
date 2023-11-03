@@ -6,12 +6,22 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.ingsoftware.handtalker.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Activity_handtalker_perfil extends AppCompatActivity {
 
@@ -27,10 +37,26 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
     private ImageView config;
     private ImageView editarPerfil;
 
+    private TextView etname;
+    private TextView etApellido;
+    private TextView etTelefono;
+    private TextView etCorreos;
+
+    String id="5";
+
+    RequestQueue requestQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handtalker_perfil);
+
+        requestQueue = Volley.newRequestQueue(this);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            id = extras.getString(id);
+        }
 
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -46,6 +72,14 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         perfil1 = findViewById(R.id.perfil);
         editarPerfil = findViewById(R.id.editperfil);
         config = findViewById(R.id.ajuste);
+
+        etname = findViewById(R.id.nombres);
+        etApellido = findViewById(R.id.apellidos);
+        etTelefono = findViewById(R.id.telefonos);
+        etCorreos = findViewById(R.id.correos);
+
+        readUser();
+
 
 
         //Eventos de los botones
@@ -126,5 +160,42 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         tiempoUltimaPulsacion = System.currentTimeMillis();
         toast = Toast.makeText(this, "Pulsa de nuevo para salir", Toast.LENGTH_SHORT);
         toast.show();
+    }
+    private void readUser(){
+        String URL = "http://192.168.8.11:8080/handtalker/fetch.php?id="+id;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String nombre, apellido, telefono, correo;
+                        try {
+                            nombre = response.getString("nombre");
+                            apellido = response.getString("apellido");
+                            telefono = response.getString("telefono");
+                            correo = response.getString("correo");
+
+                            etname.setText(nombre);
+                            etApellido.setText(apellido);
+                            etTelefono.setText(telefono);
+                            etCorreos.setText(correo);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+
+        requestQueue.add(jsonObjectRequest);
     }
 }

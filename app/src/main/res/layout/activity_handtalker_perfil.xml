@@ -87,11 +87,11 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/nombres"
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:background="@drawable/edittext_border"
             android:layout_weight="0"
-            android:text=""
             android:textSize="21dp" />
 
     </LinearLayout>
@@ -120,11 +120,11 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/apellidos"
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
             android:background="@drawable/edittext_border"
-            android:text=""
             android:textSize="21dp" />
 
     </LinearLayout>
@@ -153,11 +153,11 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/telefonos"
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
             android:background="@drawable/edittext_border"
-            android:text=""
             android:textSize="21dp" />
 
     </LinearLayout>
@@ -186,11 +186,11 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/correos"
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
             android:background="@drawable/edittext_border"
-            android:text=""
             android:textSize="21dp" />
 
     </LinearLayout>
