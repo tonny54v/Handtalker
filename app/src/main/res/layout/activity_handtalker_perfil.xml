@@ -78,11 +78,14 @@
             android:textSize="21dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/name"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
         android:layout_below="@id/infoName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -90,7 +93,7 @@
             android:id="@+id/nombres"
             android:layout_width="394dp"
             android:layout_height="43dp"
-            android:background="@drawable/edittext_border"
+
             android:layout_weight="0"
             android:textSize="21dp" />
 
@@ -114,8 +117,10 @@
     <LinearLayout
         android:id="@+id/apellido"
         android:layout_below="@id/infoApellido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -124,7 +129,7 @@
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
-            android:background="@drawable/edittext_border"
+
             android:textSize="21dp" />
 
     </LinearLayout>
@@ -147,8 +152,10 @@
     <LinearLayout
         android:id="@+id/telefono"
         android:layout_below="@id/infoTelefono"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -157,7 +164,7 @@
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
-            android:background="@drawable/edittext_border"
+
             android:textSize="21dp" />
 
     </LinearLayout>
@@ -177,11 +184,14 @@
             android:textSize="21dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/correo"
         android:layout_below="@id/infoCorreo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -190,7 +200,6 @@
             android:layout_width="394dp"
             android:layout_height="43dp"
             android:layout_weight="0"
-            android:background="@drawable/edittext_border"
             android:textSize="21dp" />
 
     </LinearLayout>

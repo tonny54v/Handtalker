@@ -7,13 +7,23 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.ingsoftware.handtalker.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,10 +34,18 @@ public class LoginActivity extends AppCompatActivity {
     private Button olvidaste;
     private Button registro;
 
+    private EditText textoCorreo;
+    private EditText textoContrasena;
+
+    RequestQueue requestQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        requestQueue = Volley.newRequestQueue(this);
+
 
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -41,10 +59,14 @@ public class LoginActivity extends AppCompatActivity {
         olvidaste = findViewById(R.id.olvidasteCuenta);
         registro = findViewById(R.id.registrate);
 
+        textoCorreo = findViewById(R.id.correoEditText);
+        textoContrasena = findViewById(R.id.contrasenaEditText);
+
         iniciarSesionButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                abrirVentanaInicio();
+                readUser();
             }
         });
 
@@ -100,6 +122,59 @@ public class LoginActivity extends AppCompatActivity {
         tiempoUltimaPulsacion = System.currentTimeMillis();
         toast = Toast.makeText(this, "Pulsa de nuevo para salir", Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+    private void readUser(){
+        String correoT = textoCorreo.getText().toString();
+        String contrasenaT = textoContrasena.getText().toString();
+
+        String URL = "http://192.168.8.11:8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String correoQ,contrasenaQ,nombreQ;
+                        try {
+                            correoQ = response.getString("correo");
+                            contrasenaQ = response.getString("contrasena");
+                            nombreQ = response.getString("nombre");
+
+
+                            if (correoT.equals(correoQ) && contrasenaT.equals(contrasenaQ)){
+                                Toast.makeText(LoginActivity.this,"¡Bienvenido "+nombreQ+"!", Toast.LENGTH_SHORT).show();
+
+                                abrirVentanaInicio();
+
+                            }else{
+                                Toast.makeText(LoginActivity.this,"Los datos son incorrectos, intente de nuevo", Toast.LENGTH_SHORT).show();
+                            }
+
+                            if (correoT.equals(correoQ) && !contrasenaT.equals(contrasenaQ)){
+                                Toast.makeText(LoginActivity.this,"Contraseña incorrecta ", Toast.LENGTH_SHORT).show();
+                            }
+
+                            if (correoT.equals(correoQ)){
+                                Toast.makeText(LoginActivity.this,"Ingrese la contraseña", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            Toast.makeText(LoginActivity.this,"Ha ocurrido un error", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+
+        requestQueue.add(jsonObjectRequest);
     }
 }
 
