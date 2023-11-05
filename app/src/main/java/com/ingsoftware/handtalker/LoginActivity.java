@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText textoCorreo;
     private EditText textoContrasena;
 
+    int boleano=0;
+
     RequestQueue requestQueue;
 
     @Override
@@ -143,23 +145,16 @@ public class LoginActivity extends AppCompatActivity {
                             nombreQ = response.getString("nombre");
                             idQ = response.getString("idusuario");
 
-
                             if (correoT.equals(correoQ) && contrasenaT.equals(contrasenaQ)){
                                 Toast.makeText(LoginActivity.this,"¡Bienvenido "+nombreQ+"!", Toast.LENGTH_SHORT).show();
                                 String currentValue = globalVariable.getInstance().getGlobalString();
                                 globalVariable.getInstance().setGlobalString(idQ);
+                                boleano=1;
                                 abrirVentanaInicio();
-
-                            }else{
-                                Toast.makeText(LoginActivity.this,"Los datos son incorrectos, intente de nuevo", Toast.LENGTH_SHORT).show();
                             }
 
-                            if (correoT.equals(correoQ) && !contrasenaT.equals(contrasenaQ)){
-                                Toast.makeText(LoginActivity.this,"Contraseña incorrecta ", Toast.LENGTH_SHORT).show();
-                            }
 
                         } catch (JSONException e) {
-                            Toast.makeText(LoginActivity.this,"Ha ocurrido un error", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
@@ -167,6 +162,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(LoginActivity.this,"Datos incorrectos, intenta de nuevo.", Toast.LENGTH_SHORT).show();
 
                     }
                 }

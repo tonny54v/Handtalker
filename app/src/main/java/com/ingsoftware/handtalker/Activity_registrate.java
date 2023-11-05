@@ -33,6 +33,8 @@ public class Activity_registrate extends AppCompatActivity{
     EditText e1,e2,e3,e4,e5;
     RequestQueue requestQueue;
 
+    int bole=0;
+
     private static final String URL1 = "http://192.168.8.11:8080/handtalker/save.php";
 
     private Button registrarte;
@@ -73,7 +75,6 @@ public class Activity_registrate extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 validar(v);
-                abrirLogin();
             }
         });
 
@@ -102,12 +103,14 @@ public class Activity_registrate extends AppCompatActivity{
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(Activity_registrate.this,"Se registró correctamente", Toast.LENGTH_SHORT).show();
+                        abrirLogin();
+
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Activity_registrate.this,"Error del sistema", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_registrate.this,"Ingresa los datos faltantes", Toast.LENGTH_SHORT).show();
 
                     }
                 }
@@ -116,11 +119,15 @@ public class Activity_registrate extends AppCompatActivity{
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("nombre", nombre);
-                params.put("apellido", apellido);
-                params.put("telefono", telefono);
-                params.put("correo", correo);
-                params.put("contrasena", contrasena);
+                if(nombre.equals("") || apellido.equals("") || telefono.equals("") || correo.equals("") || contrasena.equals("")){
+                    Toast.makeText(Activity_registrate.this,"Faltan datos", Toast.LENGTH_SHORT).show();
+                }else{
+                    params.put("nombre", nombre);
+                    params.put("apellido", apellido);
+                    params.put("telefono", telefono);
+                    params.put("correo", correo);
+                    params.put("contrasena", contrasena);
+                }
                 return params;
             }
         };
