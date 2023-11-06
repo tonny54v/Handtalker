@@ -98,11 +98,12 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
 
         translateButton.setOnClickListener(v -> {
             String inputText = userInput.getText().toString().trim().toUpperCase();
-            if (inputText.length() == 1 && signLanguageMap.containsKey(inputText)) {
+            if (signLanguageMap.containsKey(inputText)) { // Verifica si la letra está en el mapa
                 translationImage.setImageResource(signLanguageMap.get(inputText));
-            } //else {
-                //Toast.makeText(getApplicationContext(), "Ingrese una sola letra del alfabeto.", Toast.LENGTH_SHORT).show();
-            //}
+            } else {
+                // Si la letra no tiene una imagen correspondiente, muestra un Toast
+                Toast.makeText(getApplicationContext(), "No hay traduccion para esa palabra en especifico.", Toast.LENGTH_SHORT).show();
+            }
         });
 
 
@@ -158,7 +159,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
 
     private void initializeSignLanguageMap() {
         signLanguageMap = new HashMap<>();
-        // Asumiendo que tienes imágenes con nombres como sign_a, sign_b, etc.
+        // Abecedario
         signLanguageMap.put("A", R.drawable.sign_a);
         signLanguageMap.put("B", R.drawable.sign_b);
         signLanguageMap.put("C", R.drawable.sign_c);
@@ -186,5 +187,8 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("X", R.drawable.sign_x);
         signLanguageMap.put("Y", R.drawable.sign_y);
         signLanguageMap.put("Z", R.drawable.sign_z);
+        // fin abecedario
+
+
     }
 }
