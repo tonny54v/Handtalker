@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -12,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.ingsoftware.handtalker.R;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Activity_handtalker_traduccion extends AppCompatActivity {
 
@@ -25,6 +30,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
     private ImageView camara1;
     private ImageView perfil1;
     private ImageView config;
+    private Map<String, Integer> signLanguageMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,13 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.azulInicio));
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.azulInicio));
         }
+
+        // Inicializar el mapa de imágenes
+        initializeSignLanguageMap();
+
+        Button translateButton = findViewById(R.id.BotonTraduce);
+        ImageView translationImage = findViewById(R.id.imageView);
+        EditText userInput = findViewById(R.id.editTextUser);
 
         home1 = findViewById(R.id.inicio);
         flechas = findViewById(R.id.flechita2);
@@ -82,6 +95,17 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
                 abrirConfig();
             }
         });
+
+        translateButton.setOnClickListener(v -> {
+            String inputText = userInput.getText().toString().trim().toUpperCase();
+            if (inputText.length() == 1 && signLanguageMap.containsKey(inputText)) {
+                translationImage.setImageResource(signLanguageMap.get(inputText));
+            } //else {
+                //Toast.makeText(getApplicationContext(), "Ingrese una sola letra del alfabeto.", Toast.LENGTH_SHORT).show();
+            //}
+        });
+
+
     }
 
     private void abrirConfig() {
@@ -130,5 +154,37 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         tiempoUltimaPulsacion = System.currentTimeMillis();
         toast = Toast.makeText(this, "Pulsa de nuevo para salir", Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+    private void initializeSignLanguageMap() {
+        signLanguageMap = new HashMap<>();
+        // Asumiendo que tienes imágenes con nombres como sign_a, sign_b, etc.
+        signLanguageMap.put("A", R.drawable.sign_a);
+        signLanguageMap.put("B", R.drawable.sign_b);
+        signLanguageMap.put("C", R.drawable.sign_c);
+        signLanguageMap.put("D", R.drawable.sign_d);
+        signLanguageMap.put("E", R.drawable.sign_e);
+        signLanguageMap.put("F", R.drawable.sign_f);
+        signLanguageMap.put("G", R.drawable.sign_g);
+        signLanguageMap.put("H", R.drawable.sign_h);
+        signLanguageMap.put("I", R.drawable.sign_i);
+        signLanguageMap.put("J", R.drawable.sign_j);
+        signLanguageMap.put("K", R.drawable.sign_k);
+        signLanguageMap.put("L", R.drawable.sign_l);
+        signLanguageMap.put("M", R.drawable.sign_m);
+        signLanguageMap.put("N", R.drawable.sign_n);
+        signLanguageMap.put("Ñ", R.drawable.sign_enie);
+        signLanguageMap.put("O", R.drawable.sign_o);
+        signLanguageMap.put("P", R.drawable.sign_p);
+        signLanguageMap.put("Q", R.drawable.sign_q);
+        signLanguageMap.put("R", R.drawable.sign_r);
+        signLanguageMap.put("S", R.drawable.sign_s);
+        signLanguageMap.put("T", R.drawable.sign_t);
+        signLanguageMap.put("U", R.drawable.sign_u);
+        signLanguageMap.put("V", R.drawable.sign_v);
+        signLanguageMap.put("W", R.drawable.sign_w);
+        signLanguageMap.put("X", R.drawable.sign_x);
+        signLanguageMap.put("Y", R.drawable.sign_y);
+        signLanguageMap.put("Z", R.drawable.sign_z);
     }
 }
