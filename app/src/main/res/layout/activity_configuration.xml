@@ -19,7 +19,7 @@
             android:layout_height="37dp"
             android:layout_gravity="center"
             android:background="@color/azulInicio"
-            android:src="@drawable/atras" />
+            android:src="@drawable/atras_logo" />
 
         <TextView
             android:layout_width="290dp"

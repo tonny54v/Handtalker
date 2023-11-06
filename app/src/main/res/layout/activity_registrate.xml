@@ -18,7 +18,7 @@
             android:layout_width="45dp"
             android:layout_height="37dp"
             android:layout_gravity="center"
-            android:src="@drawable/atras" />
+            android:src="@drawable/atras_logo" />
 
         <ImageView
             android:layout_width="283dp"

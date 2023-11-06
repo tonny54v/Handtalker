@@ -31,7 +31,7 @@
             android:layout_height="52dp"
             android:layout_gravity="right"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/ajustes" />
+            android:src="@drawable/ajustes_logo" />
 
     </LinearLayout>
 
@@ -98,7 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:src="@drawable/mensaje" />
+            android:src="@drawable/mensaje_logo" />
 
         <ImageView
             android:id="@+id/camara"
