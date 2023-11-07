@@ -28,8 +28,6 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
     private static final int TIEMPO_ENTRE_PULSACIONES = 2000; // 2 segundos
     private long tiempoUltimaPulsacion;
     private Toast toast;
-
-
     private ImageView home1;
     private ImageView traduccion1;
     private ImageView camara1;
@@ -109,7 +107,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         editarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirVentanaBlanco();
+                abrirEditar();
             }
         });
 
@@ -146,6 +144,11 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void abrirEditar() {
+        Intent intent = new Intent(Activity_handtalker_perfil.this, Activity_editar_perfil.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
 
@@ -164,7 +167,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         toast.show();
     }
     private void readUser(){
-        String URL = "http://192.168.1.11:8080/handtalker/fetch.php?id="+id;
+        String URL = "http://10.31.6.95:8080/handtalker/fetch.php?id="+id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,

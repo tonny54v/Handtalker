@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Barra superior azul -->
+
+    <!-- Imágenes del centro -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Logo alargado -->
+
+        <ImageView
+            android:id="@+id/atras_edit"
+            android:layout_width="83dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/atras_logo" />
+
+        <TextView
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Editar Perfil"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+        <ImageView
+            android:id="@+id/guardarCambios"
+            android:layout_width="86dp"
+            android:layout_height="52dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="right"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/guardar_cambios_image" />
+    </RelativeLayout>
+
+    <!-- Elementos del centro -->
+    <FrameLayout
+        android:id="@+id/perfilPhoto"
+        android:layout_below="@id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/foto"
+            android:layout_width="179dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/perfilicon" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/infoName"
+        android:layout_below="@id/perfilPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Nombre(s):"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/name"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
+        android:layout_below="@id/infoName"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/nombres"
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/infoApellido"
+        android:layout_below="@id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Apellido(s):"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/apellido"
+        android:layout_below="@id/infoApellido"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/apellidos"
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/infoTelefono"
+        android:layout_below="@id/apellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Telefono:"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/telefono"
+        android:layout_below="@id/infoTelefono"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/telefonos"
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/infoCorreo"
+        android:layout_below="@id/telefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Correo:"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/correo"
+        android:layout_below="@id/infoCorreo"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/correos"
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/infoContrasena"
+        android:layout_below="@id/correo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text=" Contraseña:"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/infoContrasena2"
+        android:layout_below="@id/infoContrasena"
+        android:layout_width="396dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/contrasenas"
+            android:layout_width="394dp"
+            android:layout_height="43dp"
+            android:layout_weight="0"
+            android:textSize="21dp" />
+
+    </LinearLayout>
+</RelativeLayout>
