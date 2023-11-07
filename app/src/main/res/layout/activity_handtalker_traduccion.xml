@@ -112,7 +112,7 @@
     </LinearLayout>
 
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/cuadroResultado"
         android:layout_width="395dp"
         android:layout_height="258dp"
@@ -127,19 +127,31 @@
             android:id="@+id/imageView"
             android:layout_width="190dp"
             android:layout_height="210dp"
+            android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/textindicator"
-            android:layout_width="380dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="0"
-            android:text="1/1"
-            android:textAlignment="center"
-            android:textSize="15dp" />
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/flechitaDerecha"
+            android:layout_width="75dp"
+            android:layout_height="46dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="26dp"
+            android:layout_toRightOf="@id/imageView"
+            android:src="@drawable/flecha_derecha" />
+
+        <ImageView
+            android:id="@+id/flechitaIzquierda"
+            android:layout_width="70dp"
+            android:layout_height="42dp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="22dp"
+            android:layout_toLeftOf="@id/imageView"
+            android:src="@drawable/flecha_izquierda" />
+
+
+    </RelativeLayout>
 
     <!-- Barra de navegación inferior -->
     <LinearLayout
