@@ -15,7 +15,9 @@ import androidx.core.content.ContextCompat;
 
 import com.ingsoftware.handtalker.R;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Activity_handtalker_traduccion extends AppCompatActivity {
@@ -30,7 +32,12 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
     private ImageView camara1;
     private ImageView perfil1;
     private ImageView config;
+    private ImageView derechaFlecha;
+    private ImageView izquierdaFlecha;
     private Map<String, Integer> signLanguageMap;
+    private List<String> words;
+    private int currentWordIndex;
+    private ImageView translationImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +56,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         initializeSignLanguageMap();
 
         Button translateButton = findViewById(R.id.BotonTraduce);
-        ImageView translationImage = findViewById(R.id.imageView);
+        translationImage = findViewById(R.id.imageView);
         EditText userInput = findViewById(R.id.editTextUser);
 
         home1 = findViewById(R.id.inicio);
@@ -58,6 +65,8 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         camara1 = findViewById(R.id.camara);
         perfil1 = findViewById(R.id.perfil);
         config = findViewById(R.id.ajuste);
+        izquierdaFlecha = findViewById(R.id.flechitaIzquierda);
+        derechaFlecha = findViewById(R.id.flechitaDerecha);
 
 
         //Eventos de los botones
@@ -98,15 +107,45 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
 
         translateButton.setOnClickListener(v -> {
             String inputText = userInput.getText().toString().trim().toUpperCase();
+            words = Arrays.asList(inputText.split("\\s+")); // Divide la entrada del usuario en palabras
+            currentWordIndex = 0; // Comienza con la primera palabra
+            showCurrentWord();
+
+            /*
+            String inputText = userInput.getText().toString().trim().toUpperCase();
             if (signLanguageMap.containsKey(inputText)) { // Verifica si la letra está en el mapa
                 translationImage.setImageResource(signLanguageMap.get(inputText));
             } else {
                 // Si la letra no tiene una imagen correspondiente, muestra un Toast
                 Toast.makeText(getApplicationContext(), "No hay traduccion para esa palabra en especifico.", Toast.LENGTH_SHORT).show();
             }
+            */
+        });
+
+        derechaFlecha.setOnClickListener(v -> {
+            if (currentWordIndex < words.size() - 1) {
+                currentWordIndex++;
+                showCurrentWord();
+            }
+        });
+
+        izquierdaFlecha.setOnClickListener(v -> {
+            if (currentWordIndex > 0) {
+                currentWordIndex--;
+                showCurrentWord();
+            }
         });
 
 
+    }
+
+    private void showCurrentWord() {
+        String currentWord = words.get(currentWordIndex).toUpperCase();
+        if (signLanguageMap.containsKey(currentWord)) {
+            translationImage.setImageResource(signLanguageMap.get(currentWord));
+        } else {
+            Toast.makeText(getApplicationContext(), "No hay imagen para \"" + currentWord + "\".", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void abrirConfig() {
