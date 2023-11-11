@@ -228,6 +228,16 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("Z", R.drawable.sign_z);
         // fin abecedario
 
+        //Frases comunes
+        signLanguageMap.put("COLOR", R.drawable.sign_color);
+        signLanguageMap.put("AZUL", R.drawable.sign_azul);
+        signLanguageMap.put("VERDE", R.drawable.sign_verde);
+        signLanguageMap.put("AMARILLO", R.drawable.sign_amarillo);
+        signLanguageMap.put("ROJO", R.drawable.sign_rojo);
+        signLanguageMap.put("BLANCO", R.drawable.sign_blanco);
+        signLanguageMap.put("NEGRO", R.drawable.sign_negro);
+        signLanguageMap.put("COCA", R.drawable.sign_coca_cola);
+
 
     }
 }

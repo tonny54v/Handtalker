@@ -64,8 +64,8 @@
     <!-- Seccion de texto (ingreso texto)-->
     <RelativeLayout
         android:id="@+id/ingresatexto"
-        android:layout_width="395dp"
-        android:layout_height="177dp"
+        android:layout_width="393dp"
+        android:layout_height="106dp"
         android:layout_below="@id/textfecha"
         android:layout_centerInParent="true"
         android:background="@drawable/edittext_border"
@@ -114,8 +114,8 @@
 
     <RelativeLayout
         android:id="@+id/cuadroResultado"
-        android:layout_width="395dp"
-        android:layout_height="258dp"
+        android:layout_width="391dp"
+        android:layout_height="333dp"
         android:layout_below="@+id/textotradu"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
@@ -125,11 +125,12 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="190dp"
-            android:layout_height="210dp"
+            android:layout_width="212dp"
+            android:layout_height="312dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            />
 
         <ImageView
             android:id="@+id/flechitaDerecha"
