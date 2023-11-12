@@ -10,7 +10,7 @@ public class globalVariable {
     // Constructor privado para prevenir la instanciación directa.
     private globalVariable() {
         // Inicializa tu variable aquí
-        globalString = "5";
+        globalString = "4";
     }
 
     // Método estático 'getInstance' que devuelve la instancia de la clase

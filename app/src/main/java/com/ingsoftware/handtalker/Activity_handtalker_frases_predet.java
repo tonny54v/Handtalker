@@ -2,16 +2,33 @@ package com.ingsoftware.handtalker;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.ingsoftware.handtalker.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Activity_handtalker_frases_predet extends AppCompatActivity {
 
@@ -22,14 +39,33 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     private ImageView home1;
     private ImageView flechas;
     private ImageView traduccion1;
+    private Button traduce;
     private ImageView camara1;
     private ImageView perfil1;
     private ImageView config;
+    private ListView listita;
+    String id;
+    private HashMap<String, Integer> signLanguageMap;
+    private String[] palabrasActuales;
+    private int indicePalabraActual;
+    private ImageView imagenTraduccion;
+    private ImageView flechitaDerecha;
+    private ImageView flechitaIzquierda;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handtalker_frases_predet);
+
+        String currentValue = globalVariable.getInstance().getGlobalString();
+        id=currentValue;
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            id = extras.getString(id);
+        }
 
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -41,10 +77,18 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
 
         flechas = findViewById(R.id.fechita1);
         home1 = findViewById(R.id.inicio);
-        traduccion1 = findViewById(R.id.traduccion);
         camara1 = findViewById(R.id.camara);
         perfil1 = findViewById(R.id.perfil);
         config = findViewById(R.id.ajuste);
+        listita = findViewById(R.id.frameFrases);
+        flechitaDerecha = findViewById(R.id.flechitaDerecha);
+        flechitaIzquierda = findViewById(R.id.flechitaIzquierda);
+
+        initializeSignLanguageMap();
+        imagenTraduccion = findViewById(R.id.imageView);
+
+        String URL = "http://192.168.8.11:8080/handtalker/listar_frases.php?id="+id;
+        recuperarDatos(URL);
 
 
         //Eventos de los botones
@@ -82,6 +126,102 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
                 abrirConfig();
             }
         });
+
+        flechitaDerecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {onFlechaDerechaClick(v);}
+        });
+
+        flechitaIzquierda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFlechaIzquierdaClick(v);
+            }
+        });
+    }
+
+    private void recuperarDatos(String url) {
+        //Toast.makeText(getApplicationContext(), ""+URL, Toast.LENGTH_SHORT).
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                response = response.replace("][",",");
+                if (response.length()>0){
+                    try {
+                        JSONArray ja = new JSONArray(response);
+                        Log.i("sizejson",""+ja.length());
+                        CargarListView(ja);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(stringRequest);
+    }
+
+    private void CargarListView(JSONArray ja) {
+        ArrayList<String> lista = new ArrayList<>();
+        for (int i=0; i<ja.length(); i+=1){
+             try {
+                 lista.add(ja.getString(i));
+             }catch (JSONException e){
+                 e.printStackTrace();
+             }
+        }
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lista);
+        listita.setAdapter(adaptador);
+
+        // Establecer un nuevo OnItemClickListener para la ListView
+        listita.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String frase = parent.getItemAtPosition(position).toString();
+                mostrarTraduccion(frase);
+            }
+        });
+    }
+
+    private void mostrarTraduccion(String frase) {
+        palabrasActuales = frase.split("\\s+");
+        if(palabrasActuales.length > 0) {
+            indicePalabraActual = 0;
+            mostrarImagenDePalabraActual();
+        }
+    }
+
+    private void mostrarImagenDePalabraActual() {
+        if(indicePalabraActual >= 0 && indicePalabraActual < palabrasActuales.length) {
+            String palabraActual = palabrasActuales[indicePalabraActual];
+            Integer imagenResId = signLanguageMap.get(palabraActual.toUpperCase()); // Asumiendo que tu HashMap se llama palabraImagenMap
+            if(imagenResId != null) {
+                imagenTraduccion.setImageResource(imagenResId);
+            } else {
+                imagenTraduccion.setImageResource(R.drawable.sign_a); // Una imagen por defecto
+            }
+        }
+    }
+
+    public void onFlechaIzquierdaClick(View view) {
+        if (indicePalabraActual > 0) {
+            indicePalabraActual--;
+            mostrarImagenDePalabraActual();
+        }
+    }
+
+    public void onFlechaDerechaClick(View view) {
+        if (palabrasActuales != null && indicePalabraActual < palabrasActuales.length - 1) {
+            indicePalabraActual++;
+            mostrarImagenDePalabraActual();
+        }
     }
 
     private void abrirConfig() {
@@ -130,5 +270,50 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         tiempoUltimaPulsacion = System.currentTimeMillis();
         toast = Toast.makeText(this, "Pulsa de nuevo para salir", Toast.LENGTH_SHORT);
         toast.show();
+    }
+
+    private void initializeSignLanguageMap() {
+        signLanguageMap = new HashMap<>();
+        // Abecedario
+        signLanguageMap.put("A", R.drawable.sign_a);
+        signLanguageMap.put("B", R.drawable.sign_b);
+        signLanguageMap.put("C", R.drawable.sign_c);
+        signLanguageMap.put("D", R.drawable.sign_d);
+        signLanguageMap.put("E", R.drawable.sign_e);
+        signLanguageMap.put("F", R.drawable.sign_f);
+        signLanguageMap.put("G", R.drawable.sign_g);
+        signLanguageMap.put("H", R.drawable.sign_h);
+        signLanguageMap.put("I", R.drawable.sign_i);
+        signLanguageMap.put("J", R.drawable.sign_j);
+        signLanguageMap.put("K", R.drawable.sign_k);
+        signLanguageMap.put("L", R.drawable.sign_l);
+        signLanguageMap.put("M", R.drawable.sign_m);
+        signLanguageMap.put("N", R.drawable.sign_n);
+        signLanguageMap.put("Ñ", R.drawable.sign_enie);
+        signLanguageMap.put("O", R.drawable.sign_o);
+        signLanguageMap.put("P", R.drawable.sign_p);
+        signLanguageMap.put("Q", R.drawable.sign_q);
+        signLanguageMap.put("R", R.drawable.sign_r);
+        signLanguageMap.put("S", R.drawable.sign_s);
+        signLanguageMap.put("T", R.drawable.sign_t);
+        signLanguageMap.put("U", R.drawable.sign_u);
+        signLanguageMap.put("V", R.drawable.sign_v);
+        signLanguageMap.put("W", R.drawable.sign_w);
+        signLanguageMap.put("X", R.drawable.sign_x);
+        signLanguageMap.put("Y", R.drawable.sign_y);
+        signLanguageMap.put("Z", R.drawable.sign_z);
+        // fin abecedario
+
+        //Frases comunes
+        signLanguageMap.put("COLOR", R.drawable.sign_color);
+        signLanguageMap.put("AZUL", R.drawable.sign_azul);
+        signLanguageMap.put("VERDE", R.drawable.sign_verde);
+        signLanguageMap.put("AMARILLO", R.drawable.sign_amarillo);
+        signLanguageMap.put("ROJO", R.drawable.sign_rojo);
+        signLanguageMap.put("BLANCO", R.drawable.sign_blanco);
+        signLanguageMap.put("NEGRO", R.drawable.sign_negro);
+        signLanguageMap.put("COCA", R.drawable.sign_coca_cola);
+
+
     }
 }

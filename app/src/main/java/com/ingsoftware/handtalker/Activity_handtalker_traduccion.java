@@ -110,16 +110,6 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
             words = Arrays.asList(inputText.split("\\s+")); // Divide la entrada del usuario en palabras
             currentWordIndex = 0; // Comienza con la primera palabra
             showCurrentWord();
-
-            /*
-            String inputText = userInput.getText().toString().trim().toUpperCase();
-            if (signLanguageMap.containsKey(inputText)) { // Verifica si la letra está en el mapa
-                translationImage.setImageResource(signLanguageMap.get(inputText));
-            } else {
-                // Si la letra no tiene una imagen correspondiente, muestra un Toast
-                Toast.makeText(getApplicationContext(), "No hay traduccion para esa palabra en especifico.", Toast.LENGTH_SHORT).show();
-            }
-            */
         });
 
         derechaFlecha.setOnClickListener(v -> {

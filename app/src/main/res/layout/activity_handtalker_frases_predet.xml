@@ -63,103 +63,18 @@
     </LinearLayout>
 
     <!-- Seccion de texto (ingreso texto)-->
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <ListView
         android:id="@+id/frameFrases"
-        android:layout_width="403dp"
-        android:layout_height="211dp"
+        android:layout_width="391dp"
+        android:layout_height="173dp"
         android:layout_below="@id/textfecha"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
+        android:layout_marginTop="5dp"
         android:background="@drawable/edittext_border"
         android:orientation="horizontal"
-        android:padding="8dp">
-
-
-        <!--
-        <Button
-            android:id="@+id/predet1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hola"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/azulInicio"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <Button
-            android:id="@+id/predet2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Como estas"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/azulInicio"
-            tools:layout_editor_absoluteX="96dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <Button
-            android:id="@+id/predet3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buenos dias"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/azulInicio"
-            tools:layout_editor_absoluteX="228dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <Button
-            android:id="@+id/predet4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buenas tardes"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/azulInicio"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="56dp" />
-
-        <Button
-            android:id="@+id/predet5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buenas noches"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/azulInicio"
-            tools:layout_editor_absoluteX="149dp"
-            tools:layout_editor_absoluteY="56dp" />
-
-        <Button
-            android:id="@+id/predet6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Adios"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/azulInicio"
-            tools:layout_editor_absoluteX="299dp"
-            tools:layout_editor_absoluteY="56dp" />
-
-        <Button
-            android:id="@+id/agregar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/grisAzul"
-            android:text="+ Agregar"
-            android:textColor="@color/white"
-            tools:layout_editor_absoluteX="74dp"
-            tools:layout_editor_absoluteY="147dp" />
-
-        <Button
-            android:id="@+id/eliminar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/grisAzul"
-            android:text="- Eliminar"
-            android:textColor="@color/white"
-            tools:layout_editor_absoluteX="196dp"
-            tools:layout_editor_absoluteY="147dp" />
-
-            -->
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:padding="8dp"></ListView>
 
     <Button
         android:id="@+id/BotonTraduce1"
@@ -168,8 +83,8 @@
         android:layout_below="@id/frameFrases"
         android:layout_centerInParent="true"
         android:backgroundTint="@color/bluestrong"
-        android:textSize="17dp"
-        android:text="Traducir" />
+        android:text="Traducir"
+        android:textSize="17dp" />
 
     <Button
         android:id="@+id/BotonElimina1"
@@ -214,8 +129,8 @@
 
     <RelativeLayout
         android:id="@+id/cuadroResultado"
-        android:layout_width="396dp"
-        android:layout_height="236dp"
+        android:layout_width="391dp"
+        android:layout_height="333dp"
         android:layout_below="@+id/textotradu"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
@@ -224,8 +139,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="190dp"
-            android:layout_height="210dp"
+            android:layout_width="212dp"
+            android:layout_height="312dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:scaleType="centerCrop" />
