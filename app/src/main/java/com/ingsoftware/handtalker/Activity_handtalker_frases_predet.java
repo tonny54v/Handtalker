@@ -87,7 +87,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         initializeSignLanguageMap();
         imagenTraduccion = findViewById(R.id.imageView);
 
-        String URL = "http://192.168.8.11:8080/handtalker/listar_frases.php?id="+id;
+        String URL = "http://10.31.11.132:8080/handtalker/listar_frases.php?id="+id;
         recuperarDatos(URL);
 
 
@@ -305,14 +305,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         // fin abecedario
 
         //Frases comunes
-        signLanguageMap.put("COLOR", R.drawable.sign_color);
-        signLanguageMap.put("AZUL", R.drawable.sign_azul);
-        signLanguageMap.put("VERDE", R.drawable.sign_verde);
-        signLanguageMap.put("AMARILLO", R.drawable.sign_amarillo);
-        signLanguageMap.put("ROJO", R.drawable.sign_rojo);
-        signLanguageMap.put("BLANCO", R.drawable.sign_blanco);
-        signLanguageMap.put("NEGRO", R.drawable.sign_negro);
-        signLanguageMap.put("COCA", R.drawable.sign_coca_cola);
+
 
 
     }

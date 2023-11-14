@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Barra superior azul -->
+
+    <!-- Imágenes del centro -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Logo alargado -->
+
+        <ImageView
+            android:id="@+id/atras_agrega"
+            android:layout_width="83dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/atras_logo" />
+
+        <TextView
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Agregar frases"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </RelativeLayout>
+
+    <!-- Elementos del centro -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="215dp"
+        android:layout_below="@id/topBar">
+
+        <TextView
+            android:id="@+id/TextInserta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inserta tu frase:"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/fraseText"
+            android:layout_width="394dp"
+            android:layout_height="121dp"
+            android:layout_below="@id/TextInserta"
+            android:layout_centerInParent="true"
+            android:background="@drawable/edittext_border" />
+
+        <Button
+            android:id="@+id/botonGuardar"
+            android:layout_width="143dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fraseText"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/bluestrong"
+            android:text="Guardar"
+            android:textSize="18dp" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>
