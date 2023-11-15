@@ -21,15 +21,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Activity_agregar_frases"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".Activity_editar_perfil"
             android:exported="false" />
         <activity
@@ -50,6 +41,7 @@
         <activity android:name=".Activity_configuration" />
         <activity android:name=".Activity_handtalker_frases_predet" />
         <activity android:name=".Activity_registrate" />
+        <activity android:name=".Activity_agregar"/>
     </application>
 
 </manifest>

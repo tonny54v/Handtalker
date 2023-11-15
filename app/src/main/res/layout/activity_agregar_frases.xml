@@ -39,38 +39,49 @@
     <!-- Elementos del centro -->
 
     <RelativeLayout
+        android:id="@+id/TextInserta"
         android:layout_width="match_parent"
-        android:layout_height="215dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_below="@id/topBar">
 
         <TextView
-            android:id="@+id/TextInserta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Inserta tu frase:"
             android:textAlignment="center"
             android:textSize="20dp" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/marcoText"
+        android:layout_width="398dp"
+        android:layout_height="191dp"
+        android:layout_below="@id/TextInserta"
+        android:background="@drawable/edittext_border"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="0dp">
+
         <EditText
             android:id="@+id/fraseText"
-            android:layout_width="394dp"
-            android:layout_height="121dp"
-            android:layout_below="@id/TextInserta"
+            android:layout_width="378dp"
+            android:layout_height="175dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/edittext_border" />
-
-        <Button
-            android:id="@+id/botonGuardar"
-            android:layout_width="143dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fraseText"
-            android:layout_centerInParent="true"
-            android:backgroundTint="@color/bluestrong"
-            android:text="Guardar"
-            android:textSize="18dp" />
-
+            android:gravity="top"
+            android:hint="Ingresa frases comunes" />
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/botonGuardar"
+        android:layout_width="143dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/marcoText"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/bluestrong"
+        android:text="Guardar"
+        android:textSize="18dp" />
 
 
 

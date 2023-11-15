@@ -51,6 +51,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     private ImageView imagenTraduccion;
     private ImageView flechitaDerecha;
     private ImageView flechitaIzquierda;
+    private Button agregar;
 
 
 
@@ -83,11 +84,12 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         listita = findViewById(R.id.frameFrases);
         flechitaDerecha = findViewById(R.id.flechitaDerecha);
         flechitaIzquierda = findViewById(R.id.flechitaIzquierda);
+        agregar = findViewById(R.id.BotonAgrega1);
 
         initializeSignLanguageMap();
         imagenTraduccion = findViewById(R.id.imageView);
 
-        String URL = "http://10.31.11.132:8080/handtalker/listar_frases.php?id="+id;
+        String URL = "http://192.168.1.11:8080/handtalker/listar_frases.php?id="+id;
         recuperarDatos(URL);
 
 
@@ -136,6 +138,13 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onFlechaIzquierdaClick(v);
+            }
+        });
+
+        agregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirAgrega();
             }
         });
     }
@@ -205,7 +214,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             if(imagenResId != null) {
                 imagenTraduccion.setImageResource(imagenResId);
             } else {
-                imagenTraduccion.setImageResource(R.drawable.sign_a); // Una imagen por defecto
+                Toast.makeText(Activity_handtalker_frases_predet.this,"No hay imagen para \"" + palabraActual + "\".", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -222,6 +231,11 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             indicePalabraActual++;
             mostrarImagenDePalabraActual();
         }
+    }
+
+    private void abrirAgrega() {
+        Intent intent = new Intent(Activity_handtalker_frases_predet.this, Activity_agregar.class);
+        startActivity(intent);
     }
 
     private void abrirConfig() {

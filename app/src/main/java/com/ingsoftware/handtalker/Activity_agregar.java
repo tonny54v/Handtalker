@@ -19,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +27,6 @@ import java.util.Map;
 public class Activity_agregar extends AppCompatActivity {
     EditText frase;
     private Button agregar;
-    private static final String URL1 = "http://10.31.11.132:8080/handtalker/agregaFrase.php";
-
     RequestQueue requestQueue;
 
     String id;
@@ -44,6 +43,10 @@ public class Activity_agregar extends AppCompatActivity {
         if (extras != null){
             id = extras.getString(id);
         }
+
+
+
+        requestQueue = Volley.newRequestQueue(this);
 
         frase = findViewById(R.id.fraseText);
         agregar = findViewById(R.id.botonGuardar);
@@ -72,11 +75,12 @@ public class Activity_agregar extends AppCompatActivity {
     }
 
     public void validar(View v){
-        final String frasesita = frase.getText().toString();
-        createFrase(frasesita);
+        final String frases = frase.getText().toString();
+        createFrase(frases);
     }
 
     private void createFrase(String frasesita) {
+        String URL1 = "http://192.168.1.11:8080/handtalker/agregaFrase.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,

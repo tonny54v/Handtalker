@@ -77,28 +77,14 @@
         android:padding="8dp"></ListView>
 
     <Button
-        android:id="@+id/BotonElimina1"
-        android:layout_width="127dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/frameFrases"
-        android:layout_alignParentRight="true"
-        android:layout_centerInParent="true"
-        android:layout_marginRight="10dp"
-        android:backgroundTint="@color/bluestrong"
-        android:text="Eliminar"
-        android:textSize="17dp" />
-
-
-    <Button
         android:id="@+id/BotonAgrega1"
-        android:layout_width="129dp"
+        android:layout_width="142dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/frameFrases"
         android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="19dp"
+        android:layout_marginLeft="132dp"
         android:layout_marginRight="127dp"
-        android:layout_toLeftOf="@id/BotonElimina1"
         android:backgroundTint="@color/bluestrong"
         android:text="+ Agregar"
         android:textSize="17dp" />

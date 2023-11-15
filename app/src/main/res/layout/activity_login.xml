@@ -67,8 +67,19 @@
         android:layout_below="@+id/olvidasteCuenta"
         android:layout_centerInParent="true"
         android:layout_marginTop="13dp"
-        android:text="¿No tienes cuenta? Registrate"
         android:backgroundTint="@color/white"
+        android:text="¿No tienes cuenta? Registrate"
         android:textColor="@color/azulInicio" />
+
+    <Button
+        android:id="@+id/administrator"
+        android:layout_width="193dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registrate"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="13dp"
+        android:backgroundTint="@color/white"
+        android:text="Modo Admin"
+        android:textColor="@color/grisAzul" />
 
 </RelativeLayout>

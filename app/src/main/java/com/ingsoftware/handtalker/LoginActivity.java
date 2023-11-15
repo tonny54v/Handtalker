@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText textoCorreo;
     private EditText textoContrasena;
+    private Button modoAdmin;
 
     int boleano=0;
 
@@ -63,9 +64,9 @@ public class LoginActivity extends AppCompatActivity {
 
         textoCorreo = findViewById(R.id.correoEditText);
         textoContrasena = findViewById(R.id.contrasenaEditText);
+        modoAdmin = findViewById(R.id.administrator);
 
         iniciarSesionButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 readUser();
@@ -83,6 +84,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abrirRegistrarse();
+            }
+        });
+
+        modoAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this,"Modo ulta secreto activado (Admin).", Toast.LENGTH_SHORT).show();
+                abrirVentanaInicio();
             }
         });
     }
@@ -130,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
         String correoT = textoCorreo.getText().toString();
         String contrasenaT = textoContrasena.getText().toString();
 
-        String URL = "http://10.31.11.132:8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
+        String URL = "http://192.168.1.11:8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
