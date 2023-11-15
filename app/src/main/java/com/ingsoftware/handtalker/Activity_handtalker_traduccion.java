@@ -218,7 +218,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("Z", R.drawable.sign_z);
         // fin abecedario
 
-        /*
+
         //Frases comunes
         signLanguageMap.put("ABAJO", R.drawable.abajo);
         signLanguageMap.put("ABEJA", R.drawable.abeja);
@@ -249,6 +249,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("AMANECER", R.drawable.amanecer);
         signLanguageMap.put("AMANTE", R.drawable.amante);
         signLanguageMap.put("AMARILLO", R.drawable.amarillo);
+        signLanguageMap.put("AMARILLA", R.drawable.amarillo);
         signLanguageMap.put("AMIGA", R.drawable.amiga);
         signLanguageMap.put("AMIGO", R.drawable.amigo);
         signLanguageMap.put("AMISTAD", R.drawable.amistad);
@@ -260,31 +261,37 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("ANTES", R.drawable.antes);
         signLanguageMap.put("ANTIGUO", R.drawable.antiguo);
         signLanguageMap.put("ANTROPOLOGIA", R.drawable.antropologia);
-        signLanguageMap.put("AÑO", R.drawable.año);
+        signLanguageMap.put("AÑO", R.drawable.ano);
+        signLanguageMap.put("AÑOS", R.drawable.ano);
         signLanguageMap.put("APAGAR", R.drawable.apagar);
         signLanguageMap.put("APARECER", R.drawable.aparecer);
         signLanguageMap.put("APETITO", R.drawable.apetito);
         signLanguageMap.put("APLASTAR", R.drawable.aplastar);
         signLanguageMap.put("ARAÑA", R.drawable.arana);
+        signLanguageMap.put("ARAÑAS", R.drawable.arana);
         signLanguageMap.put("ARDILLA", R.drawable.ardilla);
+        signLanguageMap.put("ARDILLAS", R.drawable.ardilla);
         signLanguageMap.put("ARRIBA", R.drawable.arriba);
         signLanguageMap.put("ARROZ", R.drawable.arroz);
         signLanguageMap.put("ARTICULO", R.drawable.articulo);
+        signLanguageMap.put("ARTICULOS", R.drawable.articulo);
         signLanguageMap.put("ASAR", R.drawable.asar);
         signLanguageMap.put("ASNO", R.drawable.asno);
+        signLanguageMap.put("BURRE", R.drawable.asno);
         signLanguageMap.put("ATOLE", R.drawable.atole);
         signLanguageMap.put("AVENA", R.drawable.avena);
         signLanguageMap.put("AVESTRUZ", R.drawable.avestruz);
+        signLanguageMap.put("AVESTRUCES", R.drawable.avestruz);
         signLanguageMap.put("AVISPA", R.drawable.avispa);
+        signLanguageMap.put("AVISPAS", R.drawable.avispa);
         signLanguageMap.put("AYER", R.drawable.ayer);
         signLanguageMap.put("AZOTEA", R.drawable.azotea);
         signLanguageMap.put("AZUCAR", R.drawable.azucar);
-        signLanguageMap.put("AZULREY", R.drawable.azul_rey);
         signLanguageMap.put("AZUL", R.drawable.azul);
         signLanguageMap.put("BACARDI", R.drawable.bacardi);
         signLanguageMap.put("BAJO", R.drawable.bajo);
         signLanguageMap.put("BANDERA", R.drawable.bandera);
-        signLanguageMap.put("BAÑO", R.drawable.baño);
+        signLanguageMap.put("BAÑO", R.drawable.bano);
         signLanguageMap.put("BARBA", R.drawable.barba);
         signLanguageMap.put("BARBILLA", R.drawable.barbilla);
         signLanguageMap.put("BARRER", R.drawable.barrer);
@@ -292,8 +299,10 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("BATIDORA", R.drawable.batidora);
         signLanguageMap.put("BEBE", R.drawable.bebe);
         signLanguageMap.put("BECERRO", R.drawable.becerro);
+        signLanguageMap.put("BECERROS", R.drawable.becerro);
         signLanguageMap.put("BIEN", R.drawable.bien);
         signLanguageMap.put("BIGOTE", R.drawable.bigote);
+        signLanguageMap.put("BIGOTES", R.drawable.bigote);
         signLanguageMap.put("BISTEC", R.drawable.bistec);
         signLanguageMap.put("BLANCO", R.drawable.blanco);
         signLanguageMap.put("BOCA", R.drawable.boca);
@@ -335,7 +344,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("CANGURO", R.drawable.canguro);
         signLanguageMap.put("CARA", R.drawable.cara);
         signLanguageMap.put("CARACOL", R.drawable.caracol);
-        signLanguageMap.put("CARIÑO", R.drawable.cariño);
+        signLanguageMap.put("CARIÑO", R.drawable.carino);
         signLanguageMap.put("CARNE", R.drawable.carne);
         signLanguageMap.put("CARO", R.drawable.caro);
         signLanguageMap.put("CASA", R.drawable.casa);
@@ -346,13 +355,14 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("CEBRA", R.drawable.cebra);
         signLanguageMap.put("CEJA", R.drawable.ceja);
         signLanguageMap.put("CENA", R.drawable.cena);
-        signLanguageMap.put("CEPILLODIENTES", R.drawable.cepillo_dientes);
-        signLanguageMap.put("CEPILLOPELO", R.drawable.cepillo_pelo);
+        //signLanguageMap.put("CEPILLODIENTES", R.drawable.cepillo_dientes);
+        signLanguageMap.put("CEPILLO", R.drawable.cepillo_de_cabello);
         signLanguageMap.put("CEREAL", R.drawable.cereal);
         signLanguageMap.put("CERRAR", R.drawable.cerrar);
         signLanguageMap.put("CERTIFICADO", R.drawable.certificado);
         signLanguageMap.put("CERVEZA", R.drawable.cerveza);
-        signLanguageMap.put("CHAMPU", R.drawable.shampoo);
+        signLanguageMap.put("CHAMPU", R.drawable.champu);
+        signLanguageMap.put("SHAMPOO", R.drawable.champu);
         signLanguageMap.put("CHANGO", R.drawable.chango);
         signLanguageMap.put("CHAROLA", R.drawable.charola);
         signLanguageMap.put("CHICLE", R.drawable.chicle);
@@ -367,6 +377,8 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("CLARO", R.drawable.claro);
         signLanguageMap.put("COBERTOR", R.drawable.cobertor);
         signLanguageMap.put("COCACOLA", R.drawable.coca_cola);
+        signLanguageMap.put("COCA-COLA", R.drawable.coca_cola);
+        signLanguageMap.put("COCA", R.drawable.coca_cola);
         signLanguageMap.put("COCHINO", R.drawable.cochino);
         signLanguageMap.put("COCINA", R.drawable.cocina);
         signLanguageMap.put("COCODRILO", R.drawable.cocodrilo);
@@ -375,6 +387,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("COLADOR", R.drawable.colador);
         signLanguageMap.put("COLCHA", R.drawable.colcha);
         signLanguageMap.put("COLOR", R.drawable.color);
+        signLanguageMap.put("COLORES", R.drawable.color);
         signLanguageMap.put("COMADRE", R.drawable.comadre);
         signLanguageMap.put("COMAL", R.drawable.comal);
         signLanguageMap.put("COMEDOR", R.drawable.comedor);
@@ -418,6 +431,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("DETENER", R.drawable.detener);
         signLanguageMap.put("DETRAS", R.drawable.detras);
         signLanguageMap.put("DIA", R.drawable.dia);
+        signLanguageMap.put("DIAS", R.drawable.dia);
         signLanguageMap.put("DIBUJO", R.drawable.dibujo);
         signLanguageMap.put("DICCIONARIO", R.drawable.diccionario);
         signLanguageMap.put("DICIEMBRE", R.drawable.diciembre);
@@ -431,7 +445,8 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("DULCE", R.drawable.dulce);
         signLanguageMap.put("DURO", R.drawable.duro);
         signLanguageMap.put("EDIFICIO", R.drawable.edificio);
-        signLanguageMap.put("EL", R.drawable.el);
+        signLanguageMap.put("EL", R.drawable.ele);
+        signLanguageMap.put("ELLA", R.drawable.ele);
         signLanguageMap.put("ELECTRICIDAD", R.drawable.electricidad);
         signLanguageMap.put("ELEFANTE", R.drawable.elefante);
         signLanguageMap.put("ELLOS", R.drawable.ellos);
@@ -452,7 +467,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("ESCUELA", R.drawable.escuela);
         signLanguageMap.put("ESCUSADO", R.drawable.escusado);
         signLanguageMap.put("ESO", R.drawable.eso);
-        signLanguageMap.put("ESPAGUETI", R.drawable.espagueti);
+        signLanguageMap.put("ESPAGUETI", R.drawable.espaguetti);
         signLanguageMap.put("ESPALDA", R.drawable.espalda);
         signLanguageMap.put("ESPEJO", R.drawable.espejo);
         signLanguageMap.put("ESPOSA", R.drawable.esposa);
@@ -515,7 +530,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("HOMBRO", R.drawable.hombro);
         signLanguageMap.put("HORMIGA", R.drawable.hormiga);
         signLanguageMap.put("HORNO", R.drawable.horno);
-        signLanguageMap.put("HOTDOG", R.drawable.hotdog);
+        signLanguageMap.put("HOTDOG", R.drawable.hot_dog);
         signLanguageMap.put("HOY", R.drawable.hoy);
         signLanguageMap.put("HUERFANA", R.drawable.huerfana);
         signLanguageMap.put("HUERFANO", R.drawable.huerfano);
@@ -559,7 +574,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("LOBO", R.drawable.lobo);
         signLanguageMap.put("LUNES", R.drawable.lunes);
         signLanguageMap.put("LUZ", R.drawable.luz);
-        signLanguageMap.put("MADRASTRA", R.drawable.madrasta);
+        signLanguageMap.put("MADRASTRA", R.drawable.madrastra);
         signLanguageMap.put("MADRE", R.drawable.madre);
         signLanguageMap.put("MADRINA", R.drawable.madrina);
         signLanguageMap.put("MAL", R.drawable.mal);
@@ -624,7 +639,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("OSCURO", R.drawable.oscuro);
         signLanguageMap.put("OSO", R.drawable.oso);
         signLanguageMap.put("OSTION", R.drawable.ostion);
-        signLanguageMap.put("OTOÑO", R.drawable.otoño);
+        signLanguageMap.put("OTOÑO", R.drawable.otono);
         signLanguageMap.put("PAJARO", R.drawable.pajaro);
         signLanguageMap.put("PALETA", R.drawable.paleta);
         signLanguageMap.put("PALOMA", R.drawable.paloma);
@@ -635,7 +650,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("PARED", R.drawable.pared);
         signLanguageMap.put("PARQUE", R.drawable.parque);
         signLanguageMap.put("PARRAFO", R.drawable.parrafo);
-        signLanguageMap.put("PARRILLA", R.drawable.parrilla);
+        signLanguageMap.put("PARRILLA", R.drawable.parilla);
         signLanguageMap.put("PASADO", R.drawable.pasado);
         signLanguageMap.put("PASTADEDIENTES", R.drawable.pasta_de_dientes);
         signLanguageMap.put("PASTEL", R.drawable.pastel);
@@ -652,7 +667,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("PERICO", R.drawable.perico);
         signLanguageMap.put("PERRO", R.drawable.perro);
         signLanguageMap.put("PERSPECTIVA", R.drawable.perspectiva);
-        signLanguageMap.put("PESTAÑA", R.drawable.pestaña);
+        signLanguageMap.put("PESTAÑA", R.drawable.pestana);
         signLanguageMap.put("PEZ", R.drawable.pez);
         signLanguageMap.put("PICOSO", R.drawable.picoso);
         signLanguageMap.put("PILONCILLO", R.drawable.piloncillo);
@@ -683,7 +698,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("PRIMERO", R.drawable.primero);
         signLanguageMap.put("PROPIO", R.drawable.propio);
         signLanguageMap.put("PRUEBA", R.drawable.prueba);
-        signLanguageMap.put("PUERCOESPIN", R.drawable.puerco_espin);
+        signLanguageMap.put("PUERCOESPIN", R.drawable.puerco_espon);
         signLanguageMap.put("PUERCO", R.drawable.puerco);
         signLanguageMap.put("PUERTA", R.drawable.puerta);
         signLanguageMap.put("PULGAR", R.drawable.pulgar);
@@ -777,7 +792,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("TU", R.drawable.tu);
         signLanguageMap.put("TUBO", R.drawable.tubo);
         signLanguageMap.put("TUYO", R.drawable.tuyo);
-        signLanguageMap.put("UÑA", R.drawable.una);
+        signLanguageMap.put("UÑA", R.drawable.unia);
         signLanguageMap.put("USTED", R.drawable.usted);
         signLanguageMap.put("VACA", R.drawable.vaca);
         signLanguageMap.put("VACIO", R.drawable.vacio);
@@ -789,7 +804,6 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("VENTANA", R.drawable.ventana);
         signLanguageMap.put("VERANO", R.drawable.verano);
         signLanguageMap.put("VERDAD", R.drawable.verdad);
-        signLanguageMap.put("VERDELIMON", R.drawable.verde_limon);
         signLanguageMap.put("VERDE", R.drawable.verde);
         signLanguageMap.put("VIBORA", R.drawable.vibora);
         signLanguageMap.put("VIDRIO", R.drawable.vidrio);
@@ -802,8 +816,6 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("YOGUR", R.drawable.yogur);
         signLanguageMap.put("ZORILLO", R.drawable.zorillo);
         signLanguageMap.put("ZORRO", R.drawable.zorro);
-
-        */
 
 
     }
