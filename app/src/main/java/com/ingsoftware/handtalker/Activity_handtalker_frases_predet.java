@@ -2257,6 +2257,38 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         signLanguageMap.put("PERDONAR", R.drawable.perdon);
         signLanguageMap.put("PERDONAME", R.drawable.perdon);
         signLanguageMap.put("PERDONARSE", R.drawable.perdon);
+        signLanguageMap.put("ESTA", R.drawable.estar);
+        signLanguageMap.put("ESTAS", R.drawable.estar);
+        signLanguageMap.put("BUENA", R.drawable.bueno);
+        signLanguageMap.put("NOSOTROS", R.drawable.nosotros);
+        signLanguageMap.put("NOS", R.drawable.nosotros);
+        signLanguageMap.put("NOSOTRAS", R.drawable.nosotros);
+        signLanguageMap.put("PASEO", R.drawable.paseo);
+        signLanguageMap.put("PASEOS", R.drawable.paseo);
+        signLanguageMap.put("PASEANDO", R.drawable.paseo);
+        signLanguageMap.put("PASEA", R.drawable.paseo);
+        signLanguageMap.put("PASEAS", R.drawable.paseo);
+        signLanguageMap.put("PASEAR", R.drawable.paseo);
+        signLanguageMap.put("IR", R.drawable.ir);
+        signLanguageMap.put("IRSE", R.drawable.ir);
+        signLanguageMap.put("VOY", R.drawable.ir);
+        signLanguageMap.put("AIRE", R.drawable.aire);
+        signLanguageMap.put("AIRES", R.drawable.aire);
+        signLanguageMap.put("CASI", R.drawable.casi);
+        signLanguageMap.put("HORA", R.drawable.hora);
+        signLanguageMap.put("HORAS", R.drawable.hora);
+        signLanguageMap.put("PELICULA", R.drawable.pelicula);
+        signLanguageMap.put("PELICULAS", R.drawable.pelicula);
+        signLanguageMap.put("ESPERAR", R.drawable.esperar);
+        signLanguageMap.put("ESPERA", R.drawable.esperar);
+        signLanguageMap.put("ESPERO", R.drawable.esperar);
+        signLanguageMap.put("ESPERANDO", R.drawable.esperar);
+        signLanguageMap.put("ESPERARSE", R.drawable.esperar);
+        signLanguageMap.put("ESPERARTE", R.drawable.esperar);
+        signLanguageMap.put("VERSE", R.drawable.verse);
+        signLanguageMap.put("VEMOS", R.drawable.verse);
+        signLanguageMap.put("VEREMOS", R.drawable.verse);
+        signLanguageMap.put("VERTE", R.drawable.esperar);
 
     }
 }
