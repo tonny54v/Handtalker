@@ -113,17 +113,27 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         });
 
         derechaFlecha.setOnClickListener(v -> {
-            if (currentWordIndex < words.size() - 1) {
-                currentWordIndex++;
-                showCurrentWord();
+            try {
+                if (currentWordIndex < words.size() - 1) {
+                    currentWordIndex++;
+                    showCurrentWord();
+                }
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), "No hay imagenes para desplazar.", Toast.LENGTH_SHORT).show();
             }
+
         });
 
         izquierdaFlecha.setOnClickListener(v -> {
-            if (currentWordIndex > 0) {
-                currentWordIndex--;
-                showCurrentWord();
+            try {
+                if (currentWordIndex > 0) {
+                    currentWordIndex--;
+                    showCurrentWord();
+                }
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), "No hay imagenes para desplazar.", Toast.LENGTH_SHORT).show();
             }
+
         });
 
 
@@ -1211,6 +1221,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("REIR", R.drawable.reir);
         signLanguageMap.put("REIRSE", R.drawable.reir);
         signLanguageMap.put("RISA", R.drawable.reir);
+        signLanguageMap.put("GRACIA", R.drawable.reir);
         signLanguageMap.put("RISAS", R.drawable.reir);
         signLanguageMap.put("REJA", R.drawable.reja);
         signLanguageMap.put("REJAS", R.drawable.reja);
@@ -1900,7 +1911,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("QUINTO", R.drawable.quinto);
         signLanguageMap.put("RADIO", R.drawable.radio);
         signLanguageMap.put("RADIOS", R.drawable.radio);
-        signLanguageMap.put("RAIZ_CUADRADA", R.drawable.raiz_cuadrada);
+        signLanguageMap.put("RAIZ", R.drawable.raiz_cuadrada);
         signLanguageMap.put("REBANAR", R.drawable.rebanar);
         signLanguageMap.put("RECTANGULO", R.drawable.rectangulo);
         signLanguageMap.put("RECTANGULOS", R.drawable.rectangulo);
@@ -1917,6 +1928,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("SALUDAR", R.drawable.saludar);
         signLanguageMap.put("SALUDA", R.drawable.saludar);
         signLanguageMap.put("SALUDO", R.drawable.saludar);
+        signLanguageMap.put("SALUDOS", R.drawable.saludar);
         signLanguageMap.put("SALUDARSE", R.drawable.saludar);
         signLanguageMap.put("SANDIA", R.drawable.sandia);
         signLanguageMap.put("SANDIAS", R.drawable.sandia);
@@ -2109,7 +2121,10 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
 
         //Numeros
         signLanguageMap.put("1", R.drawable.uno);
+        signLanguageMap.put("UNA", R.drawable.uno);
+        signLanguageMap.put("UNAS", R.drawable.uno);
         signLanguageMap.put("UN", R.drawable.uno);
+        signLanguageMap.put("UNOS", R.drawable.uno);
         signLanguageMap.put("2", R.drawable.dos);
         signLanguageMap.put("3", R.drawable.tres);
         signLanguageMap.put("4", R.drawable.cuatro);
@@ -2119,5 +2134,41 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         signLanguageMap.put("8", R.drawable.ocho);
         signLanguageMap.put("9", R.drawable.nueve);
         signLanguageMap.put("10", R.drawable.diez);
+
+        //Adicionales
+        signLanguageMap.put("BUENAS", R.drawable.bueno);
+        signLanguageMap.put("HOLA", R.drawable.hola);
+        signLanguageMap.put("GRACIAS", R.drawable.gracias);
+        signLanguageMap.put("QUE", R.drawable.que);
+        signLanguageMap.put("COMO", R.drawable.como);
+        signLanguageMap.put("CUANDO", R.drawable.cuando);
+        signLanguageMap.put("DONDE", R.drawable.donde);
+        signLanguageMap.put("QUIEN", R.drawable.quien);
+        signLanguageMap.put("QUIENES", R.drawable.quien);
+        signLanguageMap.put("CUANTOS", R.drawable.cuantos);
+        signLanguageMap.put("CUANTO", R.drawable.cuantos);
+        signLanguageMap.put("YA", R.drawable.ya);
+        signLanguageMap.put("ES", R.drawable.es);
+        signLanguageMap.put("CON", R.drawable.con);
+        signLanguageMap.put("PERDON", R.drawable.perdon);
+        signLanguageMap.put("PERDONES", R.drawable.perdon);
+        signLanguageMap.put("PERDONA", R.drawable.perdon);
+        signLanguageMap.put("PERDONAR", R.drawable.perdon);
+        signLanguageMap.put("PERDONAME", R.drawable.perdon);
+        signLanguageMap.put("PERDONARSE", R.drawable.perdon);
+        signLanguageMap.put("ESTA", R.drawable.estar);
+        signLanguageMap.put("ESTAS", R.drawable.estar);
+        signLanguageMap.put("BUENA", R.drawable.bueno);
+
+
+        //-- Frases faltantes --
+        //esperar
+        //nos
+        //vemos
+
+
+
+
+
     }
 }
