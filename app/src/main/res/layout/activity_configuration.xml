@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fondo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -18,7 +19,6 @@
             android:layout_width="47dp"
             android:layout_height="37dp"
             android:layout_gravity="center"
-            android:background="@color/azulInicio"
             android:src="@drawable/atras_logo" />
 
         <TextView
@@ -37,18 +37,19 @@
         android:layout_width="match_parent"
         android:layout_height="63dp"
         android:layout_below="@id/topBar"
-        android:background="@drawable/edittext_border"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/img_tamano_text"
             android:layout_width="43dp"
             android:layout_height="51dp"
             android:layout_gravity="center"
             android:src="@drawable/tamanotexto" />
 
         <TextView
+            android:id="@+id/tamText"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text=" Tamaño de fuente"
             android:textSize="25dp" />
@@ -60,16 +61,17 @@
         android:layout_width="match_parent"
         android:layout_height="63dp"
         android:layout_below="@id/tamanofuente"
-        android:background="@drawable/edittext_border"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/temaimg"
             android:layout_width="43dp"
             android:layout_height="51dp"
             android:layout_gravity="center"
             android:src="@drawable/temaimg" />
 
         <TextView
+            android:id="@+id/textTema"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -83,7 +85,6 @@
         android:layout_width="match_parent"
         android:layout_height="63dp"
         android:layout_below="@id/tema"
-        android:background="@drawable/edittext_border"
         android:orientation="horizontal">
 
         <ImageView
@@ -93,6 +94,7 @@
             android:src="@drawable/tamanografo" />
 
         <TextView
+            android:id="@+id/textGraf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -106,16 +108,17 @@
         android:layout_width="match_parent"
         android:layout_height="63dp"
         android:layout_below="@id/tamanografico"
-        android:background="@drawable/edittext_border"
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/cerrarImg"
             android:layout_width="43dp"
             android:layout_height="51dp"
             android:layout_gravity="center"
             android:src="@drawable/cerrarses" />
 
         <TextView
+            android:id="@+id/textCierra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -123,10 +126,5 @@
             android:textSize="25dp" />
 
     </LinearLayout>
-
-
-
-
-    <!-- Barra de navegación inferior -->
 
 </RelativeLayout>

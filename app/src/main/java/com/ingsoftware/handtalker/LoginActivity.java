@@ -1,6 +1,8 @@
 package com.ingsoftware.handtalker;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText textoCorreo;
     private EditText textoContrasena;
     private Button modoAdmin;
+    private RelativeLayout backr;
+    private TextView textoWelcome;
+    String themes;
 
     int boleano=0;
 
@@ -49,6 +55,14 @@ public class LoginActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
+        //Configuracion Global del tema
+        String currentValue = globalTheme.getInstance().getGlobalTema();
+        themes=currentValue;
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            themes = extras.getString(themes);
+        }
 
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -58,13 +72,63 @@ public class LoginActivity extends AppCompatActivity {
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
         }
 
+
         Button iniciarSesionButton = findViewById(R.id.iniciarSesionButton);
         olvidaste = findViewById(R.id.olvidasteCuenta);
         registro = findViewById(R.id.registrate);
-
         textoCorreo = findViewById(R.id.correoEditText);
         textoContrasena = findViewById(R.id.contrasenaEditText);
         modoAdmin = findViewById(R.id.administrator);
+        backr = findViewById(R.id.fondo);
+
+
+        //Cambiar el tema
+        //- Claro
+        if (themes.equals("1")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.WHITE);
+            registro.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+            modoAdmin.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+            olvidaste.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+            iniciarSesionButton.setTextColor(Color.WHITE);
+            olvidaste.setTextColor(Color.BLACK);
+            textoCorreo.setTextColor(Color.BLACK);
+            textoContrasena.setTextColor(Color.BLACK);
+            textoCorreo.setHintTextColor(Color.GRAY);
+            textoContrasena.setHintTextColor(Color.GRAY);
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.white));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                View decorView = getWindow().getDecorView();
+                decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            }
+
+        }
+        //- Oscuro
+        if (themes.equals("2")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.BLACK);
+            registro.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            modoAdmin.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            olvidaste.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            iniciarSesionButton.setTextColor(Color.WHITE);
+            olvidaste.setTextColor(Color.WHITE);
+            textoCorreo.setTextColor(Color.WHITE);
+            textoContrasena.setTextColor(Color.WHITE);
+            textoCorreo.setHintTextColor(Color.GRAY);
+            textoContrasena.setHintTextColor(Color.GRAY);
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.black));
+        }
 
         iniciarSesionButton.setOnClickListener(new View.OnClickListener() {
             @Override

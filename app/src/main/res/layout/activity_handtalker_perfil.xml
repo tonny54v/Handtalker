@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fondo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -71,6 +72,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textName"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -83,9 +85,9 @@
         android:id="@+id/name"
         android:layout_width="396dp"
         android:layout_height="50dp"
+        android:layout_below="@id/infoName"
         android:layout_centerInParent="true"
         android:background="@drawable/edittext_border"
-        android:layout_below="@id/infoName"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -107,6 +109,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textApe"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -114,11 +117,12 @@
             android:textSize="21dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/apellido"
-        android:layout_below="@id/infoApellido"
         android:layout_width="396dp"
         android:layout_height="50dp"
+        android:layout_below="@id/infoApellido"
         android:layout_centerInParent="true"
         android:background="@drawable/edittext_border"
         android:orientation="horizontal"
@@ -142,6 +146,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textTel"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -149,11 +154,12 @@
             android:textSize="21dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/telefono"
-        android:layout_below="@id/infoTelefono"
         android:layout_width="396dp"
         android:layout_height="50dp"
+        android:layout_below="@id/infoTelefono"
         android:layout_centerInParent="true"
         android:background="@drawable/edittext_border"
         android:orientation="horizontal"
@@ -177,6 +183,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textCorre"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -187,9 +194,9 @@
 
     <LinearLayout
         android:id="@+id/correo"
-        android:layout_below="@id/infoCorreo"
         android:layout_width="396dp"
         android:layout_height="50dp"
+        android:layout_below="@id/infoCorreo"
         android:layout_centerInParent="true"
         android:background="@drawable/edittext_border"
         android:orientation="horizontal"
@@ -207,6 +214,7 @@
 
     <!-- Barra de navegación inferior -->
     <LinearLayout
+        android:id="@+id/downBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_blue_dark"

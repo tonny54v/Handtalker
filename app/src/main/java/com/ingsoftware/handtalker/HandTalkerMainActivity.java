@@ -1,5 +1,7 @@
 package com.ingsoftware.handtalker;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +9,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,10 +31,25 @@ public class HandTalkerMainActivity extends AppCompatActivity {
     private ImageView perfil1;
     private ImageView config;
 
+    private RelativeLayout backr;
+    private LinearLayout BarraTop;
+    private LinearLayout barraDown;
+
+    String themes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handtalker_main);
+
+        //Configuracion Global del tema
+        String currentValue = globalTheme.getInstance().getGlobalTema();
+        themes=currentValue;
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            themes = extras.getString(themes);
+        }
 
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -46,18 +65,63 @@ public class HandTalkerMainActivity extends AppCompatActivity {
         camara1 = findViewById(R.id.camara);
         perfil1 = findViewById(R.id.perfil);
         config = findViewById(R.id.ajuste);
+        backr = findViewById(R.id.fondo);
+        BarraTop = findViewById(R.id.topBar);
+        barraDown = findViewById(R.id.barraAbajo);
 
-        // Cambiar la imagen del centro basada en la hora
-        int hour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY);
-        if (hour > 0 && hour <= 11) {
-            imagenCentro1.setImageResource(R.drawable.goodmorning);
-        } else if(hour >= 12 && hour <= 18){
-            imagenCentro1.setImageResource(R.drawable.goodafternoon);
-        } else if(hour >= 19 && hour < 23 ){
-            imagenCentro1.setImageResource(R.drawable.goodnight);
-        }else if (hour == 0){
-            imagenCentro1.setImageResource(R.drawable.goodmorning);
+        //Cambiar el tema
+        //- Claro
+        if (themes.equals("1")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.WHITE);
+            BarraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
+            barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.azulInicio));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.azulInicio));
+
+            // Cambiar la imagen del centro basada en la hora
+            int hour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY);
+            if (hour > 0 && hour <= 11) {
+                imagenCentro1.setImageResource(R.drawable.goodmorning);
+            } else if(hour >= 12 && hour <= 18){
+                imagenCentro1.setImageResource(R.drawable.goodafternoon);
+            } else if(hour >= 19 && hour < 23 ){
+                imagenCentro1.setImageResource(R.drawable.goodnight);
+            }else if (hour == 0){
+                imagenCentro1.setImageResource(R.drawable.goodmorning);
+            }
         }
+
+        //- Oscuro
+        if (themes.equals("2")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.BLACK);
+            BarraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+
+            // Cambiar la imagen del centro basada en la hora
+            int hour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY);
+            if (hour > 0 && hour <= 11) {
+                imagenCentro1.setImageResource(R.drawable.goodmornigblack);
+            } else if(hour >= 12 && hour <= 18){
+                imagenCentro1.setImageResource(R.drawable.goodafternoonblack);
+            } else if(hour >= 19 && hour < 23 ){
+                imagenCentro1.setImageResource(R.drawable.goodnightblack);
+            }else if (hour == 0){
+                imagenCentro1.setImageResource(R.drawable.goodmornigblack);
+            }
+        }
+
 
         //Eventos de los botones
         traduccion1.setOnClickListener(new View.OnClickListener() {

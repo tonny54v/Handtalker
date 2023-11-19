@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fondo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -55,6 +56,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textNombre"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -65,11 +67,11 @@
 
     <LinearLayout
         android:id="@+id/name1"
-        android:layout_below="@id/infoName1"
         android:layout_width="401dp"
         android:layout_height="54dp"
-        android:background="@drawable/edittext_border"
+        android:layout_below="@id/infoName1"
         android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -90,6 +92,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textApellido"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -97,13 +100,14 @@
             android:textSize="21dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/apellido11"
-        android:layout_below="@id/infoApellido1"
-        android:background="@drawable/edittext_border"
         android:layout_width="401dp"
         android:layout_height="54dp"
+        android:layout_below="@id/infoApellido1"
         android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -124,6 +128,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textTelefono"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -131,13 +136,14 @@
             android:textSize="21dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/telefono11"
-        android:layout_below="@id/infoTelefono1"
         android:layout_width="401dp"
         android:layout_height="54dp"
-        android:background="@drawable/edittext_border"
+        android:layout_below="@id/infoTelefono1"
         android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -158,6 +164,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textCorreo"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -165,13 +172,14 @@
             android:textSize="21dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/correo11"
-        android:layout_below="@id/infoCorreo1"
         android:layout_width="401dp"
         android:layout_height="54dp"
-        android:background="@drawable/edittext_border"
+        android:layout_below="@id/infoCorreo1"
         android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -193,6 +201,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textContra"
             android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -200,13 +209,14 @@
             android:textSize="21dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/contra1"
-        android:layout_below="@id/infoContra1"
         android:layout_width="401dp"
         android:layout_height="54dp"
-        android:background="@drawable/edittext_border"
+        android:layout_below="@id/infoContra1"
         android:layout_centerInParent="true"
+        android:background="@drawable/edittext_border"
         android:orientation="horizontal"
         android:padding="8dp">
 

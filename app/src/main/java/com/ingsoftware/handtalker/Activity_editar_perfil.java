@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,8 +41,21 @@ public class Activity_editar_perfil extends AppCompatActivity {
     private EditText etTelefono;
     private EditText etCorreos;
     private EditText etContrasena;
+    private RelativeLayout backr;
+    private RelativeLayout barraTop;
+    private TextView textNoms;
+    private LinearLayout marcoNom;
+    private TextView textApes;
+    private LinearLayout marcoApes;
+    private TextView textTels;
+    private LinearLayout marcoTel;
+    private TextView textCorr;
+    private LinearLayout marcoCorr;
+    private TextView textContr;
+    private LinearLayout marcoContr;
 
     String id;
+    String themes;
 
     RequestQueue requestQueue;
 
@@ -58,6 +74,15 @@ public class Activity_editar_perfil extends AppCompatActivity {
             id = extras.getString(id);
         }
 
+        //Configuracion Global del tema
+        String currentValue2 = globalTheme.getInstance().getGlobalTema();
+        themes=currentValue2;
+
+        Bundle extras2 = getIntent().getExtras();
+        if (extras2 != null){
+            themes = extras2.getString(themes);
+        }
+
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -74,6 +99,76 @@ public class Activity_editar_perfil extends AppCompatActivity {
         etTelefono = findViewById(R.id.telefonos);
         etCorreos = findViewById(R.id.correos);
         etContrasena = findViewById(R.id.contrasenas);
+
+        backr = findViewById(R.id.fondo);
+        barraTop = findViewById(R.id.topBar);
+        textNoms = findViewById(R.id.textName);
+        marcoNom = findViewById(R.id.name);
+        textApes = findViewById(R.id.textApe);
+        marcoApes = findViewById(R.id.apellido);
+        textTels = findViewById(R.id.textTel);
+        marcoTel = findViewById(R.id.telefono);
+        textCorr = findViewById(R.id.textCorre);
+        marcoCorr = findViewById(R.id.correo);
+        textContr = findViewById(R.id.textContras);
+        marcoContr = findViewById(R.id.infoContrasena2);
+
+        //Cambiar el tema
+        //- Claro
+        if (themes.equals("1")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.WHITE);
+            barraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
+            textNoms.setTextColor(Color.BLACK);
+            textApes.setTextColor(Color.BLACK);
+            textTels.setTextColor(Color.BLACK);
+            textCorr.setTextColor(Color.BLACK);
+            textContr.setTextColor(Color.BLACK);
+            marcoNom.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
+            marcoApes.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
+            marcoTel.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
+            marcoCorr.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
+            marcoContr.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
+            etname.setTextColor(Color.BLACK);
+            etApellido.setTextColor(Color.BLACK);
+            etCorreos.setTextColor(Color.BLACK);
+            etTelefono.setTextColor(Color.BLACK);
+            etContrasena.setTextColor(Color.BLACK);
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.azulInicio));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
+        }
+
+        //- Oscuro
+        if (themes.equals("2")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.BLACK);
+            barraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            textNoms.setTextColor(Color.WHITE);
+            textApes.setTextColor(Color.WHITE);
+            textTels.setTextColor(Color.WHITE);
+            textCorr.setTextColor(Color.WHITE);
+            textContr.setTextColor(Color.WHITE);
+            marcoNom.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            marcoApes.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            marcoTel.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            marcoCorr.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            marcoContr.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            etname.setTextColor(Color.WHITE);
+            etApellido.setTextColor(Color.WHITE);
+            etCorreos.setTextColor(Color.WHITE);
+            etTelefono.setTextColor(Color.WHITE);
+            etContrasena.setTextColor(Color.WHITE);
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.black));
+        }
 
         readUser();
 

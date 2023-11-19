@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fondo"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -54,6 +55,7 @@
             android:src="@drawable/flechas_logo" />
 
         <TextView
+            android:id="@+id/TextFrase"
             android:layout_width="290dp"
             android:layout_height="43dp"
             android:layout_weight="0"
@@ -98,6 +100,7 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textTraducci"
             android:layout_width="400dp"
             android:layout_height="43dp"
             android:layout_weight="0"
@@ -123,7 +126,7 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter" />
 
         <ImageView
             android:id="@+id/flechitaDerecha"
@@ -149,6 +152,7 @@
 
     <!-- Barra de navegación inferior -->
     <LinearLayout
+        android:id="@+id/downBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_blue_dark"

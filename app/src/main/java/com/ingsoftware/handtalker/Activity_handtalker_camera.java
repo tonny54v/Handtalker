@@ -1,11 +1,16 @@
 package com.ingsoftware.handtalker;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,12 +29,26 @@ public class Activity_handtalker_camera extends AppCompatActivity {
     private ImageView camara1;
     private ImageView perfil1;
     private ImageView config;
-
+    private RelativeLayout backr;
+    private LinearLayout barraTop;
+    private FrameLayout cameraSec;
+    private TextView traduc;
+    private LinearLayout barraDown;
+    String themes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handtalker_camera);
+
+        //Configuracion Global del tema
+        String currentValue = globalTheme.getInstance().getGlobalTema();
+        themes=currentValue;
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null){
+            themes = extras.getString(themes);
+        }
 
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -45,6 +64,45 @@ public class Activity_handtalker_camera extends AppCompatActivity {
         perfil1 = findViewById(R.id.perfil);
         config = findViewById(R.id.ajuste);
 
+        backr = findViewById(R.id.fondo);
+        barraTop = findViewById(R.id.topBar);
+        cameraSec = findViewById(R.id.camera_preview);
+        traduc = findViewById(R.id.textTraduc);
+        barraDown = findViewById(R.id.downBar);
+
+        //Cambiar el tema
+        //- Claro
+        if (themes.equals("1")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.WHITE);
+            barraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
+            barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
+            cameraSec.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
+            traduc.setTextColor(Color.BLACK);
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.azulInicio));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.azulInicio));
+
+        }
+
+        //- Oscuro
+        if (themes.equals("2")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.BLACK);
+            barraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            cameraSec.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            traduc.setTextColor(Color.WHITE);
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+        }
 
         //Eventos de los botones
         home1.setOnClickListener(new View.OnClickListener() {

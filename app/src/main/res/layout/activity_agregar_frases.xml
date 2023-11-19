@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fondo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -46,6 +47,7 @@
         android:layout_below="@id/topBar">
 
         <TextView
+            android:id="@+id/textInsert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Inserta tu frase:"
@@ -59,9 +61,9 @@
         android:layout_width="398dp"
         android:layout_height="191dp"
         android:layout_below="@id/TextInserta"
-        android:background="@drawable/edittext_border"
         android:layout_centerInParent="true"
-        android:layout_marginTop="0dp">
+        android:layout_marginTop="0dp"
+        android:background="@drawable/edittext_border">
 
         <EditText
             android:id="@+id/fraseText"
@@ -82,9 +84,4 @@
         android:backgroundTint="@color/bluestrong"
         android:text="Guardar"
         android:textSize="18dp" />
-
-
-
-
-
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.ingsoftware.handtalker;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +49,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     private ImageView config;
     private ListView listita;
     String id;
+    String themes;
     private HashMap<String, Integer> signLanguageMap;
     private String[] palabrasActuales;
     private int indicePalabraActual;
@@ -52,6 +57,13 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     private ImageView flechitaDerecha;
     private ImageView flechitaIzquierda;
     private Button agregar;
+    private RelativeLayout backr;
+    private LinearLayout barraTop;
+    private TextView frasePred;
+    private TextView traducec;
+    private RelativeLayout resultadoCuad;
+    private LinearLayout barraDown;
+
 
 
 
@@ -66,6 +78,15 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             id = extras.getString(id);
+        }
+
+        //Configuracion Global del tema
+        String currentValue2 = globalTheme.getInstance().getGlobalTema();
+        themes=currentValue2;
+
+        Bundle extras2 = getIntent().getExtras();
+        if (extras2 != null){
+            themes = extras2.getString(themes);
         }
 
         // Cambiar el color de la barra de estado
@@ -85,6 +106,59 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         flechitaDerecha = findViewById(R.id.flechitaDerecha);
         flechitaIzquierda = findViewById(R.id.flechitaIzquierda);
         agregar = findViewById(R.id.BotonAgrega1);
+
+        backr = findViewById(R.id.fondo);
+        barraTop = findViewById(R.id.topBar);
+        frasePred = findViewById(R.id.TextFrase);
+        traducec = findViewById(R.id.textTraducci);
+        resultadoCuad = findViewById(R.id.cuadroResultado);
+        barraDown = findViewById(R.id.downBar);
+
+        //Cambiar el tema
+        //- Claro
+        if (themes.equals("1")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.WHITE);
+            barraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
+            barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
+            frasePred.setTextColor(Color.BLACK);
+            traducec.setTextColor(Color.BLACK);
+            agregar.setTextColor(Color.WHITE);
+            listita.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
+            resultadoCuad.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
+            flechitaIzquierda.setImageResource(R.drawable.flecha_izquierda);
+            flechitaDerecha.setImageResource(R.drawable.flecha_derecha);
+            flechas.setImageResource(R.drawable.flechas_logo);
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.azulInicio));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.azulInicio));
+        }
+
+        //- Oscuro
+        if (themes.equals("2")){
+            //Color de elementos
+            backr.setBackgroundColor(Color.BLACK);
+            barraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            frasePred.setTextColor(Color.WHITE);
+            traducec.setTextColor(Color.WHITE);
+            agregar.setTextColor(Color.WHITE);
+            listita.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            resultadoCuad.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            flechitaIzquierda.setImageResource(R.drawable.flecha_izquierda_white);
+            flechitaDerecha.setImageResource(R.drawable.flecha_derecha_white);
+            flechas.setImageResource(R.drawable.flechas_logo_white);
+
+            //Color de barra de estado y de desplazamiento
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+        }
+
 
         initializeSignLanguageMap();
         imagenTraduccion = findViewById(R.id.imageView);
