@@ -10,7 +10,7 @@ public class globalTheme {
     // Constructor privado para prevenir la instanciación directa.
     private globalTheme() {
         // Inicializa tu variable aquí
-        globalTema = "2";
+        globalTema = "1";
     }
 
 

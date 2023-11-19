@@ -1,4 +1,5 @@
 package com.ingsoftware.handtalker;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -10,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -33,6 +36,10 @@ public class Activity_configuration extends AppCompatActivity {
     private  ImageView cerrImg;
     private TextView textCerr;
     String themes;
+
+    // Variable para mantener la selección del usuario
+    private String temaSeleccionado;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +120,7 @@ public class Activity_configuration extends AppCompatActivity {
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.black));
         }
 
+
         atrasBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +134,76 @@ public class Activity_configuration extends AppCompatActivity {
                 regresarLogin();
             }
         });
+
+        marcoTema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarDialogoSeleccionTema();
+            }
+        });
+    }
+
+    //Muestra el dialogo al presionar (Tema)
+    private void mostrarDialogoSeleccionTema() {
+        // Crear el builder del diálogo
+        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_configuration.this);
+        builder.setTitle("Elige un tema");
+
+        // Opciones para el diálogo
+        final CharSequence[] items = {"Claro", "Oscuro"};
+
+        // Valor predeterminado (ninguno seleccionado)
+        temaSeleccionado = "Claro";
+
+        builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // 'which' es el índice del elemento seleccionado.
+                switch (which) {
+                    case 0: // Claro
+                        temaSeleccionado = "Claro";
+                        themes = "1";
+                        globalTheme.getInstance().setGlobalTema(themes);
+                        break;
+                    case 1: // Oscuro
+                        temaSeleccionado = "Oscuro";
+                        themes = "2";
+                        globalTheme.getInstance().setGlobalTema(themes);
+                        break;
+                    default:
+                        temaSeleccionado = "Ningun tema seleccionado"; // Ninguno seleccionado
+                        break;
+                }
+
+                // Si se ha seleccionado una opción, habilitamos el botón OK
+                if (dialog instanceof AlertDialog) {
+                    ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                }
+            }
+        });
+
+        // Añadir botones de acción
+        builder.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                // El usuario confirmó su selección.
+                // Aquí puedes hacer algo con la variable 'temaSeleccionado'.
+                Toast.makeText(Activity_configuration.this, "Tema aplicado.", Toast.LENGTH_SHORT).show();
+                regresarConfig();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                // Si presionan cancelar, simplemente cierras el diálogo.
+                dialog.dismiss();
+            }
+        });
+
+        // Crear y mostrar el AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        // Inicialmente, deshabilita el botón OK si no se ha seleccionado ninguna opción
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
     }
 
     private void regresarInicio() {
@@ -137,6 +215,13 @@ public class Activity_configuration extends AppCompatActivity {
         Intent intent = new Intent(Activity_configuration.this, LoginActivity.class);
         startActivity(intent);
     }
+
+    private void regresarConfig() {
+        Intent intent = new Intent(Activity_configuration.this, Activity_configuration.class);
+        startActivity(intent);
+    }
+
+
 
 
 }
