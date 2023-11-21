@@ -39,6 +39,8 @@ public class Activity_configuration extends AppCompatActivity {
 
     // Variable para mantener la selección del usuario
     private String temaSeleccionado;
+    private String tamanoSeleccionadoFuent;
+    private String tamanoSeleccionadoGraf;
 
 
     @Override
@@ -141,6 +143,20 @@ public class Activity_configuration extends AppCompatActivity {
                 mostrarDialogoSeleccionTema();
             }
         });
+
+        marcoTamFuente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarDialogoSeleccionTamanoFuent();
+            }
+        });
+
+        marcoTamGraf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarDialogoSeleccionTamanoGraf();
+            }
+        });
     }
 
     //Muestra el dialogo al presionar (Tema)
@@ -188,6 +204,130 @@ public class Activity_configuration extends AppCompatActivity {
                 // El usuario confirmó su selección.
                 // Aquí puedes hacer algo con la variable 'temaSeleccionado'.
                 Toast.makeText(Activity_configuration.this, "Tema aplicado.", Toast.LENGTH_SHORT).show();
+                regresarConfig();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                // Si presionan cancelar, simplemente cierras el diálogo.
+                dialog.dismiss();
+            }
+        });
+
+        // Crear y mostrar el AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        // Inicialmente, deshabilita el botón OK si no se ha seleccionado ninguna opción
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+    }
+
+    //Muestra el dialogo al presionar (Tamano Fuente)
+    private void mostrarDialogoSeleccionTamanoFuent() {
+        // Crear el builder del diálogo
+        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_configuration.this);
+        builder.setTitle("Tamaño de fuente (Traduccion)");
+
+        // Opciones para el diálogo
+        final CharSequence[] items = {"Pequeño", "Mediano", "Grande"};
+
+        // Valor predeterminado (ninguno seleccionado)
+        tamanoSeleccionadoFuent = "Pequeño";
+
+        builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // 'which' es el índice del elemento seleccionado.
+                switch (which) {
+                    case 0: // pequeño
+                        tamanoSeleccionadoFuent = "Pequeño";
+                        break;
+                    case 1: // mediano
+                        tamanoSeleccionadoFuent = "Mediano";
+                        break;
+                    case 2: //Grande
+                        tamanoSeleccionadoFuent = "Grande";
+                        break;
+                    default:
+                        tamanoSeleccionadoFuent = "Ningun tamaño seleccionado"; // Ninguno seleccionado
+                        break;
+                }
+
+                // Si se ha seleccionado una opción, habilitamos el botón OK
+                if (dialog instanceof AlertDialog) {
+                    ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                }
+            }
+        });
+
+        // Añadir botones de acción
+        builder.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                // El usuario confirmó su selección.
+                // Aquí puedes hacer algo con la variable 'temaSeleccionado'.
+                Toast.makeText(Activity_configuration.this, "Tamaño aplicado", Toast.LENGTH_SHORT).show();
+                regresarConfig();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                // Si presionan cancelar, simplemente cierras el diálogo.
+                dialog.dismiss();
+            }
+        });
+
+        // Crear y mostrar el AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        // Inicialmente, deshabilita el botón OK si no se ha seleccionado ninguna opción
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+    }
+
+    //Muestra el dialogo al presionar (Tamano grafico)
+    private void mostrarDialogoSeleccionTamanoGraf() {
+        // Crear el builder del diálogo
+        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_configuration.this);
+        builder.setTitle("Tamaño de imagenes (Traduccion)");
+
+        // Opciones para el diálogo
+        final CharSequence[] items = {"Pequeño", "Mediano", "Grande"};
+
+        // Valor predeterminado (ninguno seleccionado)
+        tamanoSeleccionadoGraf = "Pequeño";
+
+        builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // 'which' es el índice del elemento seleccionado.
+                switch (which) {
+                    case 0: // pequeño
+                        tamanoSeleccionadoGraf = "Pequeño";
+                        break;
+                    case 1: // mediano
+                        tamanoSeleccionadoGraf = "Mediano";
+                        break;
+                    case 2: //Grande
+                        tamanoSeleccionadoGraf = "Grande";
+                        break;
+                    default:
+                        tamanoSeleccionadoGraf = "Ningun tamaño seleccionado"; // Ninguno seleccionado
+                        break;
+                }
+
+                // Si se ha seleccionado una opción, habilitamos el botón OK
+                if (dialog instanceof AlertDialog) {
+                    ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
+                }
+            }
+        });
+
+        // Añadir botones de acción
+        builder.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                // El usuario confirmó su selección.
+                // Aquí puedes hacer algo con la variable 'temaSeleccionado'.
+                Toast.makeText(Activity_configuration.this, "Tamaño aplicado", Toast.LENGTH_SHORT).show();
                 regresarConfig();
             }
         });

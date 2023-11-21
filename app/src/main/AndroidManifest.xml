@@ -21,9 +21,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Activity_editar_perfil"
-            android:exported="false" />
-        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -41,7 +38,9 @@
         <activity android:name=".Activity_configuration" />
         <activity android:name=".Activity_handtalker_frases_predet" />
         <activity android:name=".Activity_registrate" />
-        <activity android:name=".Activity_agregar"/>
+        <activity android:name=".Activity_agregar" />
+        <activity android:name=".Activity_seleccionar_foto" />
+        <activity android:name=".Activity_editar_perfil" />
     </application>
 
 </manifest>

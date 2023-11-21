@@ -39,7 +39,7 @@ public class Activity_registrate extends AppCompatActivity{
 
     int bole=0;
 
-    private static final String URL1 = "http://192.168.8.11:8080/handtalker/save.php";
+    private static final String URL1 = "http://10.31.10.39:8080/handtalker/save.php";
 
     private Button registrarte;
     private ImageView cerrar;

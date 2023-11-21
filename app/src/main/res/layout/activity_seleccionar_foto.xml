@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fondo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Barra superior azul -->
+
+    <!-- Imágenes del centro -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Logo alargado -->
+
+        <ImageView
+            android:id="@+id/atras_edit"
+            android:layout_width="83dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/atras_logo" />
+
+        <TextView
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Seleccionar Foto"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+        <ImageView
+            android:id="@+id/guardarCambios"
+            android:layout_width="86dp"
+            android:layout_height="52dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="right"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/guardar_cambios_image" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/imagenes"
+        android:layout_width="match_parent"
+        android:layout_height="723dp"
+        android:layout_below="@id/topBar">
+
+        <ImageView
+            android:id="@+id/defecto1"
+            android:layout_width="193dp"
+            android:layout_height="163dp"
+            android:layout_margin="7dp"
+            android:src="@drawable/perfilicon" />
+
+        <ImageView
+            android:id="@+id/defecto2"
+            android:layout_width="193dp"
+            android:layout_height="163dp"
+            android:layout_margin="7dp"
+            android:layout_toRightOf="@+id/defecto1"
+            android:src="@drawable/foto_defecto2" />
+
+        <ImageView
+            android:id="@+id/defecto3"
+            android:layout_width="193dp"
+            android:layout_height="163dp"
+            android:layout_below="@+id/defecto1"
+            android:layout_margin="7dp"
+            android:src="@drawable/foto_defecto3" />
+
+        <ImageView
+            android:id="@+id/defecto4"
+            android:layout_width="193dp"
+            android:layout_height="163dp"
+            android:layout_below="@+id/defecto2"
+            android:layout_margin="7dp"
+            android:layout_toRightOf="@+id/defecto3"
+            android:src="@drawable/foto_defecto4" />
+
+        <ImageView
+            android:id="@+id/defecto5"
+            android:layout_width="193dp"
+            android:layout_height="163dp"
+            android:layout_below="@+id/defecto3"
+            android:layout_margin="7dp"
+            android:src="@drawable/foto_defecto5" />
+
+        <ImageView
+            android:id="@+id/defecto6"
+            android:layout_width="193dp"
+            android:layout_height="163dp"
+            android:layout_below="@+id/defecto4"
+            android:layout_margin="7dp"
+            android:layout_toRightOf="@+id/defecto5"
+            android:src="@drawable/foto_defecto6" />
+
+        <ImageView
+            android:id="@+id/defecto7"
+            android:layout_width="193dp"
+            android:layout_height="163dp"
+            android:layout_below="@+id/defecto5"
+            android:layout_margin="7dp"
+            android:src="@drawable/foto_defecto7" />
+
+        <ImageView
+            android:id="@+id/defecto8"
+            android:layout_width="193dp"
+            android:layout_height="163dp"
+            android:layout_below="@+id/defecto6"
+            android:layout_margin="7dp"
+            android:layout_toRightOf="@+id/defecto5"
+            android:src="@drawable/foto_edicion_taylor" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

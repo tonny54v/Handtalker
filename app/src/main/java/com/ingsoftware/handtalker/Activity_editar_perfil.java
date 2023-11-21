@@ -53,6 +53,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     private LinearLayout marcoCorr;
     private TextView textContr;
     private LinearLayout marcoContr;
+    private ImageView fotoEdit;
 
     String id;
     String themes;
@@ -112,6 +113,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
         marcoCorr = findViewById(R.id.correo);
         textContr = findViewById(R.id.textContras);
         marcoContr = findViewById(R.id.infoContrasena2);
+        fotoEdit = findViewById(R.id.foto);
 
         //Cambiar el tema
         //- Claro
@@ -181,6 +183,16 @@ public class Activity_editar_perfil extends AppCompatActivity {
             @Override
             public void onClick(View v) {validar(v);}
         });
+
+        fotoEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {abrirEditFoto(v);}
+        });
+    }
+
+    private void abrirEditFoto(View v) {
+        Intent intent = new Intent(Activity_editar_perfil.this, Activity_seleccionar_foto.class);
+        startActivity(intent);
     }
 
     private void abrirPerfil() {
@@ -189,7 +201,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     }
 
     private void readUser(){
-        String URL = "http://192.168.8.11:8080/handtalker/fetch.php?id="+id;
+        String URL = "http://10.31.10.39:8080/handtalker/fetch.php?id="+id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -239,7 +251,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     }
 
     private void actualizarUser(String nombre, String apellido, String telefono, String correo, String contrasena) {
-        String URL1 = "http://192.168.8.11:8080/handtalker/actualizar.php";
+        String URL1 = "http://10.31.10.39:8080/handtalker/actualizar.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,

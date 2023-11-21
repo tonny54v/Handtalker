@@ -42,6 +42,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
     private TextView etApellido;
     private TextView etTelefono;
     private TextView etCorreos;
+    private ImageView fotoPerfil;
     private RelativeLayout backr;
     private LinearLayout barraTop;
     private TextView textNoms;
@@ -102,6 +103,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         etApellido = findViewById(R.id.apellidos);
         etTelefono = findViewById(R.id.telefonos);
         etCorreos = findViewById(R.id.correos);
+        fotoPerfil = findViewById(R.id.foto);
 
         backr = findViewById(R.id.fondo);
         barraTop = findViewById(R.id.topBar);
@@ -255,7 +257,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         toast.show();
     }
     private void readUser(){
-        String URL = "http://192.168.8.11:8080/handtalker/fetch.php?id="+id;
+        String URL = "http://10.31.10.39:8080/handtalker/fetch.php?id="+id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -263,7 +265,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String nombre, apellido, telefono, correo;
+                        String nombre, apellido, telefono, correo, idFoto;
                         try {
                             nombre = response.getString("nombre");
                             apellido = response.getString("apellido");
