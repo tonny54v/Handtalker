@@ -163,7 +163,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         initializeSignLanguageMap();
         imagenTraduccion = findViewById(R.id.imageView);
 
-        String URL = "http://10.31.10.39:8080/handtalker/listar_frases.php?id="+id;
+        String URL = "http://192.168.1.3:8080/handtalker/listar_frases.php?id="+id;
         recuperarDatos(URL);
 
 

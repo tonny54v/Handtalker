@@ -36,15 +36,7 @@
             android:textColor="@color/white"
             android:textSize="24dp" />
 
-        <ImageView
-            android:id="@+id/guardarCambios"
-            android:layout_width="86dp"
-            android:layout_height="52dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_gravity="right"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/guardar_cambios_image" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -57,7 +49,10 @@
             android:id="@+id/defecto1"
             android:layout_width="193dp"
             android:layout_height="163dp"
-            android:layout_margin="7dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="7dp"
             android:src="@drawable/perfilicon" />
 
         <ImageView
@@ -115,7 +110,10 @@
             android:layout_width="193dp"
             android:layout_height="163dp"
             android:layout_below="@+id/defecto6"
-            android:layout_margin="7dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="7dp"
             android:layout_toRightOf="@+id/defecto5"
             android:src="@drawable/foto_edicion_taylor" />
 

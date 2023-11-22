@@ -57,6 +57,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
 
     String id;
     String themes;
+    String idFotos;
 
     RequestQueue requestQueue;
 
@@ -82,6 +83,15 @@ public class Activity_editar_perfil extends AppCompatActivity {
         Bundle extras2 = getIntent().getExtras();
         if (extras2 != null){
             themes = extras2.getString(themes);
+        }
+
+        //Configuracion Global del la foto de perfil
+        String currentValue3 = globalFoto.getInstance().getGlobalFoto();
+        idFotos=currentValue3;
+
+        Bundle extras3 = getIntent().getExtras();
+        if (extras3 != null){
+            idFotos = extras3.getString(idFotos);
         }
 
         // Cambiar el color de la barra de estado
@@ -201,7 +211,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     }
 
     private void readUser(){
-        String URL = "http://10.31.10.39:8080/handtalker/fetch.php?id="+id;
+        String URL = "http://192.168.1.3:8080/handtalker/fetch.php?id="+id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -209,19 +219,46 @@ public class Activity_editar_perfil extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String nombre, apellido, telefono, correo, contrasena;
+                        String nombre, apellido, telefono, correo, contrasena, idFoto;
                         try {
                             nombre = response.getString("nombre");
                             apellido = response.getString("apellido");
                             telefono = response.getString("telefono");
                             correo = response.getString("correo");
                             contrasena = response.getString("contrasena");
+                            idFoto = idFotos;
 
                             etname.setText(nombre);
                             etApellido.setText(apellido);
                             etTelefono.setText(telefono);
                             etCorreos.setText(correo);
                             etContrasena.setText(contrasena);
+
+                            //Selecciona la foto de perfil de acuerdo al idFoto
+                            if (idFoto.equals("1")){
+                                fotoEdit.setImageResource(R.drawable.perfilicon);
+                            }
+                            if (idFoto.equals("2")){
+                                fotoEdit.setImageResource(R.drawable.foto_defecto2);
+                            }
+                            if (idFoto.equals("3")){
+                                fotoEdit.setImageResource(R.drawable.foto_defecto3);
+                            }
+                            if (idFoto.equals("4")){
+                                fotoEdit.setImageResource(R.drawable.foto_defecto4);
+                            }
+                            if (idFoto.equals("5")){
+                                fotoEdit.setImageResource(R.drawable.foto_defecto5);
+                            }
+                            if (idFoto.equals("6")){
+                                fotoEdit.setImageResource(R.drawable.foto_defecto6);
+                            }
+                            if (idFoto.equals("7")){
+                                fotoEdit.setImageResource(R.drawable.foto_defecto7);
+                            }
+                            if (idFoto.equals("8")){
+                                fotoEdit.setImageResource(R.drawable.foto_edicion_taylor);
+                            }
 
 
                         } catch (JSONException e) {
@@ -232,7 +269,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        fotoEdit.setImageResource(R.drawable.perfilicon);
                     }
                 }
         );
@@ -251,7 +288,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     }
 
     private void actualizarUser(String nombre, String apellido, String telefono, String correo, String contrasena) {
-        String URL1 = "http://10.31.10.39:8080/handtalker/actualizar.php";
+        String URL1 = "http://192.168.1.3:8080/handtalker/actualizar.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,
@@ -284,6 +321,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
                     params.put("telefono", telefono);
                     params.put("correo", correo);
                     params.put("contrasena", contrasena);
+                    params.put("idFoto", idFotos);
                 }
                 return params;
             }

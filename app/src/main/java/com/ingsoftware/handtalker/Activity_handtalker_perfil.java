@@ -56,6 +56,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
     private LinearLayout barraDown;
     String id;
     String themes;
+    String idFotos;
 
     RequestQueue requestQueue;
 
@@ -81,6 +82,15 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         Bundle extras2 = getIntent().getExtras();
         if (extras2 != null){
             themes = extras2.getString(themes);
+        }
+
+        //Configuracion Global del la foto de perfil
+        String currentValue3 = globalFoto.getInstance().getGlobalFoto();
+        idFotos=currentValue3;
+
+        Bundle extras3 = getIntent().getExtras();
+        if (extras3 != null){
+            idFotos = extras3.getString(idFotos);
         }
 
 
@@ -257,7 +267,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         toast.show();
     }
     private void readUser(){
-        String URL = "http://10.31.10.39:8080/handtalker/fetch.php?id="+id;
+        String URL = "http://192.168.1.3:8080/handtalker/fetch.php?id="+id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -271,11 +281,38 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
                             apellido = response.getString("apellido");
                             telefono = response.getString("telefono");
                             correo = response.getString("correo");
+                            idFoto = idFotos;
 
                             etname.setText(nombre);
                             etApellido.setText(apellido);
                             etTelefono.setText(telefono);
                             etCorreos.setText(correo);
+
+                            //Selecciona la foto de perfil de acuerdo al idFoto
+                            if (idFoto.equals("1")){
+                                fotoPerfil.setImageResource(R.drawable.perfilicon);
+                            }
+                            if (idFoto.equals("2")){
+                                fotoPerfil.setImageResource(R.drawable.foto_defecto2);
+                            }
+                            if (idFoto.equals("3")){
+                                fotoPerfil.setImageResource(R.drawable.foto_defecto3);
+                            }
+                            if (idFoto.equals("4")){
+                                fotoPerfil.setImageResource(R.drawable.foto_defecto4);
+                            }
+                            if (idFoto.equals("5")){
+                                fotoPerfil.setImageResource(R.drawable.foto_defecto5);
+                            }
+                            if (idFoto.equals("6")){
+                                fotoPerfil.setImageResource(R.drawable.foto_defecto6);
+                            }
+                            if (idFoto.equals("7")){
+                                fotoPerfil.setImageResource(R.drawable.foto_defecto7);
+                            }
+                            if (idFoto.equals("8")){
+                                fotoPerfil.setImageResource(R.drawable.foto_edicion_taylor);
+                            }
 
 
                         } catch (JSONException e) {
@@ -286,7 +323,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        fotoPerfil.setImageResource(R.drawable.perfilicon);
                     }
                 }
         );

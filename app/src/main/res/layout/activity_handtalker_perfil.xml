@@ -55,10 +55,11 @@
 
         <ImageView
             android:id="@+id/foto"
-            android:layout_width="179dp"
-            android:layout_height="160dp"
+            android:layout_width="171dp"
+            android:layout_height="161dp"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:src="@drawable/perfilicon" />
 
     </FrameLayout>

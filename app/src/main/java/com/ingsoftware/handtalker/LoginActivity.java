@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private RelativeLayout backr;
     private TextView textoWelcome;
     String themes;
+    String idFotos;
 
     int boleano=0;
 
@@ -62,6 +63,15 @@ public class LoginActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             themes = extras.getString(themes);
+        }
+
+        //Configuracion Global del la foto de perfil
+        String currentValue3 = globalFoto.getInstance().getGlobalFoto();
+        idFotos=currentValue3;
+
+        Bundle extras3 = getIntent().getExtras();
+        if (extras3 != null){
+            idFotos = extras3.getString(idFotos);
         }
 
         // Cambiar el color de la barra de estado
@@ -203,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
         String correoT = textoCorreo.getText().toString();
         String contrasenaT = textoContrasena.getText().toString();
 
-        String URL = "http://10.31.10.39:8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
+        String URL = "http://192.168.1.3:8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -211,14 +221,17 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String correoQ,contrasenaQ,nombreQ,idQ;
+                        String correoQ,contrasenaQ,nombreQ,idQ,idF;
                         try {
                             correoQ = response.getString("correo");
                             contrasenaQ = response.getString("contrasena");
                             nombreQ = response.getString("nombre");
                             idQ = response.getString("idusuario");
+                            idF = response.getString("idFoto");
 
                             if (correoT.equals(correoQ) && contrasenaT.equals(contrasenaQ)){
+                                idFotos = idF;
+                                globalFoto.getInstance().setGlobalFoto(idFotos);
                                 Toast.makeText(LoginActivity.this,"¡Bienvenido "+nombreQ+"!", Toast.LENGTH_SHORT).show();
                                 String currentValue = globalVariable.getInstance().getGlobalString();
                                 globalVariable.getInstance().setGlobalString(idQ);

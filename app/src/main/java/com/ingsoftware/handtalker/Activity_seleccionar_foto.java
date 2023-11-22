@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -20,9 +21,18 @@ public class Activity_seleccionar_foto extends AppCompatActivity {
     private RelativeLayout backr;
     private RelativeLayout barraTop;
     private ImageView atras;
-    private ImageView guardar_cambios;
+    private ImageView def1;
+    private ImageView def2;
+    private ImageView def3;
+    private ImageView def4;
+    private ImageView def5;
+    private ImageView def6;
+    private ImageView def7;
+    private ImageView def8;
+
     String themes;
     String id;
+    String idFotos;
     RequestQueue requestQueue;
 
     @Override
@@ -49,6 +59,15 @@ public class Activity_seleccionar_foto extends AppCompatActivity {
             themes = extras2.getString(themes);
         }
 
+        //Configuracion Global del la foto de perfil
+        String currentValue3 = globalFoto.getInstance().getGlobalFoto();
+        idFotos=currentValue3;
+
+        Bundle extras3 = getIntent().getExtras();
+        if (extras3 != null){
+            idFotos = extras3.getString(idFotos);
+        }
+
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -60,7 +79,14 @@ public class Activity_seleccionar_foto extends AppCompatActivity {
         backr = findViewById(R.id.fondo);
         barraTop = findViewById(R.id.topBar);
         atras = findViewById(R.id.atras_edit);
-        guardar_cambios = findViewById(R.id.guardarCambios);
+        def1 = findViewById(R.id.defecto1);
+        def2 = findViewById(R.id.defecto2);
+        def3 = findViewById(R.id.defecto3);
+        def4 = findViewById(R.id.defecto4);
+        def5 = findViewById(R.id.defecto5);
+        def6 = findViewById(R.id.defecto6);
+        def7 = findViewById(R.id.defecto7);
+        def8 = findViewById(R.id.defecto8);
 
         //Cambiar el tema
         //- Claro
@@ -96,12 +122,83 @@ public class Activity_seleccionar_foto extends AppCompatActivity {
             }
         });
 
-        guardar_cambios.setOnClickListener(new View.OnClickListener() {
+        def1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirEdit();
+                idFotos = "1";
+                globalFoto.getInstance().setGlobalFoto(idFotos);
+                actualiza();
             }
         });
+
+        def2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idFotos = "2";
+                globalFoto.getInstance().setGlobalFoto(idFotos);
+                actualiza();
+            }
+        });
+
+        def3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idFotos = "3";
+                globalFoto.getInstance().setGlobalFoto(idFotos);
+                actualiza();
+            }
+        });
+
+        def4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idFotos = "4";
+                globalFoto.getInstance().setGlobalFoto(idFotos);
+                actualiza();
+            }
+        });
+
+        def5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idFotos = "5";
+                globalFoto.getInstance().setGlobalFoto(idFotos);
+                actualiza();
+            }
+        });
+
+        def6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idFotos = "6";
+                globalFoto.getInstance().setGlobalFoto(idFotos);
+                actualiza();
+            }
+        });
+
+        def7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idFotos = "7";
+                globalFoto.getInstance().setGlobalFoto(idFotos);
+                actualiza();
+            }
+        });
+
+        def8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idFotos = "8";
+                globalFoto.getInstance().setGlobalFoto(idFotos);
+                actualiza();
+            }
+        });
+
+    }
+
+    private void actualiza(){
+        Toast.makeText(Activity_seleccionar_foto.this,"Foto de perfil actualizada.", Toast.LENGTH_SHORT).show();
+        abrirEdit();
     }
 
     private void abrirEdit() {
