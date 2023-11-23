@@ -54,6 +54,10 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
     String tamFuente;
     String tamGrafico;
 
+    // Variables para manejar la traducción letra por letra
+    private boolean isTranslatingByLetter = false;
+    private int currentLetterIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -254,9 +258,24 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
 
         derechaFlecha.setOnClickListener(v -> {
             try {
-                if (currentWordIndex < words.size() - 1) {
-                    currentWordIndex++;
-                    showCurrentWord();
+                if (isTranslatingByLetter) {
+                    // Estamos en modo de traducción letra por letra
+                    if (currentLetterIndex < words.get(currentWordIndex).length() - 1) {
+                        currentLetterIndex++;
+                        showCurrentLetter();
+                    } else {
+                        // Pasar a la siguiente palabra si existe
+                        if (currentWordIndex < words.size() - 1) {
+                            currentWordIndex++;
+                            showCurrentWord();
+                        }
+                    }
+                } else {
+                    // Modo de palabra completa, comportamiento normal
+                    if (currentWordIndex < words.size() - 1) {
+                        currentWordIndex++;
+                        showCurrentWord();
+                    }
                 }
             }catch (Exception e){
                 Toast.makeText(getApplicationContext(), "No hay imagenes para desplazar.", Toast.LENGTH_SHORT).show();
@@ -266,9 +285,24 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
 
         izquierdaFlecha.setOnClickListener(v -> {
             try {
-                if (currentWordIndex > 0) {
-                    currentWordIndex--;
-                    showCurrentWord();
+                if (isTranslatingByLetter) {
+                    // Estamos en modo de traducción letra por letra
+                    if (currentLetterIndex > 0) {
+                        currentLetterIndex--;
+                        showCurrentLetter();
+                    } else {
+                        // Pasar a la palabra anterior si existe
+                        if (currentWordIndex > 0) {
+                            currentWordIndex--;
+                            showCurrentWord();
+                        }
+                    }
+                } else {
+                    // Modo de palabra completa, comportamiento normal
+                    if (currentWordIndex > 0) {
+                        currentWordIndex--;
+                        showCurrentWord();
+                    }
                 }
             }catch (Exception e){
                 Toast.makeText(getApplicationContext(), "No hay imagenes para desplazar.", Toast.LENGTH_SHORT).show();
@@ -280,11 +314,29 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
     }
 
     private void showCurrentWord() {
+        // Restablecer la traducción letra por letra si estamos comenzando a mostrar una nueva palabra
+        isTranslatingByLetter = false;
+        currentLetterIndex = 0;
+
         String currentWord = words.get(currentWordIndex).toUpperCase();
         if (signLanguageMap.containsKey(currentWord)) {
             translationImage.setImageResource(signLanguageMap.get(currentWord));
         } else {
-            Toast.makeText(getApplicationContext(), "No hay imagen para \"" + currentWord + "\".", Toast.LENGTH_SHORT).show();
+            // No hay imagen para la palabra completa, comenzar la traducción letra por letra
+            isTranslatingByLetter = true;
+            showCurrentLetter();
+        }
+    }
+
+    private void showCurrentLetter() {
+        String currentWord = words.get(currentWordIndex).toUpperCase();
+        if (currentLetterIndex < currentWord.length()) {
+            String letter = String.valueOf(currentWord.charAt(currentLetterIndex));
+            if (signLanguageMap.containsKey(letter)) {
+                translationImage.setImageResource(signLanguageMap.get(letter));
+            } else {
+                Toast.makeText(getApplicationContext(), "No hay imagen para \"" + letter + "\".", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

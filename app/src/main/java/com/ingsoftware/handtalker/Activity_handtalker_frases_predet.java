@@ -65,6 +65,11 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     private TextView traducec;
     private RelativeLayout resultadoCuad;
     private LinearLayout barraDown;
+    // Variables para manejar la traducción letra por letra
+    private boolean isTranslatingByLetter = false;
+    private int currentLetterIndex = 0;
+    // Asumiendo que tienes un arreglo para las letras de la palabra actual
+    private String[] letrasActuales;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -316,17 +321,41 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             Integer imagenResId = signLanguageMap.get(palabraActual.toUpperCase()); // Asumiendo que tu HashMap se llama palabraImagenMap
             if(imagenResId != null) {
                 imagenTraduccion.setImageResource(imagenResId);
+                isTranslatingByLetter = false;
             } else {
-                Toast.makeText(Activity_handtalker_frases_predet.this,"No hay imagen para \"" + palabraActual + "\".", Toast.LENGTH_SHORT).show();
+                // Palabra no encontrada, cambiar a traducción por letras
+                letrasActuales = palabraActual.split("");
+                isTranslatingByLetter = true;
+                currentLetterIndex = 0;
+                mostrarImagenDeLetraActual();
+            }
+        }
+    }
+
+    private void mostrarImagenDeLetraActual() {
+        if(currentLetterIndex >= 0 && currentLetterIndex < letrasActuales.length) {
+            String letraActual = letrasActuales[currentLetterIndex];
+            Integer imagenResId = signLanguageMap.get(letraActual.toUpperCase());
+            if(imagenResId != null) {
+                imagenTraduccion.setImageResource(imagenResId);
+            } else {
+                Toast.makeText(getApplicationContext(), "No hay imagen para \"" + letraActual + "\".", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     public void onFlechaIzquierdaClick(View view) {
         try {
-            if (indicePalabraActual > 0) {
-                indicePalabraActual--;
-                mostrarImagenDePalabraActual();
+            if(isTranslatingByLetter) {
+                if(currentLetterIndex > 0) {
+                    currentLetterIndex--;
+                    mostrarImagenDeLetraActual();
+                }
+            } else {
+                if (indicePalabraActual > 0) {
+                    indicePalabraActual--;
+                    mostrarImagenDePalabraActual();
+                }
             }
 
         }catch (Exception e){
@@ -337,9 +366,16 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
 
     public void onFlechaDerechaClick(View view) {
         try {
-            if (palabrasActuales != null && indicePalabraActual < palabrasActuales.length - 1) {
-                indicePalabraActual++;
-                mostrarImagenDePalabraActual();
+            if(isTranslatingByLetter) {
+                if(currentLetterIndex < letrasActuales.length - 1) {
+                    currentLetterIndex++;
+                    mostrarImagenDeLetraActual();
+                }
+            } else {
+                if (palabrasActuales != null && indicePalabraActual < palabrasActuales.length - 1) {
+                    indicePalabraActual++;
+                    mostrarImagenDePalabraActual();
+                }
             }
         }catch (Exception e){
             Toast.makeText(Activity_handtalker_frases_predet.this,"No hay imagenes para desplazar.", Toast.LENGTH_SHORT).show();
