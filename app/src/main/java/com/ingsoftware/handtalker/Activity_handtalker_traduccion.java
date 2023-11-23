@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -50,6 +51,8 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
     private TextView textoTraduccion;
     private LinearLayout barraDown;
     String themes;
+    String tamFuente;
+    String tamGrafico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,24 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             themes = extras.getString(themes);
+        }
+
+        //Configuracion Global del la fuente
+        String currentValue3 = globalFuente.getInstance().getGlobalTamanoF();
+        tamFuente=currentValue3;
+
+        Bundle extras3 = getIntent().getExtras();
+        if (extras3 != null){
+            tamFuente = extras3.getString(tamFuente);
+        }
+
+        //Configuracion Global del grafico
+        String currentValue4 = globalGrafico.getInstance().getGlobalTamanoG();
+        tamGrafico=currentValue4;
+
+        Bundle extras4 = getIntent().getExtras();
+        if (extras4 != null){
+            tamGrafico = extras4.getString(tamGrafico);
         }
 
         // Cambiar el color de la barra de estado
@@ -148,6 +169,44 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
         }
+
+        //Configuracion de fuente de texto de traduccion
+        //Pequeno
+        if(tamFuente.equals("1")){
+            userInput.setTextSize(15);
+        }
+        //Mediano
+        if(tamFuente.equals("2")){
+            userInput.setTextSize(18);
+        }
+        //Grande
+        if(tamFuente.equals("3")){
+            userInput.setTextSize(24);
+        }
+
+        //Configuracion de tamaño de foto de traduccion
+        //Pequeno
+        if(tamGrafico.equals("1")){
+            ViewGroup.LayoutParams params = translationImage.getLayoutParams();
+            params.width = 401; // Nueva anchura
+            params.height = 436; // Nueva altura
+            translationImage.setLayoutParams(params);
+        }
+        //Mediano
+        if(tamGrafico.equals("2")){
+            ViewGroup.LayoutParams params = translationImage.getLayoutParams();
+            params.width = 512; // Nueva anchura
+            params.height = 558; // Nueva altura
+            translationImage.setLayoutParams(params);
+        }
+        //Grande
+        if(tamGrafico.equals("3")){
+            ViewGroup.LayoutParams params = translationImage.getLayoutParams();
+            params.width = 650; // Nueva anchura
+            params.height = 705; // Nueva altura
+            translationImage.setLayoutParams(params);
+        }
+
 
 
         //Eventos de los botones

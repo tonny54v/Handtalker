@@ -41,6 +41,8 @@ public class Activity_configuration extends AppCompatActivity {
     private String temaSeleccionado;
     private String tamanoSeleccionadoFuent;
     private String tamanoSeleccionadoGraf;
+    String tamFuente;
+    String tamGrafico;
 
 
     @Override
@@ -55,6 +57,24 @@ public class Activity_configuration extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             themes = extras.getString(themes);
+        }
+
+        //Configuracion Global del la fuente
+        String currentValue3 = globalFuente.getInstance().getGlobalTamanoF();
+        tamFuente=currentValue3;
+
+        Bundle extras3 = getIntent().getExtras();
+        if (extras3 != null){
+            tamFuente = extras3.getString(tamFuente);
+        }
+
+        //Configuracion Global del grafico
+        String currentValue4 = globalGrafico.getInstance().getGlobalTamanoG();
+        tamGrafico=currentValue4;
+
+        Bundle extras4 = getIntent().getExtras();
+        if (extras4 != null){
+            tamGrafico = extras4.getString(tamGrafico);
         }
 
         // Cambiar el color de la barra de estado
@@ -93,7 +113,6 @@ public class Activity_configuration extends AppCompatActivity {
             textTemas.setTextColor(Color.BLACK);
             textgraf.setTextColor(Color.BLACK);
             textCerr.setTextColor(Color.BLACK);
-
 
             //Color de barra de estado y de desplazamiento
             Window window = getWindow();
@@ -240,12 +259,18 @@ public class Activity_configuration extends AppCompatActivity {
                 switch (which) {
                     case 0: // pequeño
                         tamanoSeleccionadoFuent = "Pequeño";
+                        tamFuente = "1";
+                        globalFuente.getInstance().setGlobalTamanoF(tamFuente);
                         break;
                     case 1: // mediano
                         tamanoSeleccionadoFuent = "Mediano";
+                        tamFuente = "2";
+                        globalFuente.getInstance().setGlobalTamanoF(tamFuente);
                         break;
                     case 2: //Grande
                         tamanoSeleccionadoFuent = "Grande";
+                        tamFuente = "3";
+                        globalFuente.getInstance().setGlobalTamanoF(tamFuente);
                         break;
                     default:
                         tamanoSeleccionadoFuent = "Ningun tamaño seleccionado"; // Ninguno seleccionado
@@ -302,12 +327,18 @@ public class Activity_configuration extends AppCompatActivity {
                 switch (which) {
                     case 0: // pequeño
                         tamanoSeleccionadoGraf = "Pequeño";
+                        tamGrafico = "1";
+                        globalGrafico.getInstance().setGlobalTamanoG(tamGrafico);
                         break;
                     case 1: // mediano
                         tamanoSeleccionadoGraf = "Mediano";
+                        tamGrafico = "2";
+                        globalGrafico.getInstance().setGlobalTamanoG(tamGrafico);
                         break;
                     case 2: //Grande
                         tamanoSeleccionadoGraf = "Grande";
+                        tamGrafico = "3";
+                        globalGrafico.getInstance().setGlobalTamanoG(tamGrafico);
                         break;
                     default:
                         tamanoSeleccionadoGraf = "Ningun tamaño seleccionado"; // Ninguno seleccionado

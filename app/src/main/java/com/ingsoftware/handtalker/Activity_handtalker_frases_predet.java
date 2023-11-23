@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -50,6 +51,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     private ListView listita;
     String id;
     String themes;
+    String tamGrafico;
     private HashMap<String, Integer> signLanguageMap;
     private String[] palabrasActuales;
     private int indicePalabraActual;
@@ -63,9 +65,6 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     private TextView traducec;
     private RelativeLayout resultadoCuad;
     private LinearLayout barraDown;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +86,15 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         Bundle extras2 = getIntent().getExtras();
         if (extras2 != null){
             themes = extras2.getString(themes);
+        }
+
+        //Configuracion Global del grafico
+        String currentValue4 = globalGrafico.getInstance().getGlobalTamanoG();
+        tamGrafico=currentValue4;
+
+        Bundle extras4 = getIntent().getExtras();
+        if (extras4 != null){
+            tamGrafico = extras4.getString(tamGrafico);
         }
 
         // Cambiar el color de la barra de estado
@@ -158,10 +166,31 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.grisInterfaz));
         }
-
-
         initializeSignLanguageMap();
         imagenTraduccion = findViewById(R.id.imageView);
+
+        //Configuracion de tamaño de foto de traduccion
+        //Pequeno
+        if(tamGrafico.equals("1")){
+            ViewGroup.LayoutParams params = imagenTraduccion.getLayoutParams();
+            params.width = 401; // Nueva anchura
+            params.height = 436; // Nueva altura
+            imagenTraduccion.setLayoutParams(params);
+        }
+        //Mediano
+        if(tamGrafico.equals("2")){
+            ViewGroup.LayoutParams params = imagenTraduccion.getLayoutParams();
+            params.width = 512; // Nueva anchura
+            params.height = 558; // Nueva altura
+            imagenTraduccion.setLayoutParams(params);
+        }
+        //Grande
+        if(tamGrafico.equals("3")){
+            ViewGroup.LayoutParams params = imagenTraduccion.getLayoutParams();
+            params.width = 650; // Nueva anchura
+            params.height = 705; // Nueva altura
+            imagenTraduccion.setLayoutParams(params);
+        }
 
         String URL = "http://192.168.1.3:8080/handtalker/listar_frases.php?id="+id;
         recuperarDatos(URL);
