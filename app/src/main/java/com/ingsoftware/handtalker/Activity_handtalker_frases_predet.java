@@ -596,6 +596,11 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
                 if(currentLetterIndex > 0) {
                     currentLetterIndex--;
                     mostrarImagenDeLetraActual();
+                }else{
+                    if (indicePalabraActual > 0) {
+                        indicePalabraActual--;
+                        mostrarImagenDePalabraActual();
+                    }
                 }
             } else {
                 if (indicePalabraActual > 0) {
@@ -616,6 +621,11 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
                 if(currentLetterIndex < letrasActuales.length - 1) {
                     currentLetterIndex++;
                     mostrarImagenDeLetraActual();
+                }else{
+                    if (palabrasActuales != null && indicePalabraActual < palabrasActuales.length - 1) {
+                        indicePalabraActual++;
+                        mostrarImagenDePalabraActual();
+                    }
                 }
             } else {
                 if (palabrasActuales != null && indicePalabraActual < palabrasActuales.length - 1) {
