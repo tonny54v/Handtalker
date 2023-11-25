@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Referencia al fondo con esquinas redondeadas -->
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+        <!-- Colores del texto del mensaje y título -->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorAlertDialogListItem">@color/black</item>
+        <!-- Color del botón positivo -->
+        <item name="colorAccent">@color/azulInicio</item>
+    </style>
+
+    <style name="AlertDialogCustom_black" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Referencia al fondo con esquinas redondeadas -->
+        <item name="android:windowBackground">@drawable/dialog_background_negro</item>
+        <!-- Colores del texto del mensaje y título -->
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorAlertDialogListItem">@color/white</item>
+        <!-- Color del botón positivo -->
+        <item name="colorAccent">@color/azulInicio</item>
+    </style>
+</resources>

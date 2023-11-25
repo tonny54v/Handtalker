@@ -213,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
         String correoT = textoCorreo.getText().toString();
         String contrasenaT = textoContrasena.getText().toString();
 
-        String URL = "http://192.168.1.3:8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
+        String URL = "http://192.168.8.11:8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,

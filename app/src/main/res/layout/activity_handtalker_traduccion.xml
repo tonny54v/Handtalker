@@ -61,6 +61,13 @@
             android:text="Ingresar texto:"
             android:textAlignment="center"
             android:textSize="21dp" />
+
+        <ImageView
+            android:id="@+id/guiaRapida"
+            android:layout_width="35dp"
+            android:layout_height="33dp"
+            android:src="@drawable/guia_rapida" />
+
     </LinearLayout>
 
     <!-- Seccion de texto (ingreso texto)-->

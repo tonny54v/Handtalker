@@ -5,8 +5,10 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -181,7 +183,7 @@ public class Activity_configuration extends AppCompatActivity {
     //Muestra el dialogo al presionar (Tema)
     private void mostrarDialogoSeleccionTema() {
         // Crear el builder del diálogo
-        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_configuration.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_configuration.this, R.style.AlertDialogCustom);
         builder.setTitle("Elige un tema");
 
         // Opciones para el diálogo
@@ -239,12 +241,18 @@ public class Activity_configuration extends AppCompatActivity {
         dialog.show();
         // Inicialmente, deshabilita el botón OK si no se ha seleccionado ninguna opción
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+        // Personalización de colores después de mostrar el diálogo
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+        // Personalización de colores después de mostrar el diálogo
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+
     }
 
     //Muestra el dialogo al presionar (Tamano Fuente)
     private void mostrarDialogoSeleccionTamanoFuent() {
         // Crear el builder del diálogo
-        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_configuration.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_configuration.this, R.style.AlertDialogCustom);
         builder.setTitle("Tamaño de fuente (Traduccion)");
 
         // Opciones para el diálogo
@@ -307,12 +315,16 @@ public class Activity_configuration extends AppCompatActivity {
         dialog.show();
         // Inicialmente, deshabilita el botón OK si no se ha seleccionado ninguna opción
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+        // Personalización de colores después de mostrar el diálogo
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+        // Personalización de colores después de mostrar el diálogo
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.azulInicio));
     }
 
     //Muestra el dialogo al presionar (Tamano grafico)
     private void mostrarDialogoSeleccionTamanoGraf() {
         // Crear el builder del diálogo
-        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_configuration.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_configuration.this, R.style.AlertDialogCustom);
         builder.setTitle("Tamaño de imagenes (Traduccion)");
 
         // Opciones para el diálogo
@@ -375,6 +387,10 @@ public class Activity_configuration extends AppCompatActivity {
         dialog.show();
         // Inicialmente, deshabilita el botón OK si no se ha seleccionado ninguna opción
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+        // Personalización de colores después de mostrar el diálogo
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+        // Personalización de colores después de mostrar el diálogo
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.azulInicio));
     }
 
     private void regresarInicio() {

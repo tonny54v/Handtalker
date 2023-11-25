@@ -1,4 +1,5 @@
 package com.ingsoftware.handtalker;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -34,6 +36,7 @@ public class Activity_handtalker_camera extends AppCompatActivity {
     private FrameLayout cameraSec;
     private TextView traduc;
     private LinearLayout barraDown;
+    private ImageView guiaR;
     String themes;
 
     @Override
@@ -69,6 +72,7 @@ public class Activity_handtalker_camera extends AppCompatActivity {
         cameraSec = findViewById(R.id.camera_preview);
         traduc = findViewById(R.id.textTraduc);
         barraDown = findViewById(R.id.downBar);
+        guiaR = findViewById(R.id.guiaRapida);
 
         //Cambiar el tema
         //- Claro
@@ -79,6 +83,7 @@ public class Activity_handtalker_camera extends AppCompatActivity {
             barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
             cameraSec.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
             traduc.setTextColor(Color.BLACK);
+            guiaR.setImageResource(R.drawable.guia_rapida);
 
             //Color de barra de estado y de desplazamiento
             Window window = getWindow();
@@ -96,6 +101,7 @@ public class Activity_handtalker_camera extends AppCompatActivity {
             barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
             cameraSec.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
             traduc.setTextColor(Color.WHITE);
+            guiaR.setImageResource(R.drawable.guia_rapida_blanco);
 
             //Color de barra de estado y de desplazamiento
             Window window = getWindow();
@@ -132,7 +138,81 @@ public class Activity_handtalker_camera extends AppCompatActivity {
                 abrirConfig();
             }
         });
+
+        guiaR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (themes.equals("1")){
+                    // Crear el constructor del AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_camera.this, R.style.AlertDialogCustom);
+
+                    // Configurar el mensaje y el botón del AlertDialog
+                    builder.setTitle("¿Cómo funciona?");
+                    String trad= "Traduccion mediante camara";
+                    builder.setMessage("Funcion \""+ trad +"\" aun no esta disponible.")
+                            .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // Si se presiona el botón, simplemente cierra el diálogo
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    // Crear y mostrar el AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                    // Personalización de colores después de mostrar el diálogo
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+                    // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+                    TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                    if (messageView != null) {
+                        messageView.setTextColor(getResources().getColor(R.color.black));
+                    }
+
+                    TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+                    if (titleView != null) {
+                        titleView.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }
+
+                if (themes.equals("2")){
+                    // Crear el constructor del AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_camera.this, R.style.AlertDialogCustom_black);
+
+                    // Configurar el mensaje y el botón del AlertDialog
+                    builder.setTitle("Traduccion mediante camara");
+                    builder.setMessage("Describe lo que hace cada boton de la barra inferior")
+                            .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // Si se presiona el botón, simplemente cierra el diálogo
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    // Crear y mostrar el AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                    // Personalización de colores después de mostrar el diálogo
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+                    // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+                    TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                    if (messageView != null) {
+                        messageView.setTextColor(getResources().getColor(R.color.white));
+                    }
+
+                    TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+                    if (titleView != null) {
+                        titleView.setTextColor(getResources().getColor(R.color.white));
+                    }
+                }
+
+            }
+        });
     }
+
 
     private void abrirConfig() {
         Intent intent = new Intent(Activity_handtalker_camera.this, Activity_configuration.class);

@@ -48,13 +48,21 @@
 
     <TextView
         android:id="@+id/textTraduc"
-        android:layout_width="401dp"
-        android:layout_height="68dp"
+        android:layout_width="368dp"
+        android:layout_height="49dp"
         android:layout_below="@+id/camera_preview"
         android:layout_weight="0"
-        android:text="Traduccion:"
+        android:text="      Traduccion:"
         android:textAlignment="center"
         android:textSize="21dp" />
+
+    <ImageView
+        android:id="@+id/guiaRapida"
+        android:layout_width="42dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/camera_preview"
+        android:layout_toRightOf="@id/textTraduc"
+        android:src="@drawable/guia_rapida" />
 
     <FrameLayout
         android:id="@+id/resultadoCuadro"

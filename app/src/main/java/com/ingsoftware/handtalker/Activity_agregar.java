@@ -150,7 +150,7 @@ public class Activity_agregar extends AppCompatActivity {
     }
 
     private void createFrase(String frasesita) {
-        String URL1 = "http://192.168.1.3:8080/handtalker/agregaFrase.php";
+        String URL1 = "http://192.168.8.11:8080/handtalker/agregaFrase.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,

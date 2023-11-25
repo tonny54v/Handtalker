@@ -1,4 +1,5 @@
 package com.ingsoftware.handtalker;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -18,9 +19,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,6 +37,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Activity_handtalker_frases_predet extends AppCompatActivity {
 
@@ -49,6 +53,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     private ImageView perfil1;
     private ImageView config;
     private ListView listita;
+    private ImageView guiaR;
     String id;
     String themes;
     String tamGrafico;
@@ -71,10 +76,14 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     // Asumiendo que tienes un arreglo para las letras de la palabra actual
     private String[] letrasActuales;
 
+    RequestQueue requestQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_handtalker_frases_predet);
+
+        requestQueue = Volley.newRequestQueue(this);
 
         String currentValue = globalVariable.getInstance().getGlobalString();
         id=currentValue;
@@ -119,6 +128,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         flechitaDerecha = findViewById(R.id.flechitaDerecha);
         flechitaIzquierda = findViewById(R.id.flechitaIzquierda);
         agregar = findViewById(R.id.BotonAgrega1);
+        guiaR = findViewById(R.id.guiaRapida);
 
         backr = findViewById(R.id.fondo);
         barraTop = findViewById(R.id.topBar);
@@ -142,6 +152,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             flechitaIzquierda.setImageResource(R.drawable.flecha_izquierda);
             flechitaDerecha.setImageResource(R.drawable.flecha_derecha);
             flechas.setImageResource(R.drawable.flechas_logo);
+            guiaR.setImageResource(R.drawable.guia_rapida);
 
             //Color de barra de estado y de desplazamiento
             Window window = getWindow();
@@ -164,6 +175,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             flechitaIzquierda.setImageResource(R.drawable.flecha_izquierda_white);
             flechitaDerecha.setImageResource(R.drawable.flecha_derecha_white);
             flechas.setImageResource(R.drawable.flechas_logo_white);
+            guiaR.setImageResource(R.drawable.guia_rapida_blanco);
 
             //Color de barra de estado y de desplazamiento
             Window window = getWindow();
@@ -197,7 +209,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             imagenTraduccion.setLayoutParams(params);
         }
 
-        String URL = "http://192.168.1.3:8080/handtalker/listar_frases.php?id="+id;
+        String URL = "http://192.168.8.11:8080/handtalker/listar_frases.php?id="+id;
         recuperarDatos(URL);
 
 
@@ -206,6 +218,102 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abrirInicio();
+            }
+        });
+
+        guiaR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (themes.equals("1")){
+                    // Crear el constructor del AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_frases_predet.this, R.style.AlertDialogCustom);
+
+                    // Configurar el mensaje y el botón del AlertDialog
+                    builder.setTitle("¿Cómo funciona? (Beta)");
+                    builder.setMessage("Para ahorrarte tiempo en algún caso de urgencia " +
+                                    "agrega tus frases de uso rápido oprimiendo el botón agregar, " +
+                                    "dentro del cuál se abrirá una ventana en donde introducirás tu frase, " +
+                                    "una vez realizada oprime guardar y se te regresara a la pantalla de " +
+                                    "traducción. \n\n" +
+                                    "Oprime la frase que desees traducir y el sistema realizara la traduccion de " +
+                                    "cada una de las palabras. \n\n" +
+                                    "Utiliza los botones de desplazamiento para ver la traduccion de la palabra. \n\n" +
+                                    "En algun caso que la palabra que ingreses no tenga traduccion, se traducira letra " +
+                                    "por letra (Caso de los nombres). \n\n" +
+                                    "Presiona el icono de las flechas para cambiar al modo Ingresar Texto. \n\n" +
+                                    "Mantén presionada una frase para eliminarla de tu lista. \n\n" +
+                                    "NOTA: No ingreses simbolos o caracteres especiales al momento de agregar la frase.")
+                            .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // Si se presiona el botón, simplemente cierra el diálogo
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    // Crear y mostrar el AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                    // Personalización de colores después de mostrar el diálogo
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+                    // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+                    TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                    if (messageView != null) {
+                        messageView.setTextColor(getResources().getColor(R.color.black));
+                    }
+
+                    TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+                    if (titleView != null) {
+                        titleView.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }
+
+                if (themes.equals("2")){
+                    // Crear el constructor del AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_frases_predet.this, R.style.AlertDialogCustom_black);
+
+                    // Configurar el mensaje y el botón del AlertDialog
+                    builder.setTitle("¿Como funciona? (Beta)");
+                    builder.setMessage("Para ahorrarte tiempo en algún caso de urgencia " +
+                                    "agrega tus frases de uso rápido oprimiendo el botón agregar, " +
+                                    "dentro del cuál se abrirá una ventana en donde introducirás tu frase, " +
+                                    "una vez realizada oprime guardar y se te regresara a la pantalla de " +
+                                    "traducción. \n\n" +
+                                    "Oprime la frase que desees traducir y el sistema realizara la traduccion de " +
+                                    "cada una de las palabras. \n\n" +
+                                    "Utiliza los botones de desplazamiento para ver la traduccion de la palabra. \n\n" +
+                                    "En algun caso que la palabra que ingreses no tenga traduccion, se traducira letra " +
+                                    "por letra (Caso de los nombres). \n\n" +
+                                    "Presiona el icono de las flechas para cambiar al modo Ingresar Texto. \n\n" +
+                                    "Mantén presionada una frase para eliminarla de tu lista. \n\n" +
+                                    "NOTA: No ingreses simbolos o caracteres especiales al momento de agregar la frase.")
+                            .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // Si se presiona el botón, simplemente cierra el diálogo
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    // Crear y mostrar el AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                    // Personalización de colores después de mostrar el diálogo
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+                    // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+                    TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                    if (messageView != null) {
+                        messageView.setTextColor(getResources().getColor(R.color.white));
+                    }
+
+                    TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+                    if (titleView != null) {
+                        titleView.setTextColor(getResources().getColor(R.color.white));
+                    }
+                }
+
             }
         });
 
@@ -305,6 +413,144 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
                 mostrarTraduccion(frase);
             }
         });
+
+        listita.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final String frase = parent.getItemAtPosition(position).toString();
+
+                if(themes.equals("1")){
+                    // Crear el constructor del AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_frases_predet.this, R.style.AlertDialogCustom);
+
+                    // Configurar el mensaje y los botones del AlertDialog
+                    builder.setTitle("Eliminar frase");
+                    builder.setMessage("¿Estás seguro de que quieres eliminar \""+ frase +"\" de la lista de frases?");
+
+                    // Botón para confirmar la eliminación
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            eliminaFras(frase); // Llamar al método para eliminar la frase
+                            dialog.dismiss();
+                        }
+                    });
+
+                    // Botón para cancelar la acción
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss(); // Simplemente cierra el diálogo
+                        }
+                    });
+
+                    // Crear y mostrar el AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                    // Personalización de colores después de mostrar el diálogo
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+                    dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+                    // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+                    TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                    if (messageView != null) {
+                        messageView.setTextColor(getResources().getColor(R.color.black));
+                    }
+
+                    TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+                    if (titleView != null) {
+                        titleView.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }
+
+                if(themes.equals("2")){
+                    // Crear el constructor del AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_frases_predet.this, R.style.AlertDialogCustom_black);
+
+                    // Configurar el mensaje y los botones del AlertDialog
+                    builder.setTitle("Eliminar frase");
+                    builder.setMessage("¿Estás seguro de que quieres eliminar \""+ frase +"\" de la lista de frases?");
+
+                    // Botón para confirmar la eliminación
+                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            eliminaFras(frase); // Llamar al método para eliminar la frase
+                            dialog.dismiss();
+                        }
+                    });
+
+                    // Botón para cancelar la acción
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss(); // Simplemente cierra el diálogo
+                        }
+                    });
+
+                    // Crear y mostrar el AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                    // Personalización de colores después de mostrar el diálogo
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+                    dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+                    // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+                    TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                    if (messageView != null) {
+                        messageView.setTextColor(getResources().getColor(R.color.white));
+                    }
+
+                    TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+                    if (titleView != null) {
+                        titleView.setTextColor(getResources().getColor(R.color.white));
+                    }
+                }
+
+
+                return true;
+            }
+        });
+    }
+
+    private void eliminaFras(String descr) {
+        String URL1 = "http://192.168.8.11:8080/handtalker/eliminarFrase.php";
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                URL1,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(Activity_handtalker_frases_predet.this,"Se elimino la frase correctamente "+descr, Toast.LENGTH_SHORT).show();
+                        abrirFrasesPred();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Activity_handtalker_frases_predet.this,"¡Hubo un error inesperado!", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                if(id.equals("") || descr.equals("")){
+                    Toast.makeText(Activity_handtalker_frases_predet.this,"Faltan datos", Toast.LENGTH_SHORT).show();
+                }else{
+                    params.put("id",id);
+                    params.put("descripccion", descr);
+                }
+                return params;
+            }
+        };
+
+        requestQueue.add(stringRequest);
+    }
+
+    private void abrirFrasesPred() {
+        Intent intent = new Intent(Activity_handtalker_frases_predet.this, Activity_handtalker_frases_predet.class);
+        startActivity(intent);
     }
 
     private void mostrarTraduccion(String frase) {

@@ -71,7 +71,7 @@
             android:layout_height="175dp"
             android:layout_centerInParent="true"
             android:gravity="top"
-            android:hint="Ingresa frases comunes" />
+            android:hint="Nota: No ingreses caracteres especiales" />
 
     </RelativeLayout>
 

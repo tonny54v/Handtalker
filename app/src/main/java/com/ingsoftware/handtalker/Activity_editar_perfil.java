@@ -211,7 +211,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     }
 
     private void readUser(){
-        String URL = "http://192.168.1.3:8080/handtalker/fetch.php?id="+id;
+        String URL = "http://192.168.8.11:8080/handtalker/fetch.php?id="+id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -288,7 +288,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     }
 
     private void actualizarUser(String nombre, String apellido, String telefono, String correo, String contrasena) {
-        String URL1 = "http://192.168.1.3:8080/handtalker/actualizar.php";
+        String URL1 = "http://192.168.8.11:8080/handtalker/actualizar.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,

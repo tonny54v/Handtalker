@@ -1,4 +1,5 @@
 package com.ingsoftware.handtalker;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -11,8 +12,10 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -34,6 +37,7 @@ public class HandTalkerMainActivity extends AppCompatActivity {
     private RelativeLayout backr;
     private LinearLayout BarraTop;
     private LinearLayout barraDown;
+    private ImageView guiaR;
 
     String themes;
 
@@ -68,6 +72,7 @@ public class HandTalkerMainActivity extends AppCompatActivity {
         backr = findViewById(R.id.fondo);
         BarraTop = findViewById(R.id.topBar);
         barraDown = findViewById(R.id.barraAbajo);
+        guiaR = findViewById(R.id.guiaRapida);
 
         //Cambiar el tema
         //- Claro
@@ -76,6 +81,7 @@ public class HandTalkerMainActivity extends AppCompatActivity {
             backr.setBackgroundColor(Color.WHITE);
             BarraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
             barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
+            guiaR.setImageResource(R.drawable.guia_rapida_blanco);
 
             //Color de barra de estado y de desplazamiento
             Window window = getWindow();
@@ -102,6 +108,7 @@ public class HandTalkerMainActivity extends AppCompatActivity {
             backr.setBackgroundColor(Color.BLACK);
             BarraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
             barraDown.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            guiaR.setImageResource(R.drawable.guia_rapida_blanco);
 
             //Color de barra de estado y de desplazamiento
             Window window = getWindow();
@@ -149,6 +156,82 @@ public class HandTalkerMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abrirConfig();
+            }
+        });
+
+        guiaR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (themes.equals("1")){
+                    // Crear el constructor del AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HandTalkerMainActivity.this, R.style.AlertDialogCustom);
+
+                    // Configurar el mensaje y el botón del AlertDialog
+                    builder.setTitle("Bienvenid@ a Handtalker");
+                    builder.setMessage("* Traduce de texto a lenguaje de señas. \n\n" +
+                                    "* Utiliza la camara para comprender el lenguaje. (No disponible aun) \n\n" +
+                                    "* Personaliza la app a tu gusto y necesidades en el panel de configuracion.")
+                            .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // Si se presiona el botón, simplemente cierra el diálogo
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    // Crear y mostrar el AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                    // Personalización de colores después de mostrar el diálogo
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+                    // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+                    TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                    if (messageView != null) {
+                        messageView.setTextColor(getResources().getColor(R.color.black));
+                    }
+
+                    TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+                    if (titleView != null) {
+                        titleView.setTextColor(getResources().getColor(R.color.black));
+                    }
+                }
+
+                if (themes.equals("2")){
+                    // Crear el constructor del AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HandTalkerMainActivity.this, R.style.AlertDialogCustom_black);
+
+                    // Configurar el mensaje y el botón del AlertDialog
+                    builder.setTitle("Bienvenid@ a Handtalker");
+                    builder.setMessage("* Traduce de texto a lenguaje de señas. \n\n" +
+                                    "* Utiliza la camara para comprender el lenguaje. (No disponible aun) \n\n" +
+                                    "* Personaliza la app a tu gusto y necesidades en el panel de configuracion.")
+                            .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // Si se presiona el botón, simplemente cierra el diálogo
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    // Crear y mostrar el AlertDialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                    // Personalización de colores después de mostrar el diálogo
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+                    // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+                    TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                    if (messageView != null) {
+                        messageView.setTextColor(getResources().getColor(R.color.white));
+                    }
+
+                    TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+                    if (titleView != null) {
+                        titleView.setTextColor(getResources().getColor(R.color.white));
+                    }
+                }
+
             }
         });
     }

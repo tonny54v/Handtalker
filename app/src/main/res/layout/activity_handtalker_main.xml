@@ -27,9 +27,16 @@
             android:src="@drawable/logo_alargado" />
 
         <ImageView
+            android:id="@+id/guiaRapida"
+            android:layout_width="66dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            android:src="@drawable/guia_rapida_blanco" />
+
+        <ImageView
             android:id="@+id/ajuste"
-            android:layout_width="272dp"
-            android:layout_height="52dp"
+            android:layout_width="128dp"
+            android:layout_height="57dp"
             android:layout_gravity="right"
             android:layout_marginEnd="8dp"
             android:src="@drawable/ajustes_logo" />

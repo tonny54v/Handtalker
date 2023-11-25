@@ -267,7 +267,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         toast.show();
     }
     private void readUser(){
-        String URL = "http://192.168.1.3:8080/handtalker/fetch.php?id="+id;
+        String URL = "http://192.168.8.11:8080/handtalker/fetch.php?id="+id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
