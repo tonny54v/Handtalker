@@ -2685,5 +2685,54 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         signLanguageMap.put("VEREMOS", R.drawable.verse);
         signLanguageMap.put("VERTE", R.drawable.esperar);
 
+        signLanguageMap.put("MIS", R.drawable.mio);
+        signLanguageMap.put("PIERNA", R.drawable.pierna);
+        signLanguageMap.put("PIERNAS", R.drawable.pierna);
+        signLanguageMap.put("GOLPE", R.drawable.golpear);
+        signLanguageMap.put("NECESITAMOS", R.drawable.necesitar);
+        signLanguageMap.put("SOY", R.drawable.soy);
+        signLanguageMap.put("SOMOS", R.drawable.soy);
+        signLanguageMap.put("GENTE", R.drawable.persona);
+        signLanguageMap.put("FUERTE", R.drawable.fuerte);
+        signLanguageMap.put("MUCHA", R.drawable.mucho);
+        signLanguageMap.put("MUCHAS", R.drawable.mucho);
+        signLanguageMap.put("CREER", R.drawable.creer);
+        signLanguageMap.put("CREE", R.drawable.creer);
+        signLanguageMap.put("CREES", R.drawable.creer);
+        signLanguageMap.put("CREENCIA", R.drawable.creer);
+        signLanguageMap.put("CREENCIAS", R.drawable.creer);
+        signLanguageMap.put("PERFECTO", R.drawable.perfecto);
+        signLanguageMap.put("PERFECTOS", R.drawable.perfecto);
+        signLanguageMap.put("PERFECTA", R.drawable.perfecto);
+        signLanguageMap.put("PERFECTAS", R.drawable.perfecto);
+        signLanguageMap.put("NUEVO", R.drawable.nuevo);
+        signLanguageMap.put("NUEVOS", R.drawable.nuevo);
+        signLanguageMap.put("NUEVAS", R.drawable.nuevo);
+        signLanguageMap.put("NUEVA", R.drawable.nuevo);
+        signLanguageMap.put("ESTABA", R.drawable.estar);
+        signLanguageMap.put("ESTABAS", R.drawable.estar);
+        signLanguageMap.put("ENCANTADO", R.drawable.encantado);
+        signLanguageMap.put("ENCANTADOS", R.drawable.encantado);
+        signLanguageMap.put("ENCANTADA", R.drawable.encantado);
+        signLanguageMap.put("ENCANTADAS", R.drawable.encantado);
+        signLanguageMap.put("ME", R.drawable.yo);
+        signLanguageMap.put("SENTIR", R.drawable.sentir);
+        signLanguageMap.put("SIENTO", R.drawable.sentir);
+        signLanguageMap.put("SENTIRSE", R.drawable.sentir);
+        signLanguageMap.put("QUIERES", R.drawable.querer);
+        signLanguageMap.put("ALEGRARSE", R.drawable.alegre);
+        signLanguageMap.put("ALEGRATE", R.drawable.alegre);
+        signLanguageMap.put("MUY", R.drawable.mucho);
+        signLanguageMap.put("SALADO", R.drawable.sal);
+        signLanguageMap.put("VA", R.drawable.ir);
+        signLanguageMap.put("VE", R.drawable.ver);
+        signLanguageMap.put("VERNOS", R.drawable.ver);
+        signLanguageMap.put("PODER", R.drawable.poder);
+        signLanguageMap.put("PUEDO", R.drawable.poder);
+        signLanguageMap.put("MINUTO", R.drawable.minuto);
+        signLanguageMap.put("MINUTOS", R.drawable.minuto);
+
+
+
     }
 }

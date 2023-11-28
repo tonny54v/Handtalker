@@ -149,7 +149,7 @@ public class Activity_handtalker_camera extends AppCompatActivity {
                     // Configurar el mensaje y el botón del AlertDialog
                     builder.setTitle("¿Cómo funciona?");
                     String trad= "Traduccion mediante camara";
-                    builder.setMessage("Funcion \""+ trad +"\" aun no esta disponible.")
+                    builder.setMessage("La funcion \""+ trad +"\" aun no esta disponible.")
                             .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // Si se presiona el botón, simplemente cierra el diálogo
@@ -182,7 +182,8 @@ public class Activity_handtalker_camera extends AppCompatActivity {
 
                     // Configurar el mensaje y el botón del AlertDialog
                     builder.setTitle("Traduccion mediante camara");
-                    builder.setMessage("Describe lo que hace cada boton de la barra inferior")
+                    String trad= "Traduccion mediante camara";
+                    builder.setMessage("La funcion \""+ trad +"\" aun no esta disponible.")
                             .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // Si se presiona el botón, simplemente cierra el diálogo
