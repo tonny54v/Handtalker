@@ -57,6 +57,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
     String id;
     String themes;
     String idFotos;
+    String ip;
 
     RequestQueue requestQueue;
 
@@ -91,6 +92,15 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         Bundle extras3 = getIntent().getExtras();
         if (extras3 != null){
             idFotos = extras3.getString(idFotos);
+        }
+
+        //Configuracion Global de la direccion IP del dispositivo (Conexion con BD)
+        String currentValue5 = globalDireccionIp.getInstance().getGlobalDireccionIp();
+        ip=currentValue5;
+
+        Bundle extras5 = getIntent().getExtras();
+        if (extras5 != null){
+            ip = extras5.getString(ip);
         }
 
 
@@ -267,7 +277,7 @@ public class Activity_handtalker_perfil extends AppCompatActivity {
         toast.show();
     }
     private void readUser(){
-        String URL = "http://192.168.8.11:8080/handtalker/fetch.php?id="+id;
+        String URL = "http://"+ip+":8080/handtalker/fetch.php?id="+id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,

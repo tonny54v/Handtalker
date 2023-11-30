@@ -58,6 +58,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     String id;
     String themes;
     String idFotos;
+    String ip;
 
     RequestQueue requestQueue;
 
@@ -92,6 +93,15 @@ public class Activity_editar_perfil extends AppCompatActivity {
         Bundle extras3 = getIntent().getExtras();
         if (extras3 != null){
             idFotos = extras3.getString(idFotos);
+        }
+
+        //Configuracion Global de la direccion IP del dispositivo (Conexion con BD)
+        String currentValue5 = globalDireccionIp.getInstance().getGlobalDireccionIp();
+        ip=currentValue5;
+
+        Bundle extras5 = getIntent().getExtras();
+        if (extras5 != null){
+            ip = extras5.getString(ip);
         }
 
         // Cambiar el color de la barra de estado
@@ -211,7 +221,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     }
 
     private void readUser(){
-        String URL = "http://192.168.8.11:8080/handtalker/fetch.php?id="+id;
+        String URL = "http://"+ip+":8080/handtalker/fetch.php?id="+id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -288,7 +298,7 @@ public class Activity_editar_perfil extends AppCompatActivity {
     }
 
     private void actualizarUser(String nombre, String apellido, String telefono, String correo, String contrasena) {
-        String URL1 = "http://192.168.8.11:8080/handtalker/actualizar.php";
+        String URL1 = "http://"+ip+":8080/handtalker/actualizar.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,

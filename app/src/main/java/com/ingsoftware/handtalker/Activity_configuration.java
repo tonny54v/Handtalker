@@ -46,6 +46,11 @@ public class Activity_configuration extends AppCompatActivity {
     String tamFuente;
     String tamGrafico;
 
+    String mensaje1;
+    String mensaje2;
+    String mensaje3;
+    String mensaje4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,12 @@ public class Activity_configuration extends AppCompatActivity {
         if (extras4 != null){
             tamGrafico = extras4.getString(tamGrafico);
         }
+
+        //Variables de mostrar el mensaje para reinicio
+        mensaje1 = globalMensaje.getInstance().getGlobalMensajeInicio();
+        mensaje2 = globalMensaje.getInstance().getGlobalMensajeTraduccion();
+        mensaje3 = globalMensaje.getInstance().getGlobalMensajeFrases();
+        mensaje4 = globalMensaje.getInstance().getGlobalMensajeCamara();
 
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -399,6 +410,11 @@ public class Activity_configuration extends AppCompatActivity {
     }
 
     private void regresarLogin() {
+        //Reinicia las variables
+        globalMensaje.getInstance().setGlobalMensajeInicio("1");
+        globalMensaje.getInstance().setGlobalMensajeTraduccion("1");
+        globalMensaje.getInstance().setGlobalMensajeFrases("1");
+        globalMensaje.getInstance().setGlobalMensajeCamara("1");
         Intent intent = new Intent(Activity_configuration.this, LoginActivity.class);
         startActivity(intent);
     }

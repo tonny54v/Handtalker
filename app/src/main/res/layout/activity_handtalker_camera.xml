@@ -40,10 +40,8 @@
     <FrameLayout
         android:id="@+id/camera_preview"
         android:layout_width="match_parent"
-        android:background="@drawable/edittext_border"
         android:layout_height="427dp"
         android:layout_below="@+id/topBar">
-
     </FrameLayout>
 
     <TextView

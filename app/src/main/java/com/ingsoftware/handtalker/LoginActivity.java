@@ -44,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView textoWelcome;
     String themes;
     String idFotos;
+    String ip;
 
     int boleano=0;
 
@@ -72,6 +73,15 @@ public class LoginActivity extends AppCompatActivity {
         Bundle extras3 = getIntent().getExtras();
         if (extras3 != null){
             idFotos = extras3.getString(idFotos);
+        }
+
+        //Configuracion Global de la direccion IP del dispositivo (Conexion con BD)
+        String currentValue5 = globalDireccionIp.getInstance().getGlobalDireccionIp();
+        ip=currentValue5;
+
+        Bundle extras5 = getIntent().getExtras();
+        if (extras5 != null){
+            ip = extras5.getString(ip);
         }
 
         // Cambiar el color de la barra de estado
@@ -213,7 +223,7 @@ public class LoginActivity extends AppCompatActivity {
         String correoT = textoCorreo.getText().toString();
         String contrasenaT = textoContrasena.getText().toString();
 
-        String URL = "http://192.168.8.11:8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
+        String URL = "http://"+ip+":8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,

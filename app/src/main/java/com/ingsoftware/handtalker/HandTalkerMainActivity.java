@@ -40,6 +40,7 @@ public class HandTalkerMainActivity extends AppCompatActivity {
     private ImageView guiaR;
 
     String themes;
+    String mensaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,15 @@ public class HandTalkerMainActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             themes = extras.getString(themes);
+        }
+
+        //Configuracion de aparicion de mensaje de inicio (Guia)
+        String currentValue6 = globalMensaje.getInstance().getGlobalMensajeInicio();
+        mensaje=currentValue6;
+
+        Bundle extras6 = getIntent().getExtras();
+        if (extras6 != null){
+            mensaje = extras6.getString(mensaje);
         }
 
         // Cambiar el color de la barra de estado
@@ -73,6 +83,14 @@ public class HandTalkerMainActivity extends AppCompatActivity {
         BarraTop = findViewById(R.id.topBar);
         barraDown = findViewById(R.id.barraAbajo);
         guiaR = findViewById(R.id.guiaRapida);
+
+        //Muestra el mensaje una sola vez al abrir la app
+        if (mensaje.equals("1")){
+            abrirInfoGuia();
+            //Cambia el valor para no volver a mostrarlo en una sola sesion
+            mensaje = "2";
+            globalMensaje.getInstance().setGlobalMensajeInicio(mensaje);
+        }
 
         //Cambiar el tema
         //- Claro
@@ -234,6 +252,78 @@ public class HandTalkerMainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void abrirInfoGuia(){
+        if (themes.equals("1")){
+            // Crear el constructor del AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(HandTalkerMainActivity.this, R.style.AlertDialogCustom);
+
+            // Configurar el mensaje y el botón del AlertDialog
+            builder.setTitle("Bienvenid@ a Handtalker");
+            builder.setMessage("* Traduce de texto a lenguaje de señas. \n\n" +
+                            "* Utiliza la camara para comprender el lenguaje. (No disponible aun) \n\n" +
+                            "* Personaliza la app a tu gusto y necesidades en el panel de configuracion.")
+                    .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Si se presiona el botón, simplemente cierra el diálogo
+                            dialog.dismiss();
+                        }
+                    });
+
+            // Crear y mostrar el AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            // Personalización de colores después de mostrar el diálogo
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+            // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+            TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+            if (messageView != null) {
+                messageView.setTextColor(getResources().getColor(R.color.black));
+            }
+
+            TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+            if (titleView != null) {
+                titleView.setTextColor(getResources().getColor(R.color.black));
+            }
+        }
+
+        if (themes.equals("2")){
+            // Crear el constructor del AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(HandTalkerMainActivity.this, R.style.AlertDialogCustom_black);
+
+            // Configurar el mensaje y el botón del AlertDialog
+            builder.setTitle("Bienvenid@ a Handtalker");
+            builder.setMessage("* Traduce de texto a lenguaje de señas. \n\n" +
+                            "* Utiliza la camara para comprender el lenguaje. (No disponible aun) \n\n" +
+                            "* Personaliza la app a tu gusto y necesidades en el panel de configuracion.")
+                    .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Si se presiona el botón, simplemente cierra el diálogo
+                            dialog.dismiss();
+                        }
+                    });
+
+            // Crear y mostrar el AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            // Personalización de colores después de mostrar el diálogo
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+            // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+            TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+            if (messageView != null) {
+                messageView.setTextColor(getResources().getColor(R.color.white));
+            }
+
+            TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+            if (titleView != null) {
+                titleView.setTextColor(getResources().getColor(R.color.white));
+            }
+        }
     }
 
     private void abrirConfig() {

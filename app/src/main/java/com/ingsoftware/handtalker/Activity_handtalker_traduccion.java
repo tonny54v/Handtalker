@@ -56,6 +56,7 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
     String themes;
     String tamFuente;
     String tamGrafico;
+    String mensaje;
 
     // Variables para manejar la traducción letra por letra
     private boolean isTranslatingByLetter = false;
@@ -93,6 +94,15 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
             tamGrafico = extras4.getString(tamGrafico);
         }
 
+        //Configuracion de aparicion de mensaje de inicio (Guia)
+        String currentValue6 = globalMensaje.getInstance().getGlobalMensajeTraduccion();
+        mensaje=currentValue6;
+
+        Bundle extras6 = getIntent().getExtras();
+        if (extras6 != null){
+            mensaje = extras6.getString(mensaje);
+        }
+
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -125,6 +135,14 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         fondoText = findViewById(R.id.ingresatexto);
         fondoResult = findViewById(R.id.cuadroResultado);
         guiaR = findViewById(R.id.guiaRapida);
+
+        //Muestra el mensaje una sola vez al abrir la app
+        if (mensaje.equals("1")){
+            abrirInfoGuia();
+            //Cambia el valor para no volver a mostrarlo en una sola sesion
+            mensaje = "2";
+            globalMensaje.getInstance().setGlobalMensajeTraduccion(mensaje);
+        }
 
         //Cambiar el tema
         //- Claro
@@ -432,6 +450,88 @@ public class Activity_handtalker_traduccion extends AppCompatActivity {
         }
     }
 
+
+    private void abrirInfoGuia(){
+        if (themes.equals("1")){
+            // Crear el constructor del AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_traduccion.this, R.style.AlertDialogCustom);
+
+            // Configurar el mensaje y el botón del AlertDialog
+            builder.setTitle("¿Como funciona? (Beta)");
+            builder.setMessage("Ingresa el texto que desees traducir en el recuadro editable, " +
+                            "una vez agregado tu texto oprime el boton traducir y se mostrará " +
+                            "la traduccion de cada una de las palabras que ingresaste. \n\n" +
+                            "Utiliza los botones de desplazamiento para ver la traduccion de la palabra. \n\n" +
+                            "En algun caso que la palabra que ingreses no tenga traduccion, se traducira letra " +
+                            "por letra (Caso de los nombres). \n\n" +
+                            "Presiona el icono de las flechas para cambiar al modo Frases predeterminadas. \n\n" +
+                            "NOTA: No ingreses simbolos o caracteres especiales.")
+                    .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Si se presiona el botón, simplemente cierra el diálogo
+                            dialog.dismiss();
+                        }
+                    });
+
+            // Crear y mostrar el AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            // Personalización de colores después de mostrar el diálogo
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+            // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+            TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+            if (messageView != null) {
+                messageView.setTextColor(getResources().getColor(R.color.black));
+            }
+
+            TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+            if (titleView != null) {
+                titleView.setTextColor(getResources().getColor(R.color.black));
+            }
+        }
+
+        if (themes.equals("2")){
+            // Crear el constructor del AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_traduccion.this, R.style.AlertDialogCustom_black);
+
+            // Configurar el mensaje y el botón del AlertDialog
+            builder.setTitle("¿Como funciona? (Beta)");
+            builder.setMessage("Ingresa el texto que desees traducir en el recuadro editable, " +
+                            "una vez agregado tu texto oprime el boton traducir y se mostrará " +
+                            "la traduccion de cada una de las palabras que ingresaste. \n\n" +
+                            "Utiliza los botones de desplazamiento para ver la traduccion de la palabra. \n\n" +
+                            "En algun caso que la palabra que ingreses no tenga traduccion, se traducira letra " +
+                            "por letra (Caso de los nombres). \n\n" +
+                            "Presiona el icono de las flechas para cambiar al modo Frases predeterminadas. \n\n" +
+                            "NOTA: No ingreses simbolos o caracteres especiales.")
+                    .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Si se presiona el botón, simplemente cierra el diálogo
+                            dialog.dismiss();
+                        }
+                    });
+
+            // Crear y mostrar el AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            // Personalización de colores después de mostrar el diálogo
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+            // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+            TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+            if (messageView != null) {
+                messageView.setTextColor(getResources().getColor(R.color.white));
+            }
+
+            TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+            if (titleView != null) {
+                titleView.setTextColor(getResources().getColor(R.color.white));
+            }
+        }
+    }
     private void abrirConfig() {
         Intent intent = new Intent(Activity_handtalker_traduccion.this, Activity_configuration.class);
         startActivity(intent);

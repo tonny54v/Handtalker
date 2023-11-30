@@ -39,8 +39,6 @@ public class Activity_registrate extends AppCompatActivity{
 
     int bole=0;
 
-    private static final String URL1 = "http://192.168.8.11:8080/handtalker/save.php";
-
     private Button registrarte;
     private ImageView cerrar;
     private RelativeLayout backr;
@@ -56,6 +54,7 @@ public class Activity_registrate extends AppCompatActivity{
     private LinearLayout marcoCorr;
     private LinearLayout marcoContr;
     String themes;
+    String ip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +70,15 @@ public class Activity_registrate extends AppCompatActivity{
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             themes = extras.getString(themes);
+        }
+
+        //Configuracion Global de la direccion IP del dispositivo (Conexion con BD)
+        String currentValue5 = globalDireccionIp.getInstance().getGlobalDireccionIp();
+        ip=currentValue5;
+
+        Bundle extras5 = getIntent().getExtras();
+        if (extras5 != null){
+            ip = extras5.getString(ip);
         }
 
         e1=(EditText)findViewById(R.id.nombre1);
@@ -195,6 +203,7 @@ public class Activity_registrate extends AppCompatActivity{
     }
 
     private void createUser(String nombre, String apellido, String telefono, String correo, String contrasena) {
+        String URL1 = "http://"+ip+":8080/handtalker/save.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,

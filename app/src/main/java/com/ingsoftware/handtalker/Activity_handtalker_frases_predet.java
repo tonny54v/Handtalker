@@ -56,7 +56,9 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     private ImageView guiaR;
     String id;
     String themes;
+    String ip;
     String tamGrafico;
+    String mensaje;
     private HashMap<String, Integer> signLanguageMap;
     private String[] palabrasActuales;
     private int indicePalabraActual;
@@ -111,6 +113,24 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             tamGrafico = extras4.getString(tamGrafico);
         }
 
+        //Configuracion Global de la direccion IP del dispositivo (Conexion con BD)
+        String currentValue5 = globalDireccionIp.getInstance().getGlobalDireccionIp();
+        ip=currentValue5;
+
+        Bundle extras5 = getIntent().getExtras();
+        if (extras5 != null){
+            ip = extras5.getString(ip);
+        }
+
+        //Configuracion de aparicion de mensaje de inicio (Guia)
+        String currentValue6 = globalMensaje.getInstance().getGlobalMensajeFrases();
+        mensaje=currentValue6;
+
+        Bundle extras6 = getIntent().getExtras();
+        if (extras6 != null){
+            mensaje = extras6.getString(mensaje);
+        }
+
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -136,6 +156,14 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
         traducec = findViewById(R.id.textTraducci);
         resultadoCuad = findViewById(R.id.cuadroResultado);
         barraDown = findViewById(R.id.downBar);
+
+        //Muestra el mensaje una sola vez al abrir la app
+        if (mensaje.equals("1")){
+            abrirInfoGuia();
+            //Cambia el valor para no volver a mostrarlo en una sola sesion
+            mensaje = "2";
+            globalMensaje.getInstance().setGlobalMensajeFrases(mensaje);
+        }
 
         //Cambiar el tema
         //- Claro
@@ -209,7 +237,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
             imagenTraduccion.setLayoutParams(params);
         }
 
-        String URL = "http://192.168.8.11:8080/handtalker/listar_frases.php?id="+id;
+        String URL = "http://"+ip+":8080/handtalker/listar_frases.php?id="+id;
         recuperarDatos(URL);
 
 
@@ -512,7 +540,7 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
     }
 
     private void eliminaFras(String descr) {
-        String URL1 = "http://192.168.8.11:8080/handtalker/eliminarFrase.php";
+        String URL1 = "http://"+ip+":8080/handtalker/eliminarFrase.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,
@@ -638,6 +666,98 @@ public class Activity_handtalker_frases_predet extends AppCompatActivity {
 
         }
 
+    }
+
+    private void abrirInfoGuia(){
+        if (themes.equals("1")){
+            // Crear el constructor del AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_frases_predet.this, R.style.AlertDialogCustom);
+
+            // Configurar el mensaje y el botón del AlertDialog
+            builder.setTitle("¿Cómo funciona? (Beta)");
+            builder.setMessage("Para ahorrarte tiempo en algún caso de urgencia " +
+                            "agrega tus frases de uso rápido oprimiendo el botón agregar, " +
+                            "dentro del cuál se abrirá una ventana en donde introducirás tu frase, " +
+                            "una vez realizada oprime guardar y se te regresara a la pantalla de " +
+                            "traducción. \n\n" +
+                            "Oprime la frase que desees traducir y el sistema realizara la traduccion de " +
+                            "cada una de las palabras. \n\n" +
+                            "Utiliza los botones de desplazamiento para ver la traduccion de la palabra. \n\n" +
+                            "En algun caso que la palabra que ingreses no tenga traduccion, se traducira letra " +
+                            "por letra (Caso de los nombres). \n\n" +
+                            "Presiona el icono de las flechas para cambiar al modo Ingresar Texto. \n\n" +
+                            "Mantén presionada una frase para eliminarla de tu lista. \n\n" +
+                            "NOTA: No ingreses simbolos o caracteres especiales al momento de agregar la frase.")
+                    .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Si se presiona el botón, simplemente cierra el diálogo
+                            dialog.dismiss();
+                        }
+                    });
+
+            // Crear y mostrar el AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            // Personalización de colores después de mostrar el diálogo
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+            // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+            TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+            if (messageView != null) {
+                messageView.setTextColor(getResources().getColor(R.color.black));
+            }
+
+            TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+            if (titleView != null) {
+                titleView.setTextColor(getResources().getColor(R.color.black));
+            }
+        }
+
+        if (themes.equals("2")){
+            // Crear el constructor del AlertDialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity_handtalker_frases_predet.this, R.style.AlertDialogCustom_black);
+
+            // Configurar el mensaje y el botón del AlertDialog
+            builder.setTitle("¿Como funciona? (Beta)");
+            builder.setMessage("Para ahorrarte tiempo en algún caso de urgencia " +
+                            "agrega tus frases de uso rápido oprimiendo el botón agregar, " +
+                            "dentro del cuál se abrirá una ventana en donde introducirás tu frase, " +
+                            "una vez realizada oprime guardar y se te regresara a la pantalla de " +
+                            "traducción. \n\n" +
+                            "Oprime la frase que desees traducir y el sistema realizara la traduccion de " +
+                            "cada una de las palabras. \n\n" +
+                            "Utiliza los botones de desplazamiento para ver la traduccion de la palabra. \n\n" +
+                            "En algun caso que la palabra que ingreses no tenga traduccion, se traducira letra " +
+                            "por letra (Caso de los nombres). \n\n" +
+                            "Presiona el icono de las flechas para cambiar al modo Ingresar Texto. \n\n" +
+                            "Mantén presionada una frase para eliminarla de tu lista. \n\n" +
+                            "NOTA: No ingreses simbolos o caracteres especiales al momento de agregar la frase.")
+                    .setPositiveButton("¡Lo tengo!", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Si se presiona el botón, simplemente cierra el diálogo
+                            dialog.dismiss();
+                        }
+                    });
+
+            // Crear y mostrar el AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            // Personalización de colores después de mostrar el diálogo
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.azulInicio));
+
+            // Para el título y el mensaje, tendrías que usar un TextView personalizado o buscar el TextView por defecto y cambiarle el color.
+            TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+            if (messageView != null) {
+                messageView.setTextColor(getResources().getColor(R.color.white));
+            }
+
+            TextView titleView = (TextView) dialog.findViewById(android.R.id.title);
+            if (titleView != null) {
+                titleView.setTextColor(getResources().getColor(R.color.white));
+            }
+        }
     }
 
     private void abrirAgrega() {

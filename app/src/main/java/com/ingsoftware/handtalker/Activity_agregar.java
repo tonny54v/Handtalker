@@ -41,6 +41,7 @@ public class Activity_agregar extends AppCompatActivity {
 
     String id;
     String themes;
+    String ip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,15 @@ public class Activity_agregar extends AppCompatActivity {
         Bundle extras2 = getIntent().getExtras();
         if (extras2 != null){
             themes = extras2.getString(themes);
+        }
+
+        //Configuracion Global de la direccion IP del dispositivo (Conexion con BD)
+        String currentValue5 = globalDireccionIp.getInstance().getGlobalDireccionIp();
+        ip=currentValue5;
+
+        Bundle extras5 = getIntent().getExtras();
+        if (extras5 != null){
+            ip = extras5.getString(ip);
         }
 
         // Cambiar el color de la barra de estado
@@ -150,7 +160,7 @@ public class Activity_agregar extends AppCompatActivity {
     }
 
     private void createFrase(String frasesita) {
-        String URL1 = "http://192.168.8.11:8080/handtalker/agregaFrase.php";
+        String URL1 = "http://"+ip+":8080/handtalker/agregaFrase.php";
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,
