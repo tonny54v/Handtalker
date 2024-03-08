@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "123450766577",
+    "project_id": "handtalker-ed53c",
+    "storage_bucket": "handtalker-ed53c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123450766577:android:ef6f4a07f985ce9e3d2550",
+        "android_client_info": {
+          "package_name": "com.ingsoftware.handtalker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHw0m28XArMmf6vnt49gffWJh-8vND71g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
