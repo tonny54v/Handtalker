@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,10 +13,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.ingsoftware.handtalker.R;
 
 public class Activity_recupera_cuenta extends AppCompatActivity {
@@ -32,6 +38,9 @@ public class Activity_recupera_cuenta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recupera_cuenta);
+
+        // Inicialización y configuraciones previas igual que en tu código...
+
 
         //Configuracion Global del tema
         String currentValue = globalTheme.getInstance().getGlobalTema();
@@ -56,6 +65,13 @@ public class Activity_recupera_cuenta extends AppCompatActivity {
         recupera = findViewById(R.id.recuperarCuenta);
         textIngre = findViewById(R.id.textIngresa);
         textComprue = findViewById(R.id.textComprueba);
+
+        recupera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recuperarCuenta();
+            }
+        });
 
         //Cambiar el tema
         //- Claro
@@ -96,19 +112,32 @@ public class Activity_recupera_cuenta extends AppCompatActivity {
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.black));
         }
 
-        recupera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                abrirApp();
-            }
-        });
-
         atrasB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirApp();
             }
         });
+    }
+    private void recuperarCuenta() {
+        String correo = correos.getText().toString().trim();
+
+        if (!TextUtils.isEmpty(correo)) {
+            FirebaseAuth.getInstance().sendPasswordResetEmail(correo)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(Activity_recupera_cuenta.this, "Instrucciones para restablecer la contraseña enviadas a tu correo", Toast.LENGTH_LONG).show();
+                                abrirApp();
+                            } else {
+                                Toast.makeText(Activity_recupera_cuenta.this, "Error al enviar correo de restablecimiento", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+        } else {
+            Toast.makeText(Activity_recupera_cuenta.this, "Por favor, ingresa tu correo", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void abrirApp() {

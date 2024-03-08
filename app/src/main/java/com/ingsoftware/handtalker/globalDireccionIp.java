@@ -10,7 +10,7 @@ public class globalDireccionIp {
     // Constructor privado para prevenir la instanciación directa.
     private globalDireccionIp() {
         // Inicializa tu variable aquí
-        globalIP = "192.168.1.22";
+        globalIP = "192.168.8.11";
     }
 
 

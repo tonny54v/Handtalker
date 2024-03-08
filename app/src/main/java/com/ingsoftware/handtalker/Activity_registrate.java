@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,7 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -27,41 +30,51 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ingsoftware.handtalker.R;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Activity_registrate extends AppCompatActivity{
+public class Activity_registrate extends AppCompatActivity {
 
-    EditText e1,e2,e3,e4,e5;
-    RequestQueue requestQueue;
-
-    int bole=0;
-
+    EditText e4, e5; // Correo y contraseña
+    TextView name, ape, tel, corr, contra;
+    RelativeLayout fond;
+    LinearLayout barra, cajaName, cajaApe, cajaTel, cajaCorr, cajaContra;
     private Button registrarte;
     private ImageView cerrar;
-    private RelativeLayout backr;
-    private LinearLayout barraTop;
-    private TextView nombreT;
-    private TextView apellidoT;
-    private TextView telefonoT;
-    private TextView correoT;
-    private TextView contrasenaT;
-    private LinearLayout marcoName;
-    private LinearLayout marcoApe;
-    private LinearLayout marcoTel;
-    private LinearLayout marcoCorr;
-    private LinearLayout marcoContr;
     String themes;
-    String ip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrate);
 
-        requestQueue = Volley.newRequestQueue(this);
+        // Inicialización de componentes de la UI
+        e4 = (EditText) findViewById(R.id.correo1);
+        e5 = (EditText) findViewById(R.id.contrasena1);
+        name = findViewById(R.id.textNombre);
+        ape = findViewById(R.id.textApellido);
+        tel = findViewById(R.id.textTelefono);
+        corr = findViewById(R.id.textCorreo);
+        contra = findViewById(R.id.textContra);
+        fond = findViewById(R.id.fondo);
+        barra = findViewById(R.id.topBar);
+        cajaName = findViewById(R.id.name1);
+        cajaApe = findViewById(R.id.apellido11);
+        cajaTel = findViewById(R.id.telefono11);
+        cajaCorr = findViewById(R.id.correo11);
+        cajaContra = findViewById(R.id.contra1);
+
+        registrarte = findViewById(R.id.botonRegistra);
+        cerrar = findViewById(R.id.atrasx);
 
         //Configuracion Global del tema
         String currentValue = globalTheme.getInstance().getGlobalTema();
@@ -72,35 +85,6 @@ public class Activity_registrate extends AppCompatActivity{
             themes = extras.getString(themes);
         }
 
-        //Configuracion Global de la direccion IP del dispositivo (Conexion con BD)
-        String currentValue5 = globalDireccionIp.getInstance().getGlobalDireccionIp();
-        ip=currentValue5;
-
-        Bundle extras5 = getIntent().getExtras();
-        if (extras5 != null){
-            ip = extras5.getString(ip);
-        }
-
-        e1=(EditText)findViewById(R.id.nombre1);
-        e2=(EditText)findViewById(R.id.apellido1);
-        e3=(EditText)findViewById(R.id.telefono1);
-        e4=(EditText)findViewById(R.id.correo1);
-        e5=(EditText)findViewById(R.id.contrasena1);
-
-        barraTop = findViewById(R.id.topBar);
-        backr = findViewById(R.id.fondo);
-        nombreT = findViewById(R.id.textNombre);
-        apellidoT = findViewById(R.id.textApellido);
-        telefonoT = findViewById(R.id.textTelefono);
-        correoT = findViewById(R.id.textCorreo);
-        contrasenaT = findViewById(R.id.textContra);
-
-        marcoName = findViewById(R.id.name1);
-        marcoApe = findViewById(R.id.apellido11);
-        marcoTel = findViewById(R.id.telefono11);
-        marcoCorr = findViewById(R.id.correo11);
-        marcoContr = findViewById(R.id.contra1);
-
         // Cambiar el color de la barra de estado
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -109,31 +93,18 @@ public class Activity_registrate extends AppCompatActivity{
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
         }
 
-        cerrar = findViewById(R.id.atrasx);
-        registrarte = findViewById(R.id.botonRegistra);
-
         //Cambiar el tema
         //- Claro
         if (themes.equals("1")){
             //Color de elementos
-            barraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
-            backr.setBackgroundColor(Color.WHITE);
-            nombreT.setTextColor(Color.BLACK);
-            apellidoT.setTextColor(Color.BLACK);
-            telefonoT.setTextColor(Color.BLACK);
-            correoT.setTextColor(Color.BLACK);
-            contrasenaT.setTextColor(Color.BLACK);
+            barra.setBackgroundColor(ContextCompat.getColor(this, R.color.azulInicio));
+            fond.setBackgroundColor(Color.WHITE);
+            name.setTextColor(Color.BLACK);
+            ape.setTextColor(Color.BLACK);
+            tel.setTextColor(Color.BLACK);
+            corr.setTextColor(Color.BLACK);
+            contra.setTextColor(Color.BLACK);
             registrarte.setTextColor(Color.WHITE);
-            marcoName.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
-            marcoApe.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
-            marcoTel.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
-            marcoCorr.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
-            marcoContr.setBackground(ContextCompat.getDrawable(this, R.drawable.edittext_border));
-            e1.setTextColor(Color.BLACK);
-            e2.setTextColor(Color.BLACK);
-            e3.setTextColor(Color.BLACK);
-            e4.setTextColor(Color.BLACK);
-            e5.setTextColor(Color.BLACK);
 
 
             //Color de barra de estado y de desplazamiento
@@ -142,28 +113,23 @@ public class Activity_registrate extends AppCompatActivity{
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.azulInicio));
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
         }
+
         //- Oscuro
         if (themes.equals("2")){
             //Color de elementos
-            barraTop.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
-            backr.setBackgroundColor(Color.BLACK);
-            nombreT.setTextColor(Color.WHITE);
-            apellidoT.setTextColor(Color.WHITE);
-            telefonoT.setTextColor(Color.WHITE);
-            correoT.setTextColor(Color.WHITE);
-            contrasenaT.setTextColor(Color.WHITE);
+            barra.setBackgroundColor(ContextCompat.getColor(this, R.color.grisInterfaz));
+            fond.setBackgroundColor(Color.BLACK);
+            name.setTextColor(Color.WHITE);
+            ape.setTextColor(Color.WHITE);
+            tel.setTextColor(Color.WHITE);
+            corr.setTextColor(Color.WHITE);
+            contra.setTextColor(Color.WHITE);
             registrarte.setTextColor(Color.WHITE);
-            marcoName.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
-            marcoApe.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
-            marcoTel.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
-            marcoCorr.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
-            marcoContr.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
-            e1.setTextColor(Color.WHITE);
-            e2.setTextColor(Color.WHITE);
-            e3.setTextColor(Color.WHITE);
-            e4.setTextColor(Color.WHITE);
-            e5.setTextColor(Color.WHITE);
-
+            cajaName.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            cajaApe.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            cajaTel.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            cajaCorr.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
+            cajaContra.setBackground(ContextCompat.getDrawable(this, R.drawable.edit_text_border_gray_black));
             //Color de barra de estado y de desplazamiento
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -171,6 +137,7 @@ public class Activity_registrate extends AppCompatActivity{
             window.setNavigationBarColor(ContextCompat.getColor(this, R.color.black));
         }
 
+        // Listeners para los botones
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,10 +148,9 @@ public class Activity_registrate extends AppCompatActivity{
         registrarte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validar(v);
+                registrarUsuario();
             }
         });
-
     }
 
     private void abrirLogin() {
@@ -192,56 +158,60 @@ public class Activity_registrate extends AppCompatActivity{
         startActivity(intent);
     }
 
-    public void validar(View v){
-        final String nombre = e1.getText().toString();
-        final String apellido =e2.getText().toString();
-        final String telefono =e3.getText().toString();
-        final String correo = e4.getText().toString();
-        final String contrasena =e5.getText().toString();
+    private void registrarUsuario() {
+        String correo = e4.getText().toString().trim();
+        String contrasena = e5.getText().toString().trim();
 
-        createUser(nombre,apellido,telefono,correo,contrasena);
-    }
+        if (TextUtils.isEmpty(correo)) {
+            Toast.makeText(getApplicationContext(), "Ingresa tu correo", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-    private void createUser(String nombre, String apellido, String telefono, String correo, String contrasena) {
-        String URL1 = "http://"+ip+":8080/handtalker/save.php";
-        StringRequest stringRequest = new StringRequest(
-                Request.Method.POST,
-                URL1,
-                new Response.Listener<String>() {
+        if (TextUtils.isEmpty(contrasena)) {
+            Toast.makeText(getApplicationContext(), "Ingresa tu contraseña", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Firebase Authentication para registrar el usuario
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(correo, contrasena)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(Activity_registrate.this,"Se registró correctamente", Toast.LENGTH_SHORT).show();
-                        abrirLogin();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Registro exitoso, obtiene el usuario actual
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+                            // Asegúrate de que el usuario no sea nulo
+                            if (user != null) {
+                                // Aquí es donde creas el documento en Firestore
+                                Map<String, Object> datos = new HashMap<>();
+                                // Puedes agregar aquí más campos a la colección 'datos' si es necesario
+
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                // Crea un documento con el UID y una subcolección 'datos'
+                                db.collection("users").document(user.getUid()).collection("datos").document("datosUsuario")
+                                        .set(datos)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(Activity_registrate.this, "Datos de Firestore creados con éxito.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(Activity_registrate.this, "Error al crear datos de Firestore.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+
+                            Toast.makeText(Activity_registrate.this, "Registro exitoso.", Toast.LENGTH_SHORT).show();
+                            abrirLogin(); // O abrir otra actividad según sea necesario
+                        } else {
+                            // Si el registro falla, muestra un mensaje al usuario.
+                            Toast.makeText(Activity_registrate.this, "Fallo en el registro.", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Activity_registrate.this,"Ingresa los datos faltantes", Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-
-        ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                if(nombre.equals("") || apellido.equals("") || telefono.equals("") || correo.equals("") || contrasena.equals("")){
-                    Toast.makeText(Activity_registrate.this,"Faltan datos", Toast.LENGTH_SHORT).show();
-                }else{
-                    params.put("nombre", nombre);
-                    params.put("apellido", apellido);
-                    params.put("telefono", telefono);
-                    params.put("correo", correo);
-                    params.put("contrasena", contrasena);
-                }
-                return params;
-            }
-        };
-
-        requestQueue.add(stringRequest);
+                });
     }
-
-
 }

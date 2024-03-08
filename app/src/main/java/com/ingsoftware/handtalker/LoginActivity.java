@@ -1,10 +1,13 @@
 package com.ingsoftware.handtalker;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -23,6 +27,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.ingsoftware.handtalker.R;
 
 import org.json.JSONException;
@@ -46,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     String idFotos;
     String ip;
 
-    int boleano=0;
+    int boleano = 0;
 
     RequestQueue requestQueue;
 
@@ -59,28 +68,28 @@ public class LoginActivity extends AppCompatActivity {
 
         //Configuracion Global del tema
         String currentValue = globalTheme.getInstance().getGlobalTema();
-        themes=currentValue;
+        themes = currentValue;
 
         Bundle extras = getIntent().getExtras();
-        if (extras != null){
+        if (extras != null) {
             themes = extras.getString(themes);
         }
 
         //Configuracion Global del la foto de perfil
         String currentValue3 = globalFoto.getInstance().getGlobalFoto();
-        idFotos=currentValue3;
+        idFotos = currentValue3;
 
         Bundle extras3 = getIntent().getExtras();
-        if (extras3 != null){
+        if (extras3 != null) {
             idFotos = extras3.getString(idFotos);
         }
 
         //Configuracion Global de la direccion IP del dispositivo (Conexion con BD)
         String currentValue5 = globalDireccionIp.getInstance().getGlobalDireccionIp();
-        ip=currentValue5;
+        ip = currentValue5;
 
         Bundle extras5 = getIntent().getExtras();
-        if (extras5 != null){
+        if (extras5 != null) {
             ip = extras5.getString(ip);
         }
 
@@ -104,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //Cambiar el tema
         //- Claro
-        if (themes.equals("1")){
+        if (themes.equals("1")) {
             //Color de elementos
             backr.setBackgroundColor(Color.WHITE);
             registro.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
@@ -130,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
 
         }
         //- Oscuro
-        if (themes.equals("2")){
+        if (themes.equals("2")) {
             //Color de elementos
             backr.setBackgroundColor(Color.BLACK);
             registro.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
@@ -174,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
         modoAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this,"Modo ulta secreto activado (Admin).", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Modo ulta secreto activado (Admin).", Toast.LENGTH_SHORT).show();
                 abrirVentanaInicio();
             }
         });
@@ -219,52 +228,29 @@ public class LoginActivity extends AppCompatActivity {
         toast.show();
     }
 
-    private void readUser(){
-        String correoT = textoCorreo.getText().toString();
-        String contrasenaT = textoContrasena.getText().toString();
+    private void readUser() {
+        String correoT = textoCorreo.getText().toString().trim();
+        String contrasenaT = textoContrasena.getText().toString().trim();
 
-        String URL = "http://"+ip+":8080/handtalker/iniciarSesion.php?correo="+correoT+"&contrasena="+contrasenaT;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONObject>() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signInWithEmailAndPassword(correoT, contrasenaT)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        String correoQ,contrasenaQ,nombreQ,idQ,idF;
-                        try {
-                            correoQ = response.getString("correo");
-                            contrasenaQ = response.getString("contrasena");
-                            nombreQ = response.getString("nombre");
-                            idQ = response.getString("idusuario");
-                            idF = response.getString("idFoto");
-
-                            if (correoT.equals(correoQ) && contrasenaT.equals(contrasenaQ)){
-                                idFotos = idF;
-                                globalFoto.getInstance().setGlobalFoto(idFotos);
-                                Toast.makeText(LoginActivity.this,"¡Bienvenido "+nombreQ+"!", Toast.LENGTH_SHORT).show();
-                                String currentValue = globalVariable.getInstance().getGlobalString();
-                                globalVariable.getInstance().setGlobalString(idQ);
-                                boleano=1;
-                                abrirVentanaInicio();
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Inicio de sesión exitoso, actualiza la UI con la información del usuario
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(LoginActivity.this, "¡Bienvenido " + user.getEmail() + "!", Toast.LENGTH_SHORT).show();
+                            abrirVentanaInicio();
+                        } else {
+                            // Si el inicio de sesión falla, muestra un mensaje al usuario.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Autenticación fallida.",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginActivity.this,"Datos incorrectos, intenta de nuevo.", Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-        );
-
-        requestQueue.add(jsonObjectRequest);
+                });
     }
 }
-

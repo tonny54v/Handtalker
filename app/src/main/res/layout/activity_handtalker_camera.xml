@@ -18,6 +18,11 @@
 
         <!-- Logo alargado -->
 
+        <!-- camara -->
+
+
+
+
         <!-- Botones a la derecha -->
         <ImageView
             android:layout_width="232dp"
@@ -42,6 +47,12 @@
         android:layout_width="match_parent"
         android:layout_height="427dp"
         android:layout_below="@+id/topBar">
+
+        <TextureView
+            android:id="@+id/textureView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </FrameLayout>
 
     <TextView

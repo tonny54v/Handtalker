@@ -4,6 +4,35 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.ingsoftware.handtalker.R;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.SurfaceTexture;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCaptureSession;
+import android.hardware.camera2.CameraDevice;
+import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.CaptureRequest;
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import android.view.Surface;
+import android.view.TextureView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,7 +47,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.ingsoftware.handtalker.R;
+import java.util.Arrays;
 
 public class Activity_handtalker_camera extends AppCompatActivity {
 
@@ -40,6 +69,11 @@ public class Activity_handtalker_camera extends AppCompatActivity {
     String themes;
     String mensaje;
 
+    // Variables para la cámara
+    private TextureView textureView;
+    private CameraDevice cameraDevice;
+    private CameraCaptureSession cameraCaptureSession;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +82,8 @@ public class Activity_handtalker_camera extends AppCompatActivity {
         //Configuracion Global del tema
         String currentValue = globalTheme.getInstance().getGlobalTema();
         themes=currentValue;
+        textureView = findViewById(R.id.textureView); // Asegúrate de tener un TextureView en tu layout con este ID
+        textureView.setSurfaceTextureListener(surfaceTextureListener);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null){
@@ -231,6 +267,137 @@ public class Activity_handtalker_camera extends AppCompatActivity {
             }
         });
     }
+
+    private void openCamera() {
+        CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        try {
+            String cameraId = cameraManager.getCameraIdList()[0];
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                // Mostrar diálogo de permisos si no se ha otorgado
+                // Aquí deberías solicitar los permisos necesarios.
+                return;
+            }
+            cameraManager.openCamera(cameraId, stateCallback, null);
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    // Callbacks para el estado de la cámara
+    private final CameraDevice.StateCallback stateCallback = new CameraDevice.StateCallback() {
+        @Override
+        public void onOpened(@NonNull CameraDevice camera) {
+            cameraDevice = camera;
+            createCameraPreviewSession();
+        }
+
+        @Override
+        public void onDisconnected(@NonNull CameraDevice camera) {
+            camera.close();
+        }
+
+        @Override
+        public void onError(@NonNull CameraDevice camera, int error) {
+            camera.close();
+            cameraDevice = null;
+        }
+    };
+
+    // Crear una sesión de captura para la vista previa
+    private void createCameraPreviewSession() {
+        try {
+            SurfaceTexture texture = textureView.getSurfaceTexture();
+            assert texture != null;
+            texture.setDefaultBufferSize(textureView.getWidth(), textureView.getHeight());
+            Surface surface = new Surface(texture);
+
+            CaptureRequest.Builder builder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            builder.addTarget(surface);
+
+            cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback() {
+                @Override
+                public void onConfigured(@NonNull CameraCaptureSession session) {
+                    if (cameraDevice == null) return;
+                    cameraCaptureSession = session;
+                    try {
+                        builder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
+                        session.setRepeatingRequest(builder.build(), null, null);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onConfigureFailed(@NonNull CameraCaptureSession session) {
+                    Toast.makeText(Activity_handtalker_camera.this, "Configuración de la cámara fallida", Toast.LENGTH_SHORT).show();
+                }
+            }, null);
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Listener para el TextureView
+    private final TextureView.SurfaceTextureListener surfaceTextureListener = new TextureView.SurfaceTextureListener() {
+        @Override
+        public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+            Log.d("Camera", "SurfaceTexture is available, opening camera.");
+            openCamera();
+        }
+
+        @Override
+        public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+            // Configurar la transformación de la vista previa si es necesario
+        }
+
+        @Override
+        public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+            return true;
+        }
+
+        @Override
+        public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+        }
+
+
+    };
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("Camera", "onResume is called.");
+        if (textureView.isAvailable()) {
+            Log.d("Camera", "TextureView is available, opening camera.");
+            openCamera();
+        } else {
+            textureView.setSurfaceTextureListener(surfaceTextureListener);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        // Liberar la cámara cuando la actividad está en pausa para permitir que otras aplicaciones la usen
+        closeCamera();
+        super.onPause();
+    }
+
+    private void closeCamera() {
+        if (cameraCaptureSession != null) {
+            cameraCaptureSession.close();
+            cameraCaptureSession = null;
+        }
+        if (cameraDevice != null) {
+            cameraDevice.close();
+            cameraDevice = null;
+        }
+        // Si estás usando un CameraCaptureSession o algún otro recurso que deba ser liberado, asegúrate de hacerlo aquí
+    }
+
+
+    // Asegúrate de implementar los métodos para abrirInicio(), abrirTraduccion(), abrirPerfil(), abrirConfig(), y abrirInfoGuia() como antes
+
 
     private void abrirInfoGuia() {
         if (themes.equals("1")){
